@@ -1,6 +1,15 @@
 import express from 'express';
+import { createOfficeController } from './dependencies';
 
-export const officeRoutes = express.Router();
+const officeRouter = express.Router();
 
-//Esto es un ejemploooooo
-//publicRoutes.post("/create", createPublicController.run.bind(createPublicController))
+// Ruta para crear una nueva oficina
+officeRouter.post('/create', (req, res) => {
+    createOfficeController.handle(req, res);
+});
+
+// officeRouter.get('/', ...);
+// officeRouter.put('/:id', ...);
+// officeRouter.delete('/:id', ...);
+
+export { officeRouter };

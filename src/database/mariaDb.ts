@@ -14,11 +14,20 @@ const pool = mariadb.createPool({
   connectionLimit: 10,
 });
 
+export async function initPool() {
+  try {
+    const conn = await pool.getConnection();
+    signale.success("Conexión exitosa a la BD");
+    conn.release();
+  } catch (error) {
+    signale.error("Error al intentar conectar con la BD:", error);
+  }
+}
+
 export async function query(sql: string, params: any[]) {
   let conn;
   try {
     conn = await pool.getConnection();
-    signale.success("Conexión exitosa a la BD");
     const result = await conn.query(sql, params);
     return result;
   } catch (error) {
@@ -28,5 +37,5 @@ export async function query(sql: string, params: any[]) {
     if (conn) {
       conn.release(); // Devuelve la conexión al pool al finalizar
     }
-  }0
+  }
 }
