@@ -20,7 +20,7 @@ export async function initPool() {
     signale.success("Conexión exitosa a la BD");
     conn.release();
   } catch (error) {
-    signale.error("Error al intentar conectar con la BD:", error);
+    signale.error("Error al conectar con la BD:", error);
   }
 }
 
