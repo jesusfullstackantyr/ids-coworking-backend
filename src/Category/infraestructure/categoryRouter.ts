@@ -1,6 +1,7 @@
 import express from 'express';
+import { deleteCategoryController } from './dependencies';
 
 export const categoryRoutes = express.Router();
 
-//Esto es un ejemploooooo
-//publicRoutes.post("/create", createPublicController.run.bind(createPublicController))
+
+categoryRoutes.put("/delete/:id", deleteCategoryController.delete.bind(deleteCategoryController))
