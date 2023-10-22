@@ -1,32 +1,24 @@
-import dotenv from "dotenv";
-import mariadb from "mariadb";
+import { Client } from 'pg';
 import { Signale } from "signale";
 
-dotenv.config();
-
 const signale = new Signale();
-
-const pool = mariadb.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  database: process.env.DB_DATABASE,
-  password: process.env.DB_PASSWORD,
-  connectionLimit: 10,
+const client = new Client({
+    host: 'localhost',
+    user: 'postgres',
+    database: 'coworking',
+    password: 'feisima54321',
+    port: 5432, // Puerto por defecto de PostgreSQL
 });
 
+client.connect();
+
 export async function query(sql: string, params: any[]) {
-  let conn;
-  try {
-    conn = await pool.getConnection();
-    signale.success("Conexión exitosa a la BD");
-    const result = await conn.query(sql, params);
-    return result;
-  } catch (error) {
-    signale.error(error);
-    return null;
-  } finally {
-    if (conn) {
-      conn.release(); // Devuelve la conexión al pool al finalizar
+    try {
+        const result = await client.query(sql, params);
+        signale.success("Consulta exitosa");
+        return result.rows;
+    } catch (error) {
+        signale.error(error);
+        return null;
     }
-  }0
 }
