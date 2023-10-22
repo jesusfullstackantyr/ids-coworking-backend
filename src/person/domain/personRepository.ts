@@ -1,7 +1,9 @@
 import { Person } from './person';
 
 export interface PersonRepository {
+    
     registerPerson(
+
         name: string,
         lastname: string,
         email: string,
@@ -10,6 +12,7 @@ export interface PersonRepository {
         id_address: number,
         id_user: number,
         status: string,
+
     ): Promise< Person | null | Error >
     
 }

@@ -8,7 +8,7 @@ export class Person {
         public occupation: string,
         public id_address: number,
         public id_user: number,
-        public status: string,
+        public status: string
     ) {
 
     }

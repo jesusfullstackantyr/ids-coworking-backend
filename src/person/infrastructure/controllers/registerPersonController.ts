@@ -23,10 +23,10 @@ export class RegisterPersonController {
             } = req.body
             console.log(req.body)
 
-            const status = 'in process';
+            const status = 'process';
 
             let registerPerson = await this.registerPersonUseCase.run(
-                status,
+                
                 name,
                 lastname,
                 email,
@@ -34,6 +34,7 @@ export class RegisterPersonController {
                 occupation,
                 id_address,
                 id_user,
+                status,
             )
 
             if (registerPerson instanceof Error) {
@@ -79,7 +80,7 @@ export class RegisterPersonController {
                     return res.status(400).send({
                         status: "error",
                         message: "Validation failed",
-                        errors: JSON.parse(error.message)  // Convertimos el mensaje de error en un objeto
+                        errors: JSON.parse(error.message)  // mensaje de error como objeto
                     });
                 }
             }*/

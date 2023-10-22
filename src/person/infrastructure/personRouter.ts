@@ -1,10 +1,11 @@
 import express from 'express';
 
 import {
-    RegisterPersonController
+    
+    registerPersonController
     
 } from "./dependencies";
 
 export const personRoutes = express.Router();
 
-personRoutes.post('/create', RegisterPersonController.run.bind(RegisterPersonController));
+personRoutes.post('/register', registerPersonController.run.bind(registerPersonController));
