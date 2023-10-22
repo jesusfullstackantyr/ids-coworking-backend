@@ -1,12 +1,12 @@
 import { MariadbPersonRepository } from "./mariadbPersonRepository";
 const mariadbPersonRepository= new MariadbPersonRepository();
 
-import { RegisterPersonController } from "./controllers/registerPersonController";
-import { RegisterPersonUseCase } from "../application/registerPersonUseCase";
+import { validatePersonController } from "./controllers/validatePersonController";
+import { validatePersonUseCase } from "../application/validatePersonUseCase";
 
-const registerPersonUseCase = new RegisterPersonUseCase(mariadbPersonRepository);
-const registerPersonController = new RegisterPersonController(registerPersonUseCase);
+const ValidatePersonUseCase = new validatePersonUseCase(mariadbPersonRepository);
+const ValidatePersonController = new validatePersonController(ValidatePersonUseCase);
 
 export {
-    registerPersonController,
+    ValidatePersonController,
 };

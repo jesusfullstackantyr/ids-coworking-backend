@@ -1,4 +1,3 @@
-import { error } from "console";
 import { query } from "../../database/mariaDb";
 import { Person } from "../domain/person";
 import { PersonRepository } from "../domain/personRepository";
@@ -9,7 +8,7 @@ export class MariadbPersonRepository implements PersonRepository {
         try {
             const personQuery = "SELECT * FROM person WHERE id_user = ?";
             const personResult = await query(personQuery, [id_user]);
-
+            console.log('personResult', personResult)
             if (personResult.length === 0) {
                 console.error("No se encontró ninguna persona con el ID proporcionado");
                 return false;

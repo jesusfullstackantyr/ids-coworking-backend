@@ -14,6 +14,5 @@ export interface PersonRepository {
 
     validatePerson(
         id_user: number,
-        status: string,
     ): Promise< boolean | null | Error >
 }

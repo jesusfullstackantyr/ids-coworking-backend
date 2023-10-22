@@ -7,17 +7,15 @@ export class validatePersonUseCase {
 
     async run(
         id_user: number,
-        status: string,
-        
-    ): Promise <boolean | null | Error> {
+    ): Promise<boolean | null | Error> {
         try {
-        
-            if (!id_user || status) {
+            console.log('id_user', id_user)
+            if (!id_user) {
                 return null;
             }
 
-            const validatePerson = await this.PersonRepository.validatePerson(id_user, status);
-
+            const validatePerson = await this.PersonRepository.validatePerson(id_user);
+            console.log('validatePerson', validatePerson)
             if (validatePerson === null) {
                 return null;
             }
