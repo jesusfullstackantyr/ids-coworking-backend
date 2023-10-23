@@ -7,10 +7,10 @@ dotenv.config();
 const signale = new Signale();
 
 const pool = mariadb.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  database: process.env.DB_DATABASE,
-  password: process.env.DB_PASSWORD,
+  host: "localhost", // Reemplaza con tu host
+  user: "root", // Reemplaza con tu usuario
+  database: "SOA", // Reemplaza con el nombre de tu base de datos
+  password: "Viridiana17", // Reemplaza con tu contraseña
   connectionLimit: 10,
 });
 
