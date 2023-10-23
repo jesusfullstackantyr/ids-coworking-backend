@@ -1,0 +1,15 @@
+export class Person {
+    constructor(
+        //readonly id : number,
+        public name: string,
+        public lastname: string,
+        public email: string,
+        public phone: number,
+        public occupation: string,
+        public id_address: number,
+        public id_user: number,
+        public status: string
+    ) {
+        //this.phone = id.toString();
+    }
+}
