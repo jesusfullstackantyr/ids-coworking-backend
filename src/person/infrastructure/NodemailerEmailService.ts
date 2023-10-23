@@ -8,8 +8,8 @@ export class NodemailerEmailService implements EmailService {
     this.transporter = nodemailer.createTransport({
       service: 'Gmail', // Puedes configurar esto según tus necesidades
       auth: {
-        user: '203467@ids.upchiapas.edu.mx',
-        pass: 'tolucafc1988',
+        user: 'tucorreo@gmail.com',
+        pass: 'tucontraseña',
       },
     });
   }
