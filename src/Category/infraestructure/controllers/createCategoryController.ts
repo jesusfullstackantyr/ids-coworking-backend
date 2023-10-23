@@ -4,7 +4,7 @@ import { Category } from "../../domain/category";
 
 
 export class CreateCategoryController {
-    constructor(readonly createCategoryUseCase: CreateCategoryUseCase){}
+    constructor(readonly createCategoryUseCase: CreateCategoryUseCase) { }
 
     async create(req: Request, res: Response) {
         try {
@@ -18,14 +18,7 @@ export class CreateCategoryController {
                 status
             );
 
-            if (createCategory instanceof Error) {
-                return res.status(400).send({
-                    status: "error",
-                    message: createCategory.message,
-                });
-            }
-
-            if (createCategory instanceof Category) {
+            if (createCategory) {
                 return res.status(201).send({
                     status: "success",
                     data: {
@@ -39,17 +32,29 @@ export class CreateCategoryController {
 
                 });
             } else {
-                return res.status(500).send({
+                return res.status(400).send({
                     status: "error",
-                    message: "Error al crear la categoria"
+                    data: [],
+                    validations: [],
+                    message: "Error al crear la categoria, intentelo mas tarde"
                 });
             }
 
         } catch (error) {
-            console.error("Error al crear la categoria:", error); // Agregar un registro detallado del error
+            if (error instanceof Error) {
+
+                if (error.message.startsWith('[')) {
+
+                    return res.status(400).send({
+                        status: "error",
+                        message: "Validation failed",
+                        errors: JSON.parse(error.message)
+                    });
+                }
+            }
             return res.status(500).send({
                 status: "error",
-                message: "An unexpected error occurred. Please try again later.",
+                message: "An error occurred while adding the book."
             });
         }
     }
