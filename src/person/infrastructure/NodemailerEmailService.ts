@@ -16,7 +16,7 @@ export class NodemailerEmailService implements EmailService {
 
   async sendEmail(to: string, subject: string, text: string): Promise<void> {
     const mailOptions = {
-      from: '203467@ids.upchiapas.edu.mx',
+      from: 'tucorreo@gmail.com',
       to,
       subject,
       html: '<h1>Correo de confirmación</h1><h2><A HREF="http://localhost:3000/api/v1/"> Confirmar </A></h2>',
