@@ -1,4 +1,4 @@
-import dotenv from "dotenv";
+import * as dotenv from "dotenv";
 import mariadb from "mariadb";
 import { Signale } from "signale";
 
@@ -7,11 +7,11 @@ dotenv.config();
 const signale = new Signale();
 
 const pool = mariadb.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  database: process.env.DB_DATABASE,
-  password: process.env.DB_PASSWORD,
-  connectionLimit: 10,
+  host: 'localhost',
+  user: 'farrera',
+  database: 'pruebas',
+  password: '203467',
+  connectionLimit: 2,
 });
 
 export async function query(sql: string, params: any[]) {
@@ -19,6 +19,9 @@ export async function query(sql: string, params: any[]) {
   try {
     conn = await pool.getConnection();
     signale.success("Conexión exitosa a la BD");
+    console.log(
+      "✅ MariaDB Connection has been established successfully."
+    );
     const result = await conn.query(sql, params);
     return result;
   } catch (error) {
