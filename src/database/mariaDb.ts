@@ -7,13 +7,11 @@ dotenv.config();
 const signale = new Signale();
 
 const pool = mariadb.createPool({
-  host:'localhost',
-  port: 3008, // Especifica el puerto de MariaDB
-  user:'root',
-  database:'SOA',
-  password: '211125',
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
   connectionLimit: 10,
-  acquireTimeout:500
 });
 
 export async function query(sql: string, params: any[]) {
@@ -30,5 +28,5 @@ export async function query(sql: string, params: any[]) {
     if (conn) {
       conn.release(); // Devuelve la conexión al pool al finalizar
     }
-  }
+  }0
 }
