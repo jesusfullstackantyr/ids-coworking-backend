@@ -7,8 +7,8 @@ export class MysqlUserRepository implements PaymentRepository {
     async listAllPayments(): Promise<Payment[]> {
         try {
           const sql = `
-            SELECT id, amount, payment_date
-            FROM openpay
+            SELECT id, amount, payment_date, status
+            FROM payments
           `;
           const params: any[] = [];  // No hay parámetros en esta consulta
           const [rows]: any = await query(sql, params);
@@ -18,6 +18,7 @@ export class MysqlUserRepository implements PaymentRepository {
               row.id,
               row.amount,
               row.payment_date,
+              row.status,
             );
           });
     
