@@ -8,6 +8,7 @@ export class CreatePaymentsUseCase {
 
     async execute(id: number, amount: number, payment_date: string, status: string, id_user:number, id_rental:number ): Promise<any>  {
 
+        
         let payment = new Payment(
             id,
             amount,
