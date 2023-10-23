@@ -10,8 +10,8 @@ const pool = mariadb.createPool({
   host:'localhost',
   port: 3008, // Especifica el puerto de MariaDB
   user:'root',
-  database:'soa',
-  password: 'Miller2001Lopez',
+  database:'SOA',
+  password: '211125',
   connectionLimit: 10,
   acquireTimeout:500
 });
