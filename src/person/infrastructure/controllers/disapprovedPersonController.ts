@@ -1,17 +1,15 @@
 import { Request, Response } from "express";
 import { validatePersonUseCase } from "../../application/validatePersonUseCase";
 
-export class validatePersonController {
+export class disapprovedPersonController {
 
     constructor(readonly validatePersonUseCase: validatePersonUseCase) { }
 
     async run(req: Request, res: Response) {
         try {
-
             let {
                 id_user
             } = req.params
-
             let updatedPerson = await this.validatePersonUseCase.run(Number(id_user));
             if (updatedPerson === true) {
                 return res.status(201).send({
