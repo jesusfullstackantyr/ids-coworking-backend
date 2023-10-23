@@ -7,7 +7,7 @@ export class Person {
         public phone: number,
         public occupation: string,
         public id_address: number,
-        public id_user: number,
+        public id_user: Number,
         public status: string,
     ) {
 

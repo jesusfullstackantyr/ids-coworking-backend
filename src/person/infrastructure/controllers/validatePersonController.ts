@@ -7,12 +7,15 @@ export class validatePersonController {
 
     async run(req: Request, res: Response) {
         try {
-
             let {
                 id_user
             } = req.params
 
-            let updatedPerson = await this.validatePersonUseCase.run(Number(id_user));
+            let {
+                status
+            } = req.body
+
+            let updatedPerson = await this.validatePersonUseCase.run(parseInt(id_user), status);
             if (updatedPerson === true) {
                 return res.status(201).send({
                     status: "success",

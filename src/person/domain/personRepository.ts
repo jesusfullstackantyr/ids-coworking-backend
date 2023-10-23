@@ -13,10 +13,8 @@ export interface PersonRepository {
     ): Promise< Person | null | Error >
 
     validatePerson(
-        id_user: number,
+        id_user: Number,
+        status: string
     ): Promise< boolean | null | Error >
 
-    disapprovedPerson(
-        id_user: number,
-    ): Promise< boolean | null | Error >
 }
