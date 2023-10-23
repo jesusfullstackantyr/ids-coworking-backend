@@ -3,6 +3,7 @@ export class Payment {
         readonly id : number,
         readonly amount : number,
         readonly payment_date : Date,
+        
         readonly status : string
     ) {}
 }
