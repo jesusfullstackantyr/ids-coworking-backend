@@ -1,15 +1,18 @@
 import express from 'express';
 import { Signale } from 'signale';
+import { paymentRouter } from './payments/infraestrucuture/routers/paymentRouter';
+import dotenv from 'dotenv';
 
 
-
-const app = express();
+dotenv.config();
 const signale = new Signale();
 
+const app = express();
+
 app.use(express.json());
-// Ejemplo app.use('/leads',leadRouter);
+app.use('/Payment', paymentRouter);
 
 
 app.listen(3000, () => {
-    signale.success("Server online in port 3000");
+  signale.success("Server online in port 3000");
 });
