@@ -7,11 +7,12 @@ dotenv.config();
 const signale = new Signale();
 
 const pool = mariadb.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  database: process.env.DB_DATABASE,
-  password: process.env.DB_PASSWORD,
+  host: 'localhost',
+  user: 'root',
+  database: 'SOA',
+  password: '211125',
   connectionLimit: 10,
+  
 });
 
 export async function query(sql: string, params: any[]) {

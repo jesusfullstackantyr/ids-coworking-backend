@@ -1,29 +1,32 @@
 import { Request, Response } from "express";
 import { UpdateStatus } from "../../appliaction/updateStatusUseCase";
+import { ValidatorupdateStatus } from "../../domain/validation/officesValidation";
+
+import { HTTPStatusCodes } from "../../domain/validation/HTTPStatusCodes";
 
 export class UpdateStatusController {
     constructor(private updateStatus: UpdateStatus) {}
 
     async handle(req: Request, res: Response): Promise<Response> {
-        const { id, status } = req.body;
+        const validator = new ValidatorupdateStatus(req.body.status, req.body.id);
 
-        if (!['activo', 'inactivo', 'mantenimiento'].includes(status)) {
-            return res.status(400).json({
+        if (!['activo', 'inactivo', 'mantenimiento'].includes(validator.status)) {
+            return res.status(HTTPStatusCodes.BAD_REQUEST).json({
                 error: 'El estatus tiene que estar en activo, inactivo, mantenimiento.'
             });
         }
 
         try {
-            const office = await this.updateStatus.run(id, status);
+            const office = await this.updateStatus.run(validator.id, validator.status);
             if (office) {
-                return res.status(200).json(office);
+                return res.status(HTTPStatusCodes.OK).json(office);
             } else {
-                return res.status(404).json({
+                return res.status(HTTPStatusCodes.NOT_FOUND).json({
                     error: 'Oficina no encontrada.'
                 });
             }
         } catch (error) {
-            return res.status(500).json({
+            return res.status(HTTPStatusCodes.INTERNAL_SERVER_ERROR).json({
                 error: 'Error interno del servidor.'
             });
         }
