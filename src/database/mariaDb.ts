@@ -4,6 +4,7 @@ import { Signale } from "signale";
 
 dotenv.config();
 
+
 const signale = new Signale();
 
 const pool = mariadb.createPool({
