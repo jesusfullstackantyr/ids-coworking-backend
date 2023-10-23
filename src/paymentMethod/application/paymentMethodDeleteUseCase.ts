@@ -1,6 +1,6 @@
-import { PaymentRepository } from "../domain/repositories/paymentRepository";
+import { PaymentRepository } from "../domain/repositories/paymentMethodRepository";
 
-export class PaymentsDeleteUseCase {
+export class PaymentMethodDeleteUseCase {
 
     constructor(readonly paymentRepository: PaymentRepository) {}
 

@@ -1,18 +1,14 @@
 import { Request, Response } from 'express';
-import { PaymentsUpdateUseCase } from '../../application/paymentsUpdateUseCase';
+import { PaymentMethodUpdateUseCase } from '../../application/paymentMethodUpdateUseCase';
 
-export class PaymentsUpdateController {
-  constructor(readonly paymentsUpdateUseCase: PaymentsUpdateUseCase) {}
+export class PaymentMethodUpdateController {
+  constructor(readonly paymentsUpdateUseCase: PaymentMethodUpdateUseCase) {}
 
   async updatePayments(request: Request, response: Response) {
     try {
-      const { id, amount, payment_date, status, id_user, id_rental } = request.body;
+      const { id, name, status, pb_key_prod, pd_key_prod, pb_key_test, pd_key_test } = request.body;
       const updatedPaymentData = {
-        amount,
-        payment_date,
-        status,
-        id_user,
-        id_rental,
+        id, name, status, pb_key_prod, pd_key_prod, pb_key_test, pd_key_test
       };
 
     

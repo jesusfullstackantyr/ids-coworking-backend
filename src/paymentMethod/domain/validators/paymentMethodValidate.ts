@@ -1,19 +1,16 @@
 import { validate } from "class-validator";
-import { Payment } from "../entities/payments";
+import { PaymentMethod } from "../entities/paymentsMethod";
 
 export class paymentsValidate {
 
-    // atributes
-    public payment:Payment;
+    public payment:PaymentMethod;
     public listErrors:any[];
 
-    //constructor
-    constructor(payment:Payment) {
+    constructor(payment:PaymentMethod) {
         this.payment = payment;
         this.listErrors = [];
     }
 
-    //public methods
     public async invalidIfHasErrors() {
         await this.validate();
 
@@ -27,7 +24,6 @@ export class paymentsValidate {
         })
     }
 
-    //protected methods
     protected async validate() {
         this.listErrors = await validate(this.payment);
     }

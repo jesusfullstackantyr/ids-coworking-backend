@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { PaymentsDeleteUseCase } from '../../application/paymentsDeleteUseCase';
+import { PaymentMethodDeleteUseCase } from '../../application/paymentMethodDeleteUseCase';
 
 
-export class PaymentsDeleteController {
-  constructor(private paymentsDeleteUseCase: PaymentsDeleteUseCase) {}
+export class PaymentMethodDeleteController {
+  constructor(private paymentsDeleteUseCase: PaymentMethodDeleteUseCase) {}
 
   async deletePayment(req: Request, res: Response): Promise<void> {
     try {

@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { PaymentsGetAllUseCase } from '../../application/paymentsGetAllUseCase';
+import { PaymentMethodGetAllUseCase } from '../../application/paymentMethodGetAllUseCase';
 
-export class PaymentsGetAllController {
-  constructor(readonly paymentsGetAllUseCase: PaymentsGetAllUseCase) {}
+export class PaymentMethodGetAllController {
+  constructor(readonly paymentsGetAllUseCase: PaymentMethodGetAllUseCase) {}
 
   async getAllPayments(request: Request, response: Response) {
     try {
