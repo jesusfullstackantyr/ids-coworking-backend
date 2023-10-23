@@ -1,6 +1,8 @@
 import dotenv from "dotenv";
 import mariadb from "mariadb";
 import { Signale } from "signale";
+import fs from "fs";
+import path from 'path';
 
 dotenv.config();
 
@@ -18,6 +20,18 @@ export async function initPool() {
   try {
     const conn = await pool.getConnection();
     signale.success("Conexión exitosa a la BD");
+
+    const sqlFilePath = path.join(__dirname, 'initialize.sql');
+    const sqlFileContent = fs.readFileSync(sqlFilePath, "utf-8");
+    const sqlStatements = sqlFileContent.split(';'); // Divide el contenido en sentencias SQL individuales
+
+    for (const sqlStatement of sqlStatements) {
+      if (sqlStatement.trim() !== '') {
+        await conn.query(sqlStatement); // Ejecuta cada sentencia SQL individual
+      }
+    }
+
+
     conn.release();
   } catch (error) {
     signale.error("Error al conectar con la BD:", error);
@@ -35,7 +49,7 @@ export async function query(sql: string, params: any[]) {
     return null;
   } finally {
     if (conn) {
-      conn.release(); // Devuelve la conexión al pool al finalizar
+      conn.release();
     }
   }
 }
