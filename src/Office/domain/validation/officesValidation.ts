@@ -1,5 +1,4 @@
 import { IsNotEmpty, IsString ,IsNumber,IsInt} from 'class-validator';
-import { Office } from "../office";
 
 export class ValidatorupdateStatus {
 
@@ -12,10 +11,10 @@ export class ValidatorupdateStatus {
     public status: string;
 
     constructor(
+        id: number,
         status: string,
-        id: number
     ) {
-        this.status = status;
         this.id = id;
+        this.status = status;
     }
 }

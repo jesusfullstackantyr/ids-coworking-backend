@@ -8,7 +8,7 @@ export class UpdateStatusController {
     constructor(private updateStatus: UpdateStatus) {}
 
     async handle(req: Request, res: Response): Promise<Response> {
-        const validator = new ValidatorupdateStatus(req.body.status, req.body.id);
+        const validator = new ValidatorupdateStatus( req.body.id,req.body.status,);
 
         if (!['activo', 'inactivo', 'mantenimiento'].includes(validator.status)) {
             return res.status(HTTPStatusCodes.BAD_REQUEST).json({
