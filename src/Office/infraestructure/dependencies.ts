@@ -1,11 +1,8 @@
 import { MariaDBRepository } from "./mariaDBRepository";
-
-import { GetOfficeUseCase } from "../appliaction/getOfficeUseCase";
-import { GetOfficeController } from "./controller/getOfficeController";
-
+import { UpdateStatus } from "../appliaction/updateStatusUseCase";
+import { UpdateStatusController } from "./controller/updateStatus";
 
 export const mariaDBRepository = new MariaDBRepository();
 
-export const getOfficeUseCase = new GetOfficeUseCase(mariaDBRepository);
-export const getOfficeController = new GetOfficeController(getOfficeUseCase);
-
+export const updateStatusUseCase = new UpdateStatus(mariaDBRepository);
+export const updateStatusController = new UpdateStatusController(updateStatusUseCase);

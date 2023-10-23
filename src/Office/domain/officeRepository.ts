@@ -2,5 +2,6 @@ import { Office } from "./office";
 
 export interface OfficeRepository{
     
-    getOffice(id:number):Promise<Office | null>
+    updateStatus(id: number, newStatus: string): Promise<Office | null>  //listo
+//
 }
