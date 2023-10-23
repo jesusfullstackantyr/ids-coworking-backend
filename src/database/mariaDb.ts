@@ -2,31 +2,34 @@ import dotenv from "dotenv";
 import mariadb from "mariadb";
 import { Signale } from "signale";
 
+const signale = new Signale();
 dotenv.config();
 
-const signale = new Signale();
-
-const pool = mariadb.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  database: process.env.DB_DATABASE,
-  password: process.env.DB_PASSWORD,
+const config = {
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  database: process.env.DB_DATABASE || 'cowork',
+  password: process.env.DB_PASSWORD || 'galletas',
+  waitForConnections: true,
   connectionLimit: 10,
-});
+  port: Number(process.env.DB_PORT) || 3306,
+};
+
+console.log('Configuración de la base de datos:', config);
+
+
+// Crear el pool de conexiones
+const pool = mariadb.createPool(config);  // Cambiado de `mysql.createPool` a `createPool`
 
 export async function query(sql: string, params: any[]) {
-  let conn;
-  try {
-    conn = await pool.getConnection();
-    signale.success("Conexión exitosa a la BD");
-    const result = await conn.query(sql, params);
-    return result;
-  } catch (error) {
-    signale.error(error);
-    return null;
-  } finally {
-    if (conn) {
-      conn.release(); // Devuelve la conexión al pool al finalizar
+    try {
+        const conn = await pool.getConnection();
+        signale.success("Conexión exitosa a la BD");
+        const result = await conn.execute(sql, params);
+        conn.release();
+        return result;
+    } catch (error) {
+        signale.error(error);
+        return null;
     }
-  }0
 }
