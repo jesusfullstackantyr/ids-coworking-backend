@@ -1,7 +1,7 @@
 import express from 'express';
 import { Signale } from 'signale';
 import { personRoutes } from './person/infrastructure/personRouter';
-import { emailRouter } from './person/infrastructure/emailRouter';
+import { emailRouter } from './person/infrastructure/services/router/emailRouter';
 
 
 const app = express();

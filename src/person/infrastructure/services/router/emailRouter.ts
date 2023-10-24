@@ -1,7 +1,7 @@
 import express from 'express';
 
-import { EmailApplicationService } from '../application/EmailApplicationService';
-import { NodemailerEmailService } from '../infrastructure/NodemailerEmailService';
+import { EmailApplicationService } from '../../../application/EmailApplicationService';
+import { NodemailerEmailService } from '../NodemailerEmailService';
 const emailService = new NodemailerEmailService();
 const emailAppService = new EmailApplicationService(emailService);
 

@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import { EmailService } from '../domain/EmailService';
+import { EmailService } from '../../domain/EmailService';
 
 export class NodemailerEmailService implements EmailService {
   private transporter: nodemailer.Transporter;
