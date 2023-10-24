@@ -19,7 +19,7 @@ export const uploadToS3 = async (fileBuffer: Buffer, fileName: string, contentTy
 
     await s3.upload(params).promise();
 
-    const awsRegion = process.env.AWS_REGION || 'us-east-1';  // Por defecto, si no está definida la variable de entorno, usamos 'us-east-1'
+    const awsRegion = process.env.AWS_REGION || 'us-east-2';  // Por defecto, si no está definida la variable de entorno, usamos 'us-east-1'
 
     return `https://${bucketName}.s3.${awsRegion}.amazonaws.com/${fileName}`;
 };
