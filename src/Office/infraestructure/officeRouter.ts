@@ -1,5 +1,5 @@
 import express from 'express';
-import { getOfficeController } from './dependencies';
+import { getOfficeController,updateStatusController } from './dependencies';
 import { createOfficeController } from './dependencies';
 
 const officeRouter = express.Router();
@@ -12,5 +12,7 @@ officeRouter.get("/:id", getOfficeController.get.bind(getOfficeController))
 // Ruta para crear una nueva oficina
 officeRouter.post('/create', (req, res) => {createOfficeController.handle(req, res);});
 
+
+officeRouter.put("/updateStatus", (req, res) => { updateStatusController.handle(req, res);});
 
 export { officeRouter };

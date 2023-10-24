@@ -38,3 +38,22 @@ export class OfficeValidation {
         this.id_category = id_category;
     }
 }
+
+export class ValidatorupdateStatus {
+
+    @IsInt()
+    @IsNotEmpty()
+    public id: number;
+    
+    @IsNotEmpty()
+    @IsString()
+    public status: string;
+
+    constructor(
+        id: number,
+        status: string,
+    ) {
+        this.id = id;
+        this.status = status;
+    }
+}
