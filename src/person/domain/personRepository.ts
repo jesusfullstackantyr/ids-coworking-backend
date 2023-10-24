@@ -1,6 +1,7 @@
 import { Person } from './person';
 
 export interface PersonRepository {
+<<<<<<< HEAD
     
     registerPerson(
 
@@ -15,4 +16,8 @@ export interface PersonRepository {
 
     ): Promise< Person | null | Error >
     
+=======
+    updatePersonAddress(id: number, id_address: number): Promise<Person | null >;
+    listAllPersons(): Promise<Person[] | null> //listo
+>>>>>>> eb33269aad852f9d8c41ad3af7075e180e2f12f5
 }
