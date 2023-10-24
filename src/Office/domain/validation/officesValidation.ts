@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString ,IsNumber,IsInt} from 'class-validator';
+import { IsNotEmpty, IsString ,IsNumber,IsInt, IsIn} from 'class-validator';
 
 export class ValidatorupdateStatus {
 
@@ -8,6 +8,7 @@ export class ValidatorupdateStatus {
     
     @IsNotEmpty()
     @IsString()
+    @IsIn(['activo', 'inactivo', 'mantenimiento'])
     public status: string;
 
     constructor(

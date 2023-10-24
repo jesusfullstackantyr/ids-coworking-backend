@@ -1,33 +1,42 @@
 import { Request, Response } from "express";
 import { UpdateStatus } from "../../appliaction/updateStatusUseCase";
-import { ValidatorupdateStatus } from "../../domain/validation/officesValidation";
-
 import { HTTPStatusCodes } from "../../domain/validation/HTTPStatusCodes";
 
 export class UpdateStatusController {
     constructor(private updateStatus: UpdateStatus) {}
 
     async handle(req: Request, res: Response): Promise<Response> {
-        const validator = new ValidatorupdateStatus( req.body.id,req.body.status,);
-
-        if (!['activo', 'inactivo', 'mantenimiento'].includes(validator.status)) {
-            return res.status(HTTPStatusCodes.BAD_REQUEST).json({
-                error: 'El estatus tiene que estar en activo, inactivo, mantenimiento.'
-            });
-        }
-
         try {
-            const office = await this.updateStatus.run(validator.id, validator.status);
-            if (office) {
-                return res.status(HTTPStatusCodes.OK).json(office);
-            } else {
-                return res.status(HTTPStatusCodes.NOT_FOUND).json({
-                    error: 'Oficina no encontrada.'
+            const { id, status } = req.body;
+            const updateStatus= await this.updateStatus.run(id,status);
+            if (updateStatus) {
+                return res.status(201).send({
+                    status: "success",
+                    data: {
+                        new_Book: updateStatus
+                    }
                 });
+            } else {
+                throw new Error("Ocurrió un error al actualizar, oficina no encontrada ");
             }
         } catch (error) {
-            return res.status(HTTPStatusCodes.INTERNAL_SERVER_ERROR).json({
-                error: 'Error interno del servidor.'
+            let errorMessage = "Ocurrió un error desconocido.";
+            let errors;
+
+            if (error instanceof Error) {
+                if (error.message.startsWith('[')) {
+                    errorMessage = "La validación falló";
+                    errors = JSON.parse(error.message);
+                } else {
+                    errorMessage = error.message;
+                    
+                }
+            }
+
+            return res.status(500).send({
+                status: "error",
+                message: errorMessage,
+                errors: errors
             });
         }
     }

@@ -26,7 +26,7 @@ export async function query(sql: string, params: any[]) {
     return null;
   } finally {
     if (conn) {
-      conn.release(); 
+      conn.release(); // Devuelve la conexión al pool al finalizar
     }
   }0
 }
