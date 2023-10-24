@@ -5,6 +5,7 @@
  const signale = new Signale();// Aquí se ha corregido el nombre
  
  
+ 
  const config = {
      host:'localhost',
       // // Agrega el puerto de la base de datos
