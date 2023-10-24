@@ -1,11 +1,24 @@
 import { MakePaymentUseCase } from "../../application/MakePaymentUseCase";
 import { Request, Response } from "express";
 
+/*
+    {
+        payload:{
+            card:{},
+            user:{},
+            office:{},
+            contract:{}
+        }
+       
+    }
+*/
+
 
 export class MakePaymentController {
     constructor(readonly makePaymentUseCase: MakePaymentUseCase) {}
 
     async run(req:Request, res:Response) {
+
         try {
             let {
                name,
@@ -15,9 +28,17 @@ export class MakePaymentController {
                expiration_month,
                expiration_year,
                amount,
-               description
+               description,
+               id_contract,
+               id_card,
+               id_user
             } = req.body
-            console.log(req.body)
+            
+            //mandar a llamar servicio de openPay
+
+            // almacenar tarjeta de cliente
+
+            // crear registro de nuevo pago
 
             let payment = await this.makePaymentUseCase.run(
                 name,
@@ -27,8 +48,12 @@ export class MakePaymentController {
                 expiration_month,
                 expiration_year,
                 amount,
-                description
+                description,
+                id_contract,
+                id_card,
+                id_user
             )
+
             if (payment instanceof Error){
                 return res.status(400).send({
                     status: "error",

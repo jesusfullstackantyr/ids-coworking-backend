@@ -1,6 +1,7 @@
 import express from 'express';
 import { Signale } from 'signale';
-import { cardRoutes } from './cards/infraestructure/paymentRouter';
+import { cardRoutes } from './payments/infraestructure/paymentRouter';
+
 
 
 

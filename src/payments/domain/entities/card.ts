@@ -1,4 +1,4 @@
-export interface Card {
+export interface Card {//solo se usa para obtener la respuesta de openpay
     id: string;
     type: string;
     brand: string;

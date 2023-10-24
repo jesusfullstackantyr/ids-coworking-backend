@@ -1,5 +1,5 @@
 
-export interface Customer {
+export interface Customer {//solo se usa para obtener la respuesta de openpay
     id: string;
     name: string;
     last_name: string | null;

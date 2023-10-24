@@ -1,8 +1,7 @@
 import Openpay from 'openpay';
-
-import internal from 'stream';
-import { Customer, CustomerRequest } from '../../domain/entities/customer';
 import { Card, CardRequest } from '../../domain/entities/card';
+import { Customer, CustomerRequest } from '../../domain/entities/customer';
+
 
 
 
