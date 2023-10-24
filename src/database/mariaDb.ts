@@ -15,6 +15,7 @@ const pool = mariadb.createPool({
   connectionLimit: 10,
 });
 
+
 export async function query(sql: string, params: any[]) {
   let conn;
   try {

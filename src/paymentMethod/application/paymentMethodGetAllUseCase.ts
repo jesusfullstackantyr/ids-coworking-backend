@@ -7,7 +7,6 @@ export class PaymentMethodGetAllUseCase {
     async execute(): Promise<any[]> {
         const payments = await this.paymentRepository.getAllPayments();
         return payments;
-
     }
 }
 
