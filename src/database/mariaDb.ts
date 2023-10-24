@@ -1,4 +1,3 @@
-
 import dotenv from "dotenv";
 import mariadb from "mariadb";
 import { Signale } from "signale";
@@ -8,6 +7,7 @@ dotenv.config();
 const signale = new Signale();
 
 const pool = mariadb.createPool({
+
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   database: process.env.DB_DATABASE,

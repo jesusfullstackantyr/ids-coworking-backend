@@ -8,5 +8,7 @@ export interface CategoryRepository {
         space: string,
         status: string,
     ):Promise<Category | null>;
+
+    deleteCategory(id: number):Promise<string | null>;
     
 }

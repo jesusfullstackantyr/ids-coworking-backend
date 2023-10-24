@@ -1,4 +1,4 @@
-import { IsNumber, IsNotEmpty, IsString, IsIn } from 'class-validator';
+import { IsString, IsUUID, Length, IsBoolean, IsNotEmpty, ValidateIf, IsIn, IsOptional,IsEmail,IsNumber} from 'class-validator';
 
 
 export class ValidationCreateCategory {
@@ -36,5 +36,12 @@ export class ValidationCreateCategory {
         this.space = space;
         this.status = status;
     }
-
+}
+export class ValidatorId {
+    @IsNotEmpty()
+    @IsNumber()
+    public id: number;
+    constructor(id:number) {
+        this.id = id
+    }
 }
