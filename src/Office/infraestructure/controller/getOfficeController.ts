@@ -1,5 +1,5 @@
 import { Request,Response } from "express";
-import { GetOfficeUseCase } from "../../appliaction/getOfficeUseCase";
+import { GetOfficeUseCase } from "../../application/getOfficeUseCase";
 
 
 export class GetOfficeController{

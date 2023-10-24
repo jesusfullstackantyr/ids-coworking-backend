@@ -1,6 +1,8 @@
-import { Office } from "./office";
+import { Office } from './office';
 
-export interface OfficeRepository{
+export interface OfficeRepository {
+    create(office: Office): Promise<void>;
     
     getOffice(id:number):Promise<Office | null>
 }
+
