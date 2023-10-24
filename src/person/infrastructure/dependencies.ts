@@ -2,6 +2,7 @@ import { MariadbPersonRepository } from "./mariadbPersonRepository";
 const mariadbPersonRepository= new MariadbPersonRepository();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 import { RegisterPersonController } from "./controllers/registerPersonController";
@@ -30,4 +31,14 @@ export {
     updatePersonAddressController,
     getAllPersonController,
 >>>>>>> eb33269aad852f9d8c41ad3af7075e180e2f12f5
+=======
+import { validatePersonController } from "./controllers/validatePersonController";
+import { validatePersonUseCase } from "../application/validatePersonUseCase";
+
+const ValidatePersonUseCase = new validatePersonUseCase(mariadbPersonRepository);
+const ValidatePersonController = new validatePersonController(ValidatePersonUseCase);
+
+export {
+    ValidatePersonController,
+>>>>>>> 4937744aa77bfc5f0fd945fc037deae94137f9d1
 };
