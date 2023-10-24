@@ -1,5 +1,5 @@
 export class Paypal{
     constructor(
-        readonly id: number,
+        readonly token: string,
     ){}
 }

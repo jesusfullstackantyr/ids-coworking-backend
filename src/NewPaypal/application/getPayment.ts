@@ -1,4 +1,4 @@
-import {PaypalRepository  } from "../domain/paypalRepository";
+import {PaypalRepository  } from "../domain/repositories/paypalRepository";
 
 export class GetPaypalCase {
     constructor(readonly PaypalRepo: PaypalRepository){}
