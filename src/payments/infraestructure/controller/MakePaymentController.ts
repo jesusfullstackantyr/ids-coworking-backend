@@ -23,6 +23,7 @@ export class MakePaymentController {
             let {
                name,
                email,
+               phone,
                card_number,
                cvv,
                expiration_month,
@@ -43,6 +44,7 @@ export class MakePaymentController {
             let payment = await this.makePaymentUseCase.run(
                 name,
                 email,
+                phone,
                 card_number,
                 cvv,
                 expiration_month,

@@ -10,6 +10,7 @@ export class MakePaymentUseCase {
     async run(
         name:String,
         email:String,
+        phone:string,
         card_number:String,
         cvv:String,
         expiration_month:String,
@@ -29,6 +30,7 @@ export class MakePaymentUseCase {
             const payment = await this.paymentRepository.ProcessPayment(
                 name,
                 email,
+                phone,
                 card_number,
                 cvv,
                 expiration_month,

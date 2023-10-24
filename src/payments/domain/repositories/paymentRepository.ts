@@ -2,6 +2,7 @@ export interface PaymentRepository {
     ProcessPayment(
         name:String,
         email:String,
+        phone:string,
         card_number:String,
         cvv:String,
         expiration_month:String,

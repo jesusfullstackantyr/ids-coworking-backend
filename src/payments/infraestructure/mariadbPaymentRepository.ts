@@ -14,6 +14,7 @@ export class MariadbCardRepository implements PaymentRepository {
   async ProcessPayment(
     name: string,
     email: string,
+    phone: string,
     card_number: string,
     cvv: string,
     expiration_month: string,
@@ -62,8 +63,34 @@ export class MariadbCardRepository implements PaymentRepository {
       console.log(dataPay.card.type)
 
       if (dataPay.error_message == null) {
+
+
+        let sqlcard = `
+          INSERT INTO Card ( 
+              headline, emitter_type, cvv, value_with_vat, concept, 
+              phone, email, card_number, expiration_year, expiration_month, status 
+          ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      `;
+
+        const paramscard = [
+          name,
+          dataPay.card.brand,
+          cvv,
+          amount,
+          description,
+          phone,
+          email,
+          card_number,
+          expiration_month,
+          expiration_year,
+          "process",
+        ];
+
+
+        const cardquery = await query(sqlcard, paramscard);
+
         let sql = `
-        INSERT INTO payments (
+        INSERT INTO payments  (
           amount, payment_date, status, token, metaData, 
           id_contract, id_payment_method, id_card, id_user
         ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -85,8 +112,8 @@ export class MariadbCardRepository implements PaymentRepository {
         ];
 
         // Suponiendo que tienes una función 'query' disponible para ejecutar consultas SQL.
-        const dataquery = await query(sql, params);
-        console.log(dataquery)
+        const paymentquery = await query(sql, params);
+        console.log(paymentquery)
       } else {
         console.log(dataPay.error_message)
       }
