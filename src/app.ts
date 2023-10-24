@@ -1,6 +1,8 @@
 import express from 'express';
 import { Signale } from 'signale';
 import { paymentRouter } from './payments/infraestrucuture/routers/paymentRouter';
+import { paymentsRouter } from './paymentMethod/infraestructure/routes/paymentMethodRouter';
+
 import dotenv from 'dotenv';
 
 
@@ -11,8 +13,10 @@ const signale = new Signale();
 app.use(express.json());
 
 
-app.use('/Payment', paymentRouter);
-// Ejemplo app.use('/leads',leadRouter);
+app.use('/api/v1//Payment', paymentRouter);
+app.use('/api/v1/paymentsMethod',paymentsRouter);
+
+app.use(express.json());
 
 
 app.listen(3000, () => {
