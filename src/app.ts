@@ -15,6 +15,7 @@ app.use(express.json());
 
 app.use('/api/v1//Payment', paymentRouter);
 app.use('/api/v1/paymentsMethod',paymentsRouter);
+app.use("/api/v1/cards", paymentsRouter)
 
 app.use(express.json());
 
@@ -22,3 +23,4 @@ app.use(express.json());
 app.listen(3000, () => {
   signale.success("Server online in port 3000");
 });
+

@@ -16,6 +16,9 @@ const pool = mariadb.createPool({
 });
 
 
+
+
+
 export async function query(sql: string, params: any[]) {
   let conn;
   try {
@@ -30,5 +33,5 @@ export async function query(sql: string, params: any[]) {
     if (conn) {
       conn.release(); // Devuelve la conexión al pool al finalizar
     }
-  }0
+  }
 }

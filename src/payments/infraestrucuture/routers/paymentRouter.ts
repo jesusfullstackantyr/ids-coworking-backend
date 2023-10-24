@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { cancelPaymentController, paymentsContoller } from '../dependences';
+import { cancelPaymentController, makePaymentController, paymentsContoller } from '../dependences';
 
 
 export const paymentRouter = express.Router();
@@ -15,4 +15,8 @@ paymentRouter.get(
     //listar todo
     "/listPayment",
     paymentsContoller.listAllPayments.bind(paymentsContoller)
+)
+
+paymentRouter.post('/', 
+    makePaymentController.run.bind(makePaymentController)
 )
