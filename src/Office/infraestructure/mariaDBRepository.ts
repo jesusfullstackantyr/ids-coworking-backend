@@ -12,8 +12,8 @@ export class MariaDBRepository implements OfficeRepository {
         const [result]: any = await query(sql, params);
 
         if (result && result.length > 0) {
-            // Mapea los resultados en objetos de comentario
-            const Office = result.map((data: any) => new Office(
+            // Mapea los resultados en objetos de oficina
+            const officeList = result.map((data: any) => new Office(
                 data.id,
                 data.name,
                 data.image_url,
@@ -21,11 +21,12 @@ export class MariaDBRepository implements OfficeRepository {
                 data.id_category
             ));
 
-            return Office;
+            return officeList;
         } else {
             return null;
         }
         } catch (error) {
+            console.error('Error al obtener el libro:', error);
             return null;
         }
     }
