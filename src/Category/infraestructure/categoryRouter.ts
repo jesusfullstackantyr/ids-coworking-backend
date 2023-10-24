@@ -1,6 +1,8 @@
-import express from 'express';
+import express from "express";
+import { createCategoryController } from "./dependencies";
 
 export const categoryRoutes = express.Router();
 
-//Esto es un ejemploooooo
-//publicRoutes.post("/create", createPublicController.run.bind(createPublicController))
+categoryRoutes.post(
+    "/create", 
+    createCategoryController.create.bind(createCategoryController));
