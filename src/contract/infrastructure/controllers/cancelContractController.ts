@@ -1,37 +1,37 @@
 import { Response, Request } from "express";
-import { UpdateContractUseCase } from "../../application/updateContractUseCase";
+import { CancelContractUseCase } from "../../application/cancelContractUseCase";
 import { Contract } from "../../domain/contract";
 
-export class UpdateContractController {
-    constructor(private readonly updateContractUseCase: UpdateContractUseCase) {}
+export class CancelContractController {
+    constructor(private readonly CancelContractUseCase: CancelContractUseCase) {}
 
-    async updateStatus(req: Request, res: Response) {
+    async CancelStatus(req: Request, res: Response) {
         try {
-            const { status } = req.body;
+            const status  = "Cancelado";
             const id = Number(req.params.id); 
             console.log(id)// Suponiendo que el ID del contrato está en los parámetros de la ruta
 
-            const updatedContract = await this.updateContractUseCase.Update(status,id);
+            const CancelContract = await this.CancelContractUseCase.Cancel(status,id);
 
-            if (updatedContract instanceof Error) {
+            if (CancelContract instanceof Error) {
                 return res.status(400).send({
                     status: "error",
-                    message: updatedContract.message,
+                    message: CancelContract.message,
                 });
             }
 
     
 
-            if (updatedContract instanceof Contract) {
+            if (CancelContract instanceof Contract) {
                 return res.status(200).send({
                     status: "success",
                     data: {
-                        amount: updatedContract.amount,
-                        start_date: updatedContract.start_date,
-                        expiration_date: updatedContract.expiration_date,
-                        status: updatedContract.status,
-                        iduser: updatedContract.iduser,
-                        idoffice: updatedContract.idoffice,
+                        amount: CancelContract.amount,
+                        start_date: CancelContract.start_date,
+                        expiration_date: CancelContract.expiration_date,
+                        status: CancelContract.status,
+                        iduser: CancelContract.iduser,
+                        idoffice: CancelContract.idoffice,
                     },
                     message: "Estado del contrato actualizado con éxito",
                 });

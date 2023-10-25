@@ -8,6 +8,6 @@ ContractRoutes.post(
     createContractController.create.bind(createContractController));
 
 ContractRoutes.put(
-    "/update/:id", 
-    updateContractController.updateStatus.bind(updateContractController)
+    "/cancel/:id", 
+    updateContractController.CancelStatus.bind(updateContractController)
     );

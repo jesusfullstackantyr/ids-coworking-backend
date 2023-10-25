@@ -1,10 +1,10 @@
 import { Contract } from "../domain/contract";
 import { ContractRepository } from "../domain/contract_repository";
 
-export class UpdateContractUseCase {
+export class CancelContractUseCase {
     constructor(readonly ContractRepository: ContractRepository){}
 
-    async Update(
+    async Cancel(
         status: string,
         id:number
     
