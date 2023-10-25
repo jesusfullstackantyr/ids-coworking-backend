@@ -7,7 +7,6 @@ export interface PaymentRepository {
 
     listAllPayments(): Promise<Payment[]>;
 
-
     ProcessPayment(
         name:String,
         email:String,
