@@ -7,6 +7,7 @@ import { initPool } from './database/mariaDb';
 import { paymentRouter } from './payments/infraestrucuture/routers/paymentRouter';
 import { paymentsRouter } from './paymentMethod/infraestructure/routes/paymentMethodRouter';
 
+
 import dotenv from 'dotenv';
 
 
