@@ -5,9 +5,6 @@ import { PaymentRepository } from '../domain/repositories/paymentRepository';
 
 export class MakePaymentUseCase {
     constructor(readonly paymentRepository: PaymentRepository) {}
-
-
-
     
     async run(
         name:String,
