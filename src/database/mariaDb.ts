@@ -1,4 +1,4 @@
-import dotenv from "dotenv";
+import * as dotenv from "dotenv";
 import mariadb from "mariadb";
 import { Signale } from "signale";
 import fs from "fs";
@@ -48,6 +48,9 @@ export async function query(sql: string, params: any[]) {
     conn = await pool.getConnection();
 
     signale.success("Conexión exitosa a la BD");
+    console.log(
+      "✅ MariaDB Connection has been established successfully."
+    );
     const result = await conn.query(sql, params);
     return result;
   } catch (error) {
