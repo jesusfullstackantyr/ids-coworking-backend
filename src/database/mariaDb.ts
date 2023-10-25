@@ -1,12 +1,15 @@
-import dotenv from "dotenv";
-import mariadb from "mariadb";
+import * as mysql from "mysql2/promise";  // Cambiado de `mysql.createPool` a `createPool`
 import { Signale } from "signale";
 import fs from "fs";
 import path from 'path';
+import mariadb from "mariadb";
 
-dotenv.config();
+import * as dotenv from "dotenv";
+
+
 
 const signale = new Signale();
+dotenv.config();
 
 const pool = mariadb.createPool({
 
@@ -15,8 +18,8 @@ const pool = mariadb.createPool({
   database: process.env.DB_DATABASE,
   password: process.env.DB_PASSWORD,
   port: 3307, // Agrega el puerto correspondiente aquí
-  connectionLimit: 10,
-});
+})
+ // Cambiado de `mysql.createPool` a `createPool`
 
 export async function initPool() {
   try {
