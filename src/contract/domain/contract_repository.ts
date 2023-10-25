@@ -9,5 +9,6 @@ export interface ContractRepository {
         iduser: number,
         idoffice: number,
     ):Promise<Contract | null>;
-    
+    updateContract(status:string,id:number): Promise<Contract | null>
+
 }

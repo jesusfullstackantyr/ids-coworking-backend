@@ -19,6 +19,7 @@ export class CreateContractUseCase {
             }
 
             const createContract = await this.ContractRepository.createContract(
+
                 amount,
                 start_date,
                 expiration_date,
