@@ -6,7 +6,7 @@ dotenv.config();
 
 const signale = new Signale();
 
-const pool = mariadb.createPool({
+export const pool = mariadb.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   database: process.env.DB_DATABASE,
