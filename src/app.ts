@@ -1,9 +1,9 @@
 import express from 'express';
-import 'reflect-metadata';
-import { Signale } from 'signale';
 import { officeRouter } from './Office/infraestructure/officeRouter';
 import { categoryRoutes } from './Category/infraestructure/categoryRouter';
 import { initPool } from './database/mariaDb';
+import { Signale } from 'signale';
+
 import { paymentRouter } from './payments/infraestrucuture/routers/paymentRouter';
 import { paymentsRouter } from './paymentMethod/infraestructure/routes/paymentMethodRouter';
 
@@ -22,6 +22,7 @@ app.use('/api/v1//Payment', paymentRouter);
 app.use('/api/v1/paymentsMethod',paymentsRouter);
 app.use('/api/v1/office', officeRouter);
 app.use('/api/v1/category', categoryRoutes);
+app.use("/api/v1/cards", paymentsRouter)
 
 
 initPool().then(() => {

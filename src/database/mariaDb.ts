@@ -1,15 +1,14 @@
-import * as mysql from "mysql2/promise";  // Cambiado de `mysql.createPool` a `createPool`
+import dotenv from "dotenv";
+import mariadb from "mariadb";
 import { Signale } from "signale";
 import fs from "fs";
 import path from 'path';
-import mariadb from "mariadb";
 
-import * as dotenv from "dotenv";
 
+dotenv.config();
 
 
 const signale = new Signale();
-dotenv.config();
 
 const pool = mariadb.createPool({
 
@@ -47,6 +46,8 @@ export async function query(sql: string, params: any[]) {
   let conn;
   try {
     conn = await pool.getConnection();
+
+    signale.success("Conexión exitosa a la BD");
     const result = await conn.query(sql, params);
     return result;
   } catch (error) {
@@ -55,6 +56,7 @@ export async function query(sql: string, params: any[]) {
   } finally {
     if (conn) {
       conn.release();
+      conn.release(); // Devuelve la conexión al pool al finalizar
     }
   }
 }
