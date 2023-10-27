@@ -8,7 +8,7 @@ export class createPaymentController {
 
         try {
             //const paymentType = "paypal";
-            const paymentType = "openPay";
+            const gateway = "openPay";
 
             //TRANSACCTION DATA
             /*
@@ -17,11 +17,25 @@ export class createPaymentController {
 
                 COMO HARAN VARIAS GUARDADOS EN LA DB EN UN MISMO FLUJO UTILICEN TRANSACCIONES EN LA DB
             */
-            const transactionData = {};
+            const paymentPayload = {};
 
-            let payment = paymentFactory(paymentType);
+            let payment = paymentFactory(gateway);
 
-            let responsePayment = await payment?.pay(transactionData);
+            // obtener credenciales de ENV
+
+            const credentials = {
+                publicKey:"",
+                privateKey:"",
+                isLive:false
+            };
+
+            payment?.setCredentials(
+                credentials.publicKey,
+                credentials.privateKey,
+                credentials.isLive
+            );
+
+            let responsePayment = await payment?.pay(paymentPayload);
 
             // GUARDAR DATOS DE LA TARJETA
 
