@@ -1,5 +1,8 @@
 import express from "express";
-import { createCategoryController, deleteCategoryController, getCategoryController  } from "../dependencies";
+import { 
+    createCategoryController, 
+    deleteCategoryController, 
+    getCategoryController  } from "../dependencies";
 
 export const categoryRoutes = express.Router();
 
