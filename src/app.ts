@@ -1,7 +1,7 @@
 import express from 'express';
 import { Signale } from 'signale';
 import "dotenv/config";
-import { personRoutes } from './person/infrastructure/personRouter';
+import { personRoutes } from './accessManagement/person/infrastructure/personRouter';
 
 const app = express();
 const signale = new Signale();

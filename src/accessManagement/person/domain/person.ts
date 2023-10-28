@@ -10,6 +10,6 @@ export class Person {
         public id_user: number,
         public status: string
     ) {
-
+        
     }
 }

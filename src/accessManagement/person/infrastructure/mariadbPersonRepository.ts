@@ -1,4 +1,4 @@
-import { query } from "../../database/mariaDb";
+import { query } from "../../../database/mariaDb";
 import { Person } from "../domain/person";
 import { PersonRepository } from "../domain/personRepository";
 
