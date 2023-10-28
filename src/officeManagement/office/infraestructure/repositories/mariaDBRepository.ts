@@ -1,6 +1,6 @@
-import { Office } from '../domain/office';
-import { query } from '../../database/mariaDb';
-import { OfficeRepository } from '../domain/officeRepository';
+import { Office } from '../../domain/entities/office';
+import { query } from '../../../../database/mariaDb';
+import { OfficeRepository } from '../../domain/repositories/officeRepository';
 
 export class MariaDBRepository implements OfficeRepository {
 

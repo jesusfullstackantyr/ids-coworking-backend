@@ -1,5 +1,5 @@
-import { Office } from "../domain/office";
-import { OfficeRepository } from "../domain/officeRepository";
+import { Office } from "../domain/entities/office";
+import { OfficeRepository } from "../domain/repositories/officeRepository";
 import { validate } from "class-validator";
 import { ValidatorId } from "../domain/validation/officesValidation";
 

@@ -1,4 +1,4 @@
-import { Office } from './office';
+import { Office } from '../entities/office';
 
 export interface OfficeRepository {
     create(office: Office): Promise<void>;

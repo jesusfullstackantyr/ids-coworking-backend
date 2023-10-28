@@ -1,5 +1,5 @@
-import { Category } from "../domain/category";
-import { CategoryRepository } from "../domain/categoryRepository";
+import { Category } from "../domain/entities/category";
+import { CategoryRepository } from "../domain/repositories/categoryRepository";
 import { ValidationCreateCategory } from "../domain/validation/categoriesValidation";
 import { validate } from "class-validator";
 

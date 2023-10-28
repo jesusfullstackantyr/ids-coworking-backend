@@ -1,4 +1,4 @@
-import { MariaDBRepository } from "./mariaDBRepository";
+import { MariaDBRepository } from "./repositories/mariaDBRepository";
 import { CreateOfficeUseCase } from "../application/createOfficeUseCase";
 import { CreateOfficeController } from "./controller/createOfficeController";
 

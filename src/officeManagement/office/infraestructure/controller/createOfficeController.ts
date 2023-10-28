@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Office } from '../../domain/office';
+import { Office } from '../../domain/entities/office';
 import { CreateOfficeUseCase } from '../../application/createOfficeUseCase';
 import { HTTPStatusCodes } from '../../domain/validation/HTTPStatusCodes';
 import { OfficeValidation } from '../../domain/validation/officesValidation';

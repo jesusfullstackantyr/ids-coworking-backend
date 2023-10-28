@@ -1,6 +1,6 @@
-import { query } from "../../database/mariaDb";
-import { CategoryRepository } from "../domain/categoryRepository";
-import { Category } from "../domain/category";
+import { query } from "../../../../database/mariaDb";
+import { CategoryRepository } from "../../domain/repositories/categoryRepository";
+import { Category } from "../../domain/entities/category";
 
 export class MariaDBRepository implements CategoryRepository {
     async createCategory(

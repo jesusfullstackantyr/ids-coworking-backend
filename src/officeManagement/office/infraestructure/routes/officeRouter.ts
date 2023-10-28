@@ -1,6 +1,6 @@
 import express from 'express';
-import { getOfficeController,updateStatusController } from './dependencies';
-import { createOfficeController } from './dependencies';
+import { getOfficeController,updateStatusController } from '../dependencies';
+import { createOfficeController } from '../dependencies';
 
 const officeRouter = express.Router();
 

@@ -1,8 +1,8 @@
 import express from 'express';
 import 'reflect-metadata';
 import { Signale } from 'signale';
-import { officeRouter } from './Office/infraestructure/officeRouter';
-import { categoryRoutes } from './Category/infraestructure/categoryRouter';
+import { officeRouter } from './officeManagement/office/infraestructure/routes/officeRouter';
+import { categoryRoutes } from './officeManagement/category/infraestructure/routes/categoryRouter';
 import { initPool } from './database/mariaDb';
 import { paymentRouter } from './payments/infraestrucuture/routers/paymentRouter';
 import { paymentsRouter } from './paymentMethod/infraestructure/routes/paymentMethodRouter';

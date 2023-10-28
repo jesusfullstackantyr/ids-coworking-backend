@@ -1,4 +1,4 @@
-import { MariaDBRepository } from "./mariaDBRepository";
+import { MariaDBRepository } from "./repositories/mariaDBRepository";
 
 import { CreateCategoryUseCase } from "../application/createCategoryUseCase";
 import { CreateCategoryController } from "./controller/createCategoryController";

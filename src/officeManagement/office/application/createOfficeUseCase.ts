@@ -1,6 +1,6 @@
 import { validate } from 'class-validator';
-import { Office } from '../domain/office';
-import { OfficeRepository } from '../domain/officeRepository';
+import { Office } from '../domain/entities/office';
+import { OfficeRepository } from '../domain/repositories/officeRepository';
 import { OfficeValidation } from '../domain/validation/officesValidation';
 
 export class CreateOfficeUseCase {
