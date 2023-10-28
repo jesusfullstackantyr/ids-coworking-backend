@@ -9,22 +9,27 @@ import { paymentsRouter } from './paymentMethod/infraestructure/routes/paymentMe
 
 import dotenv from 'dotenv';
 
-
 dotenv.config();
 
 const app = express();
 const signale = new Signale();
 app.use(express.json());
 
-
-app.use('/api/v1//Payment', paymentRouter);
-app.use('/api/v1/paymentsMethod',paymentsRouter);
+app.use('/api/v1/payment', paymentRouter);
+app.use('/api/v1/paymentsMethod', paymentsRouter);
 app.use('/api/v1/office', officeRouter);
 app.use('/api/v1/category', categoryRoutes);
 
+const PORT = process.env.PORT;
 
 initPool().then(() => {
-    app.listen(3000, () => {
-      signale.success("Server online in port 3000");
-    });
-  })
+  app.listen(PORT, () => {
+    signale.success(`Server online in port ${PORT}`);
+  });
+});
+
+// Ruta principal para mostrar el puerto actual
+app.get('/', (req, res) => {
+  res.send(`Esta solicitud se está manejando en el puerto ${PORT}`);
+});
+
