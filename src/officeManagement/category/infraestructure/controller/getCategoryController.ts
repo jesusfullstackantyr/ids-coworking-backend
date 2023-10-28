@@ -1,22 +1,22 @@
-import { Request,Response } from "express";
-import { DeleteCategoryUseCase } from "../../application/deleteCatergoryUseCase";
+import { Request, Response } from "express";
+import { GetCategoryUseCase } from "../../application/getCategoryUseCase";
 
 
-export class DeleteCategoryController{
-    constructor( readonly deleteCategoryUseCase: DeleteCategoryUseCase){}
+export class GetCategoryController{
+    constructor(readonly getCategoryUseCase: GetCategoryUseCase){}
 
-    async delete(req: Request, res: Response){
+    async get(req: Request, res: Response){
         try {
             let id = parseInt(req.params.id, 10);
 
-            const deleteCategory = await this.deleteCategoryUseCase.delete(id);
+            const category = await this.getCategoryUseCase.get(id);
 
-            if (deleteCategory) {
+            if (category) {
                 return res.status(200).send({
                     status: "success",
                     data: {
-                        new_Book: deleteCategory,
-                        message:"Category deleted successfully"
+                        new_Book: category,
+                        message:"Category"
                     }
                 });
             } else {

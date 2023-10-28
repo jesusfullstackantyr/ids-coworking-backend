@@ -10,5 +10,7 @@ export interface CategoryRepository {
     ):Promise<Category | null>;
 
     deleteCategory(id: number):Promise<string | null>;
+
+    getCategory(id: number):Promise<Category | null>;
     
 }

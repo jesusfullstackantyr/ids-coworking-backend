@@ -51,7 +51,35 @@ export class MariaDBRepository implements CategoryRepository {
           console.error('Error al marcar la categoría como eliminada:', error);
           return null;
         }
+    }
+
+    async getCategory(id: number): Promise<Category | null> {
+      try {
+        const sql = "SELECT * FROM categories WHERE id = ?";
+        const params: any[] = [id]; // Usar id de la oficina en lugar de id_public
+  
+        const [result]: any = await query(sql, params);
+  
+        if (result && result.length > 0) {
+          // Mapea los resultados en objetos de oficina
+          const categoryList = result.map((data: any) => new Category(
+            data.id,
+            data.name,
+            data.price,
+            data.capacity,
+            data.space,
+            data.status
+          ));
+  
+          return categoryList;
+        } else {
+          return null;
+        }
+      } catch (error) {
+        console.error('Error al obtener el libro:', error);
+        return null;
       }
+    }
 }
    
 
