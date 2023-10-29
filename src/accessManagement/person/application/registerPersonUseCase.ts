@@ -10,7 +10,7 @@ export class RegisterPersonUseCase {
         name: string,
         lastname: string,
         email: string,
-        phone: number,
+        phone: string,
         occupation: string,
         id_address: number,
         id_user: number,
