@@ -17,7 +17,7 @@ const pool = mariadb.createPool({
   user: process.env.DB_USER,
   database: process.env.DB_DATABASE,
   password: process.env.DB_PASSWORD,
-  port: 3307, // Agrega el puerto correspondiente aquí
+  port: 3306, // Agrega el puerto correspondiente aquí
 })
  // Cambiado de `mysql.createPool` a `createPool`
 

@@ -47,6 +47,24 @@ export class MariaDBRepository implements OfficeRepository {
     }
   }
 
+  async update(office: Office): Promise<Office | null> {
+    const sql = `
+        UPDATE offices
+        SET name = ?, image_url = ?, status = ?, id_category = ?
+        WHERE id = ?;
+    `;
+
+    const values = [office.name, office.image_url, office.status, office.id_category, office.id];
+
+    try {
+        await query(sql, values);
+        return office; // Return the updated office
+    } catch (error) {
+        console.error('Error al Actualizar oficina:', error);
+        throw new Error('Error al Actualizar la oficina en la base de datos');
+    }
+}
+
   // agregar otros métodos para interactuar con la tabla de "offices",  
   // como getById, update, delete, etc.
 
