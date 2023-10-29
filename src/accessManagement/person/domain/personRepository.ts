@@ -3,7 +3,7 @@ import { Person } from './person';
 export interface PersonRepository {
     
     registerPerson(
-        
+        id: number,
         name: string,
         lastname: string,
         email: string,

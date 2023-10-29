@@ -12,6 +12,7 @@ export class RegisterPersonController {
 
         try {
             let {
+                id,
                 name,
                 lastname,
                 email,
@@ -26,7 +27,7 @@ export class RegisterPersonController {
             const status = 'process';
 
             let registerPerson = await this.registerPersonUseCase.run(
-                
+                id,
                 name,
                 lastname,
                 email,

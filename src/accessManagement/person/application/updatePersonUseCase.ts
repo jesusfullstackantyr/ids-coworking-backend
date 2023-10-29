@@ -7,7 +7,7 @@ export class UpdatePersonUseCase {
     async run(
         id: number,
         name: string,
-        lastname: string, 
+        lastname: string,
         phone: string
         
     ): Promise<Person | null | string> {
