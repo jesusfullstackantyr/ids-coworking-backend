@@ -8,7 +8,7 @@ import { ContractRoutes } from './contract/infrastructure/contractRouter';
 import { PaypalRoute } from './NewPaypal/infrestructure/paypalRouter';
 import { personRoutes } from './person/infrastructure/personRouter';
 import { emailRouter } from './person/infrastructure/services/router/emailRouter';
-import { userRouter } from './user/infrastructure/userRouter'; 
+import { userRouter } from './accessManagement/user/infraestructure/routes/userRouter'; 
 import { paymentRouter } from './payments/infraestrucuture/routers/paymentRouter';
 import { paymentsRouter } from './paymentMethod/infraestructure/routes/paymentMethodRouter';
 
