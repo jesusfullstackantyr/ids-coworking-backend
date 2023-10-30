@@ -17,12 +17,18 @@ export class UpdatePersonController {
             } = req.body
             
             let updatedPerson = await this.updatePersonUseCase.run(parseInt(id), name, lastname, phone);
+
             if (updatedPerson) {
                 //const updatedPersonString = updatedPerson.toString();
                 return res.status(201).send({
                     status: "success",
                     message: "Persona actualizada con éxito",
-                    data: updatedPerson,  // Aquí puedes incluir el objeto actualizado directamente
+                    data:
+                        name,
+                        lastname,
+                        phone,
+                        //updatedPerson,  // Aquí puedes incluir el objeto actualizado directamente
+                    
                 });
             } else {
                 return res.status(500).send({
@@ -38,5 +44,4 @@ export class UpdatePersonController {
             });
         }
     }
-
 }

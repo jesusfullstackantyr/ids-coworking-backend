@@ -12,9 +12,9 @@ export class UpdatePersonUseCase {
         
     ): Promise<Person | null | string> {
         try {
-            const uptade = await this.PersonRepository.updatePerson(id, name, lastname, phone);
+            const update = await this.PersonRepository.updatePerson(id, name, lastname, phone);
 
-            return uptade;
+            return update;
         } catch (error) {
             return null;
         }
