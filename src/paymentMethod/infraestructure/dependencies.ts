@@ -1,11 +1,11 @@
-import { PaymentMethodMariaDBAdapterRepository } from "./adapters/paymentsMariaDBAdapter";
-import { PaymentMethodCreateUseCase } from '../application/paymentMethodCreateUseCase';
+import { PaymentMethodMariaDBAdapterRepository } from "./repositories/paymentsMariaDBAdapter";
+import { PaymentMethodCreateUseCase } from '../application/useCases/paymentMethodCreateUseCase';
 import { PaymentMethodCreateController } from './controllers/paymentMethodCreateController';
 import { PaymentMethodGetAllController } from './controllers/paymentMethodGetAllController';
-import { PaymentMethodGetAllUseCase } from '../application/paymentMethodGetAllUseCase';
-import { PaymentMethodUpdateUseCase } from '../application/paymentMethodUpdateUseCase';
+import { PaymentMethodGetAllUseCase } from '../application/useCases/paymentMethodGetAllUseCase';
+import { PaymentMethodUpdateUseCase } from '../application/useCases/paymentMethodUpdateUseCase';
 import { PaymentMethodUpdateController } from './controllers/paymentMethodUpdateController';
-import { PaymentMethodDeleteUseCase } from '../application/paymentMethodDeleteUseCase';
+import { PaymentMethodDeleteUseCase } from '../application/useCases/paymentMethodDeleteUseCase';
 import { PaymentMethodDeleteController } from './controllers/paymentMethodDeleteController';
 
 const mariDBPaymentsAdapter = new PaymentMethodMariaDBAdapterRepository();

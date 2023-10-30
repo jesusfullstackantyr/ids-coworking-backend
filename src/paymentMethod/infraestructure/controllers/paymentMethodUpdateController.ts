@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { PaymentMethodUpdateUseCase } from '../../application/paymentMethodUpdateUseCase';
+import { PaymentMethodUpdateUseCase } from '../../application/useCases/paymentMethodUpdateUseCase';
 
 export class PaymentMethodUpdateController {
   constructor(readonly paymentsUpdateUseCase: PaymentMethodUpdateUseCase) {}
