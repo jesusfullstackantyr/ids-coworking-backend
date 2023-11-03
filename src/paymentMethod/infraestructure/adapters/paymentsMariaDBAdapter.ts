@@ -84,4 +84,34 @@ export class PaymentMethodMariaDBAdapterRepository implements PaymentRepository 
       throw error;
     }
   }
+
+  async getPaymentById(id: number): Promise<PaymentMethod | null> {
+    try {
+      // Definimos la consulta SQL para obtener el método de pago.
+      const sql = "SELECT * FROM payment_method WHERE id = ?";
+      
+      // Realizamos la consulta, pasando el id como parámetro.
+      const result: any = await query(sql, [id]);
+
+      // Verificamos si se recuperó algún resultado.
+      if (result && result.length > 0) {
+        const payment = result[0];
+        return new PaymentMethod(
+          payment.id,
+          payment.name,
+          payment.status,
+          payment.pb_key_prod,
+          payment.pr_key_prod, // Asegúrate de que estos nombres coincidan con cómo se devuelven los resultados de tu consulta.
+          payment.pb_key_test,
+          payment.pr_key_test
+        );
+      } else {
+        return null; // Puedes decidir devolver null o manejarlo de otra manera si no se encuentra ningún método de pago.
+      }
+    } catch (error) {
+      console.error('Error al obtener el método de pago:', error);
+      throw error; // Puedes decidir si quieres propagar el error o manejarlo de otra manera.
+    }
+  }
+
 }

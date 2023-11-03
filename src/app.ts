@@ -16,6 +16,7 @@ app.use(express.json());
 app.use('/api/v1//Payment', paymentRouter);
 app.use('/api/v1/paymentsMethod',paymentsRouter);
 app.use("/api/v1/cards", paymentsRouter)
+app.use('/api/v1/paymentsMethod',paymentsRouter); //luis segundo sprint
 
 app.use(express.json());
 

@@ -7,6 +7,9 @@ import { PaymentMethodUpdateUseCase } from '../application/paymentMethodUpdateUs
 import { PaymentMethodUpdateController } from './controllers/paymentMethodUpdateController';
 import { PaymentMethodDeleteUseCase } from '../application/paymentMethodDeleteUseCase';
 import { PaymentMethodDeleteController } from './controllers/paymentMethodDeleteController';
+import { PaymentMethodGetByIdUseCase } from "../application/paymentMethodGetByIdUseCase";
+import { PaymentMethodGetByIdController } from "./controllers/paymentMethodGetByIdController";
+
 
 const mariDBPaymentsAdapter = new PaymentMethodMariaDBAdapterRepository();
 const createPaymentsUseCase = new PaymentMethodCreateUseCase(mariDBPaymentsAdapter);
@@ -20,4 +23,7 @@ export const paymentsUpdateController = new PaymentMethodUpdateController(paymen
 
 const paymentsDeleteUseCase = new PaymentMethodDeleteUseCase(mariDBPaymentsAdapter);
 export const paymentsDeleteController = new PaymentMethodDeleteController(paymentsDeleteUseCase);
+
+const paymentsGetByIdUseCase = new PaymentMethodGetByIdUseCase(mariDBPaymentsAdapter);
+export const paymentsGetByIdController = new PaymentMethodGetByIdController(paymentsGetByIdUseCase);
 

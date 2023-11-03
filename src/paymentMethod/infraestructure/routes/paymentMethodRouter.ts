@@ -1,5 +1,5 @@
 import express, {Router} from "express";
-import { paymentsCreateController, paymentsDeleteController, paymentsGetAllController, paymentsUpdateController } from "../dependencies";
+import { paymentsCreateController, paymentsDeleteController, paymentsGetAllController, paymentsGetByIdController, paymentsUpdateController } from "../dependencies";
 
 export const paymentsRouter:Router = express.Router();
 
@@ -10,3 +10,6 @@ paymentsRouter.get("/",paymentsGetAllController.getAllPayments.bind(paymentsGetA
 paymentsRouter.put("/", paymentsUpdateController.updatePayments.bind(paymentsUpdateController));
 
 paymentsRouter.delete("/:id", paymentsDeleteController.deletePayment.bind(paymentsDeleteController));
+
+
+paymentsRouter.get("/:id", paymentsGetByIdController.getPaymentBiyd.bind(paymentsGetByIdController));
