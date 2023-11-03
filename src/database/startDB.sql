@@ -37,10 +37,11 @@ CREATE TABLE user (
    id int NOT NULL AUTO_INCREMENT primary key,
    email varchar(255) NOT NULL,
    password  varchar(255) NOT NULL,
-   verified tinyint(1) DEFAULT '0',
+   verified DATE NULL,
    idRole int DEFAULT NULL,
    FOREIGN KEY (idRole) REFERENCES role(id) ON DELETE CASCADE
 );
+
 CREATE TABLE Address(
     id INT AUTO_INCREMENT PRIMARY KEY,
     amount FLOAT NULL,
