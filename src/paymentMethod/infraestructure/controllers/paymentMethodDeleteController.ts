@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { PaymentMethodDeleteUseCase } from '../../application/paymentMethodDeleteUseCase';
+import { PaymentMethodDeleteUseCase } from '../../application/useCases/paymentMethodDeleteUseCase';
 
 
 export class PaymentMethodDeleteController {

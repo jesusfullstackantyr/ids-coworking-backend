@@ -6,4 +6,5 @@ export interface PaymentRepository {
     updatePayment(id: number, updatedPaymentData: PaymentMethod): Promise<PaymentMethod | null>;
     deletePayment(id: number): Promise<boolean>;
     getPaymentById(id:number): Promise<PaymentMethod | null>
+    getPaymentById(id:number): Promise<PaymentMethod | null>
 }

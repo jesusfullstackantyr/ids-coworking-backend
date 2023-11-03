@@ -1,4 +1,4 @@
-import { PaymentRepository } from "../domain/repositories/paymentMethodRepository";
+import { PaymentRepository } from "../../domain/repositories/paymentMethodRepository";
 
 export class PaymentMethodGetAllUseCase {
 
@@ -7,7 +7,6 @@ export class PaymentMethodGetAllUseCase {
     async execute(): Promise<any[]> {
         const payments = await this.paymentRepository.getAllPayments();
         return payments;
-
     }
     
 }

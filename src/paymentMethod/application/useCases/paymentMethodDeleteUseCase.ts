@@ -1,4 +1,4 @@
-import { PaymentRepository } from "../domain/repositories/paymentMethodRepository";
+import { PaymentRepository } from "../../domain/repositories/paymentMethodRepository";
 
 export class PaymentMethodDeleteUseCase {
 

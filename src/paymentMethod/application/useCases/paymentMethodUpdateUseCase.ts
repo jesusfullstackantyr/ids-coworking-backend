@@ -1,6 +1,6 @@
-import { PaymentMethod } from '../domain/entities/paymentsMethod';
-import { PaymentRepository } from '../domain/repositories/paymentMethodRepository';
-import { paymentsValidate } from '../domain/validators/paymentMethodValidate';
+import { PaymentMethod } from '../../domain/entities/paymentsMethod';
+import { PaymentRepository } from '../../domain/repositories/paymentMethodRepository';
+import { paymentsValidate } from '../../domain/validators/paymentMethodValidate';
 
 export class PaymentMethodUpdateUseCase {
 
