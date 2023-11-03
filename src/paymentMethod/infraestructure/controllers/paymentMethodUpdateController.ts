@@ -17,7 +17,7 @@ export class PaymentMethodUpdateController {
       if (updatedPayment) {
         return response.status(200).json(updatedPayment);
       } else {
-        return response.status(404).json({ message: 'El pago no se encontró para actualizar.' });
+        return response.status(404).json({ message: 'The payment was not found for updating.' });
       }
     } catch (error: any) {
       response.status(500).json({

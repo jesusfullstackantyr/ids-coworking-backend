@@ -11,13 +11,13 @@ export class PaymentMethodDeleteController {
       const isDeleted = await this.paymentsDeleteUseCase.execute(Number(id));
 
       if (isDeleted) {
-        res.status(200).json({ message: 'Pago eliminada.' });
+        res.status(200).json({ message: 'Payment deleted.' });
       } else {
-        res.status(404).json({ error: 'Pago no encontrada o no autorizada para eliminar.' });
+        res.status(404).json({ error: 'Payment not found or not authorized for deletion.' });
       }
     } catch (error) {
-      console.error('Error al eliminar el pago:', error);
-      res.status(500).json({ error: 'Error al eliminar el pago.' });
+      console.error('Error while deleting the payment:', error);
+      res.status(500).json({ error: 'Error while deleting the payment.' });
     }
   }
 
