@@ -7,7 +7,6 @@ export class MariadbUserRepository implements UserRepository {
         try {
             let sql = "SELECT * FROM user WHERE id = ? AND idRole = ?";
             const result = await query(sql, [id, idRole]);
-            console.log('first', result)
             if (result.length > 0) {
                 const userRow = result[0];
                 const user = new User(userRow.id, userRow.email, userRow.password, userRow.verified, userRow.idRole);
@@ -15,8 +14,8 @@ export class MariadbUserRepository implements UserRepository {
             }
             return null;
 
-        } catch (error) {
-            console.error("Error buscando user: ", error);
+        } catch (Error) {
+            console.error("Error buscando user: ", Error);
             return null;
         }
     }

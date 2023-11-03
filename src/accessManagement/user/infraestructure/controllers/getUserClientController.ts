@@ -9,9 +9,9 @@ export class GetUserClientController {
             let {id, idRole} = req.params;
 
             const result = await this.getUser.run(parseInt(id), parseInt(idRole));
-
+            console.log('result', result)
             if (result) {
-                return res.status(201).send({
+                return res.status(200).send({
                     status: "success",
                     data: result,
                     message: "usuario encontrado exitosamente",
@@ -26,7 +26,6 @@ export class GetUserClientController {
             return res.status(500).send({
                 status: "error",
                 message: "Error al encontrar usuario",
-                error: Error
             });
         }
     }
