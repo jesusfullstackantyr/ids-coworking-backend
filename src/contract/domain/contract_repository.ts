@@ -8,7 +8,9 @@ export interface ContractRepository {
         status: string,
         iduser: number,
         idoffice: number,
-    ):Promise<Contract | null>;
-    updateContract(status:string,id:number): Promise<Contract | null>
+    ): Promise<Contract | null>;
 
+    updateContract(status: string, id: number): Promise<Contract | null>;
+
+    getContractById(id: number): Promise<Contract | null>;
 }

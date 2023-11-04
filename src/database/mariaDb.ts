@@ -11,6 +11,7 @@ export const pool = mariadb.createPool({
   user: process.env.DB_USER,
   database: process.env.DB_DATABASE,
   password: process.env.DB_PASSWORD,
+  port: 3307,
   connectionLimit: 10,
 });
 
@@ -28,5 +29,5 @@ export async function query(sql: string, params: any[]) {
     if (conn) {
       conn.release(); // Devuelve la conexión al pool al finalizar
     }
-  }0
+  }
 }
