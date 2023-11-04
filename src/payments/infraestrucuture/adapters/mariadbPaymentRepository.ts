@@ -6,40 +6,51 @@ import { Payment } from "../../domain/entities/payments";
 import { PaymentOpenpay } from "../services/openpay";
 import moment from 'moment';
 
-
-
-
 export class MariadbCardRepository implements PaymentRepository {
 
   async listAllPayments(): Promise<Payment[]> {
+
     try {
       const sql = `
-        SELECT id, amount, payment_date, status
-        FROM payments
+        SELECT *
+        FROM payment
       `;
-      const params: any[] = [];  // No hay parámetros en esta consulta
-      const [rows]: any = await query(sql, params);
 
-      const payments: Payment[] = rows.map((row: any) => {
-        return new Payment(
-          row.id,
-          row.amount,
-          row.payment_date,
-          row.token,
-          row.status,
-          row.metaData,
-          row.id_contract,
-          row.id_payment_method,
-          row.id_card,
-        );
-      });
+      const params: any[] = [];
+      const rows: any[] = await query(sql, params);
+  
+      if (rows && rows.length > 0) {
 
-      return payments;
+        const payments: Payment[] = rows.map((row: any) => {
+          return new Payment(
+            row.id,
+            row.amount,
+            row.payment_date,
+            row.token,
+            row.status,
+            row.metaData,
+            row.id_contract,
+            row.id_payment_method,
+            row.id_card,
+            row.id_user
+          );
+        });
+  
+        return payments; 
+
+      } else {
+
+        return []; 
+
+      }
     } catch (error) {
+
       console.error('Error al listar usuarios:', (error as Error).message);
       throw new Error('Error al listar usuarios');
+
     }
   }
+  
 
     async cancelPayment(paymentId: number): Promise<Payment | null> {
         try {
@@ -202,8 +213,4 @@ export class MariadbCardRepository implements PaymentRepository {
 
 
   }
-
-
-
-
 }
