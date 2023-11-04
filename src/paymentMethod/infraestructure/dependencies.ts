@@ -1,16 +1,5 @@
 import { PaymentMethodMariaDBAdapterRepository } from "./adapters/paymentsMariaDBAdapter";
-//create
-import { PaymentMethodCreateUseCase } from '../application/paymentMethodCreateUseCase';
-import { PaymentMethodCreateController } from './controllers/paymentMethodCreateController';
-//Get all
-import { PaymentMethodGetAllController } from './controllers/paymentMethodGetAllController';
-import { PaymentMethodGetAllUseCase } from '../application/paymentMethodGetAllUseCase';
-// Update
-import { PaymentMethodUpdateUseCase } from '../application/paymentMethodUpdateUseCase';
-import { PaymentMethodUpdateController } from './controllers/paymentMethodUpdateController';
-// Delete
-import { PaymentMethodDeleteUseCase } from '../application/paymentMethodDeleteUseCase';
-import { PaymentMethodDeleteController } from './controllers/paymentMethodDeleteController';
+
 // set Active
 import { PaymentMethodActiveController } from "./controllers/paymentMethodActiveController";
 import { PaymentMethodActiveUseCase } from "../application/paymentMethodActiveUseCase";
@@ -21,17 +10,6 @@ import { PaymentMethodInactiveUseCase } from "../application/paymentMethodInacti
 
 
 const mariDBPaymentsAdapter = new PaymentMethodMariaDBAdapterRepository();
-const createPaymentsUseCase = new PaymentMethodCreateUseCase(mariDBPaymentsAdapter);
-export const paymentsCreateController = new PaymentMethodCreateController(createPaymentsUseCase);
-
-const paymentsGetAllUseCase = new PaymentMethodGetAllUseCase(mariDBPaymentsAdapter);
-export const paymentsGetAllController = new PaymentMethodGetAllController(paymentsGetAllUseCase);
-
-const paymentsUpdateUseCase = new PaymentMethodUpdateUseCase(mariDBPaymentsAdapter);
-export const paymentsUpdateController = new PaymentMethodUpdateController(paymentsUpdateUseCase);
-
-const paymentsDeleteUseCase = new PaymentMethodDeleteUseCase(mariDBPaymentsAdapter);
-export const paymentsDeleteController = new PaymentMethodDeleteController(paymentsDeleteUseCase);
 
 const paymentActiveUseCase = new PaymentMethodActiveUseCase(mariDBPaymentsAdapter);
 export const paymentMethodActiveController = new PaymentMethodActiveController(paymentActiveUseCase);
