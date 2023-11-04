@@ -4,6 +4,7 @@ import { paymentsRouter } from '../../../paymentMethod/infraestructure/routes/pa
 import { paymentsCreateController, paymentsDeleteController, paymentsGetAllController, paymentsUpdateController } from '../../../paymentMethod/infraestructure/dependencies';
 
 
+
 export const paymentRouter = express.Router();
 
 
