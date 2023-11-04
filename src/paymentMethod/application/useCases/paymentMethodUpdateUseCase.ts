@@ -23,7 +23,7 @@ export class PaymentMethodUpdateUseCase {
         const updatedPaymentResult = await this.paymentRepository.updatePayment(id, updatedPayment);
 
         if (!updatedPaymentResult) {
-            throw new Error(`No se pudo actualizar el pago con el ID ${id}.`);
+            throw new Error(`The payment with the ID could not be updated. ${id}.`);
         }
 
         return updatedPaymentResult;

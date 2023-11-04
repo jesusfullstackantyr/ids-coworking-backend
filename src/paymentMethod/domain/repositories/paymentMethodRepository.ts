@@ -7,4 +7,12 @@ export interface PaymentRepository {
     deletePayment(id: number): Promise<boolean>;
     getPaymentById(id:number): Promise<PaymentMethod | null>
     getPaymentById(id:number): Promise<PaymentMethod | null>
+    setInactivePayment(id: number, status: string): Promise<number | string | void >;
+    setActivePayment(id: number, status: string): Promise<number | string | void >;
 }
+
+    
+
+
+
+

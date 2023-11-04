@@ -4,20 +4,15 @@ import { Signale } from "signale";
 
 dotenv.config();
 
-
 const signale = new Signale();
 
-const pool = mariadb.createPool({
-  host: process.env.HOST,
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE,
+export const pool = mariadb.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
   connectionLimit: 10,
 });
-
-
-
-
 
 export async function query(sql: string, params: any[]) {
   let conn;
@@ -33,5 +28,5 @@ export async function query(sql: string, params: any[]) {
     if (conn) {
       conn.release(); // Devuelve la conexión al pool al finalizar
     }
-  }
+  }0
 }

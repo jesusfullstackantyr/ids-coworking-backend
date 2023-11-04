@@ -26,6 +26,7 @@ export class PaymentMethodCreateUseCase {
         let createdPayments = await this.paymentRepository.createPayments(payment);
 
         return createdPayments;
+        
 
     }
 

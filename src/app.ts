@@ -1,10 +1,8 @@
 import express from 'express';
 import { Signale } from 'signale';
-import { paymentRouter } from './payments/infraestrucuture/routers/paymentRouter';
-import { paymentsRouter } from './paymentMethod/infraestructure/routes/paymentMethodRouter';
-
 import dotenv from 'dotenv';
 
+import { paymentsRouter } from './paymentMethod/infraestructure/routes/paymentMethodRouter';
 
 dotenv.config();
 
@@ -13,7 +11,7 @@ const signale = new Signale();
 app.use(express.json());
 
 
-app.use('/api/v1//Payment', paymentRouter);
+app.use('/api/v1//Payment', paymentsRouter);
 app.use('/api/v1/paymentsMethod',paymentsRouter);
 app.use("/api/v1/cards", paymentsRouter)
 app.use('/api/v1/paymentsMethod',paymentsRouter); //luis segundo sprint
@@ -21,7 +19,10 @@ app.use('/api/v1/paymentsMethod',paymentsRouter); //luis segundo sprint
 app.use(express.json());
 
 
-app.listen(3000, () => {
-  signale.success("Server online in port 3000");
+
+const SERVER_PORT = process.env.SERVER_PORT || 3000;
+
+app.listen(SERVER_PORT, () => {
+    signale.success("Server online in port 3000");
 });
 
