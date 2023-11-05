@@ -1,9 +1,10 @@
+
 import express from 'express';
 import { Signale } from 'signale';
 import dotenv from 'dotenv';
 
-import { officeRouter } from './Office/infraestructure/officeRouter';
-import { categoryRoutes } from './Category/infraestructure/categoryRouter';
+import { officeRouter } from './officeManagement/office/infraestructure/routes/officeRouter';
+import { categoryRoutes } from './officeManagement/category/infraestructure/routes/categoryRouter';
 import { ContractRoutes } from './contract/infrastructure/contractRouter';
 import { PaypalRoute } from './NewPaypal/infrestructure/paypalRouter';
 import { personRoutes } from './person/infrastructure/personRouter';
