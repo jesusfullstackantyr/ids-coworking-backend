@@ -7,11 +7,19 @@ export interface CategoryRepository {
         capacity: number,
         space: string,
         status: string,
-    ):Promise<Category | null>;
+    ): Promise<Category | null>;
 
-    deleteCategory(id: number):Promise<string | null>;
+    updateCategory(
+        id: number,
+        name: string,
+        price: number,
+        capacity: number,
+        space: string,
+        status: string,
+    ): Promise<Category | null>;
+
+    deleteCategory(id: number): Promise<string | null>;
 
     getCategory(id: number):Promise<Category | null>;
-    
     
 }

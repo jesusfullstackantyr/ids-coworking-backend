@@ -6,8 +6,6 @@ import mariadb from "mariadb";
 
 import * as dotenv from "dotenv";
 
-
-
 const signale = new Signale();
 dotenv.config();
 
@@ -19,7 +17,7 @@ const pool = mariadb.createPool({
   password: process.env.DB_PASSWORD,
   port: 3307, // Agrega el puerto correspondiente aquí
 })
- // Cambiado de `mysql.createPool` a `createPool`
+// Cambiado de `mysql.createPool` a `createPool`
 
 export async function initPool() {
   try {
