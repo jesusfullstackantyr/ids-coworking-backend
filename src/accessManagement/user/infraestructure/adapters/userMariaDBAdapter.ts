@@ -1,4 +1,4 @@
-import { query } from "../../../database/mariaDb";
+import { query } from "../../../../database/mariaDb";
 import { User } from '../../domain/entities/user';
 import { UserRepository } from "../../domain/repositories/UserRepository";
 
@@ -21,7 +21,7 @@ export class UserMariaDBAdapterRepository implements UserRepository {
       if (updateResult.affectedRows > 0) {
         // Crear un nuevo objeto Person con todas las propiedades
         const updatedUser: User = {
-          id, email: userResult[0].email, password: userResult[0].password, verified: userResult[0].verified, idRole: userResult[0].idRole, 
+          email: userResult[0].email, password: userResult[0].password, verified: userResult[0].verified, idRole: userResult[0].idRole, 
         };
 
         return updatedUser;
@@ -54,20 +54,16 @@ export class UserMariaDBAdapterRepository implements UserRepository {
     }
   }
 
-   async createUser(user: User): Promise<User | null> {
+   async createUser(email : string, password:string, verified : Date, idRole:number ): Promise<User | null> {
     try {
-      const { email, password, verified, idRole } = user;
-
-      if (!email || !password || verified === undefined || idRole === undefined) {
-        throw new Error('Faltan datos obligatorios para crear el usuario.');
-      }
+      
 
       const sql = "INSERT INTO user (email, password, verified, idRole) VALUES (?, ?, ?, ?)";
       const params: any[] = [email, password, verified, idRole];
       const result: any = await query(sql, params);
 
       if (result.affectedRows > 0) {
-        const createdUser = new User(0, email, password, verified, idRole);
+        const createdUser = new User(email, password, verified, idRole);
         return createdUser;
       } else {
         return null;
@@ -86,7 +82,7 @@ export class UserMariaDBAdapterRepository implements UserRepository {
 
             if (result && result.length > 0) {
                 const { email, verified, idRole } = result[0];
-                return new User(0,email, verified, idRole, userId);
+                return new User(email, verified, idRole, userId);
             } else {
                 return null;
             }
