@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.deleteCategoryController = exports.deleteCategoryUseCase = exports.createCategoryController = exports.createCategoryUseCase = exports.mariaDBRepository = void 0;
+const mariaDBRepository_1 = require("./repositories/mariaDBRepository");
+const createCategoryUseCase_1 = require("../application/createCategoryUseCase");
+const createCategoryController_1 = require("./controller/createCategoryController");
+const deleteCatergoryUseCase_1 = require("../application/deleteCatergoryUseCase");
+const deleteCategoryController_1 = require("./controller/deleteCategoryController");
+exports.mariaDBRepository = new mariaDBRepository_1.MariaDBRepository();
+exports.createCategoryUseCase = new createCategoryUseCase_1.CreateCategoryUseCase(exports.mariaDBRepository);
+exports.createCategoryController = new createCategoryController_1.CreateCategoryController(exports.createCategoryUseCase);
+exports.deleteCategoryUseCase = new deleteCatergoryUseCase_1.DeleteCategoryUseCase(exports.mariaDBRepository);
+exports.deleteCategoryController = new deleteCategoryController_1.DeleteCategoryController(exports.deleteCategoryUseCase);
