@@ -1,5 +1,6 @@
-import { Person } from '../domain/person';
-import { PersonRepository } from '../domain/personRepository';
+import { Person } from '../domain/entities/person';
+import { PersonRepository } from '../domain/repositories/personRepository';
+//import { personValidator } from '../domain/validators/personValidate';
 
 export class UpdatePersonUseCase {
     constructor(readonly PersonRepository: PersonRepository) { }
