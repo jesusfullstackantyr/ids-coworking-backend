@@ -4,8 +4,7 @@ import { Signale } from 'signale';
 import { officeRouter } from './officeManagement/office/infraestructure/routes/officeRouter';
 import { categoryRoutes } from './officeManagement/category/infraestructure/routes/categoryRouter';
 import { initPool } from './database/mariaDb';
-import { paymentRouter } from './payments/infraestrucuture/routers/paymentRouter';
-import { paymentsRouter } from './paymentMethod/infraestructure/routes/paymentMethodRouter';
+
 
 import dotenv from 'dotenv';
 
@@ -15,8 +14,6 @@ const app = express();
 const signale = new Signale();
 app.use(express.json());
 
-app.use('/api/v1/payment', paymentRouter);
-app.use('/api/v1/paymentsMethod', paymentsRouter);
 app.use('/api/v1/office', officeRouter);
 app.use('/api/v1/category', categoryRoutes);
 
