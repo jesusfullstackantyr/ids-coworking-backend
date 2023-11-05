@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { UpdatePersonAddressUseCase } from "../../application/updatePersonAddressUseCase";
 
-export class UpdatePesonAddressController {
-    constructor(readonly updatePersonAddressUseCase: UpdatePersonAddressUseCase) { }
+export class UpdatePersonAddressController {
+    constructor(readonly updatePersonAddressUseCase : UpdatePersonAddressUseCase ) { }
 
     async run(req: Request, res: Response) {
         try {
@@ -13,28 +13,27 @@ export class UpdatePesonAddressController {
             let {
                 id_address
             } = req.body
+            
+            let updatedPerson = await this.updatePersonAddressUseCase .run(parseInt(id), id_address);
 
-            let updatedPerson = await this.updatePersonAddressUseCase.run(parseInt(id), id_address);
             if (updatedPerson) {
-                //const updatedPersonNumber = Number(updatedPerson);
                 return res.status(201).send({
                     status: "success",
-                    message: "Direccion asignada con éxito",
-                    //data: updatedPerson,
+                    message: "Persona actualizada con éxito",
+
                     
-                   // data: updatedPerson,
                 });
             } else {
                 return res.status(500).send({
                     status: "error",
-                    message: "No se encontró o no se puede asignar la direccion",
+                    message: "No se encontró o no se puede actualizar la persona",
                 });
             }
         } catch (error) {
             console.error("Error update status:", error);
             return res.status(500).send({
                 status: "error",
-                message: "Error al asignar la direccion",
+                message: "Error al actualizar la persona: ", error,
             });
         }
     }
