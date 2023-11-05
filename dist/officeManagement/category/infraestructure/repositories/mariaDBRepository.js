@@ -57,5 +57,46 @@ class MariaDBRepository {
             }
         });
     }
+    getCategory(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const sql = "SELECT * FROM categories WHERE id = ?";
+                const params = [id]; // Usar id de la oficina en lugar de id_public
+                const [result] = yield (0, mariaDb_1.query)(sql, params);
+                if (result && result.length > 0) {
+                    // Mapea los resultados en objetos de oficina
+                    const categoryList = result.map((data) => new category_1.Category(data.id, data.name, data.price, data.capacity, data.space, data.status));
+                    return categoryList;
+                }
+                else {
+                    return null;
+                }
+            }
+            catch (error) {
+                console.error('Error al obtener el libro:', error);
+                return null;
+            }
+        });
+    }
+    updateCategory(id, name, price, capacity, space, status) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const sql = "UPDATE CATEGORIES SET name = ?, price  = ?, capacity = ?, space = ?, status = ? WHERE id = ?";
+                const params = [name, price, capacity, space, status, id];
+                const result = yield (0, mariaDb_1.query)(sql, params);
+                if (result && result.affectedRows > 0) {
+                    const updatedCategory = new category_1.Category(id, name, price, capacity, space, status);
+                    return updatedCategory;
+                }
+                else {
+                    return null; // No se encontró una categoría con el ID especificado o no se actualizó ningún registro
+                }
+            }
+            catch (error) {
+                console.error("Error al actualizar la categoría:", error);
+                return null; // Puedes manejar el error de alguna manera adecuada
+            }
+        });
+    }
 }
 exports.MariaDBRepository = MariaDBRepository;

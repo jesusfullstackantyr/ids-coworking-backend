@@ -9,3 +9,5 @@ const dependencies_1 = require("../dependencies");
 exports.categoryRoutes = express_1.default.Router();
 exports.categoryRoutes.post("/create", dependencies_1.createCategoryController.create.bind(dependencies_1.createCategoryController));
 exports.categoryRoutes.put("/delete/:id", dependencies_1.deleteCategoryController.delete.bind(dependencies_1.deleteCategoryController));
+exports.categoryRoutes.get("/:id", dependencies_1.getCategoryController.get.bind(dependencies_1.getCategoryController));
+exports.categoryRoutes.put("/update/:id", dependencies_1.updateCategoryController.update.bind(dependencies_1.updateCategoryController));

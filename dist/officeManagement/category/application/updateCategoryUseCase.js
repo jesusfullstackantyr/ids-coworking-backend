@@ -9,16 +9,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateStatus = void 0;
-class UpdateStatus {
-    constructor(officeRepository) {
-        this.officeRepository = officeRepository;
+exports.UpdateCategoryUseCase = void 0;
+const categoriesValidation_1 = require("../domain/validation/categoriesValidation");
+const class_validator_1 = require("class-validator");
+class UpdateCategoryUseCase {
+    constructor(categoryRepository) {
+        this.categoryRepository = categoryRepository;
     }
-    run(id, status) {
+    update(id, name, price, capacity, space, status) {
         return __awaiter(this, void 0, void 0, function* () {
+            let validationUpdate = new categoriesValidation_1.ValidationUpdateCategory(id, name, price, capacity, space, status);
+            const validation = yield (0, class_validator_1.validate)(validationUpdate);
+            if (validation.length > 0) {
+                throw new Error(JSON.stringify(validation));
+            }
             try {
-                const get = yield this.officeRepository.updateStatus(id, status);
-                return get;
+                const updateCategory = yield this.categoryRepository.updateCategory(id, name, price, capacity, space, status);
+                return updateCategory;
             }
             catch (error) {
                 return null;
@@ -26,4 +33,4 @@ class UpdateStatus {
         });
     }
 }
-exports.UpdateStatus = UpdateStatus;
+exports.UpdateCategoryUseCase = UpdateCategoryUseCase;

@@ -31,7 +31,7 @@ class DeleteCategoryController {
                 else {
                     return res.status(500).send({
                         status: "error",
-                        message: "An error occurred while adding the publication."
+                        message: "An error occurred while adding the category."
                     });
                 }
             }

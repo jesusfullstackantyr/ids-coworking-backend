@@ -9,21 +9,29 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PaymentMethodDeleteUseCase = void 0;
-class PaymentMethodDeleteUseCase {
-    constructor(paymentRepository) {
-        this.paymentRepository = paymentRepository;
+exports.GetCategoryUseCase = void 0;
+const class_validator_1 = require("class-validator");
+const categoriesValidation_1 = require("../domain/validation/categoriesValidation");
+class GetCategoryUseCase {
+    constructor(categoryRepository) {
+        this.categoryRepository = categoryRepository;
     }
-    execute(paymentId) {
+    get(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const deleted = yield this.paymentRepository.deletePayment(paymentId);
-            if (deleted) {
-                return true;
+            let post = new categoriesValidation_1.ValidatorId(id);
+            const validation = yield (0, class_validator_1.validate)(post);
+            console.log(validation.length);
+            if (validation.length > 0) {
+                throw new Error(JSON.stringify(validation));
             }
-            else {
-                return false;
+            try {
+                const category = yield this.categoryRepository.getCategory(id);
+                return category;
+            }
+            catch (error) {
+                return null;
             }
         });
     }
 }
-exports.PaymentMethodDeleteUseCase = PaymentMethodDeleteUseCase;
+exports.GetCategoryUseCase = GetCategoryUseCase;
