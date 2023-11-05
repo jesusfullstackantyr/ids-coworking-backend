@@ -1,29 +1,54 @@
-import { Request, Response } from 'express';
-import { UserUpdateUseCase } from '../../application/userUpdateUseCase';
+import { Request, Response } from "express";
+import { validate, ValidationError } from 'class-validator';
+import { UserUpdateUseCase  } from "../../application/userUpdateUseCase"; // Asegúrate de importar el caso de uso correcto
+import { User } from '../../domain/entities/user'; // Asegúrate de importar la entidad User
 
 export class UserUpdateController {
-    constructor(private readonly updateUserUseCase: UserUpdateUseCase) {}
+    constructor(readonly updateUserUseCase: UserUpdateUseCase ) { }
 
-    async updateUser(request: Request, response: Response): Promise<void> {
+    async run(req: Request, res: Response) {
         try {
-            const { email, password, verified, idRole } = request.body;
-            const { id } = request.params; // Obtener el ID del usuario de los parámetros de la URL
-            
-            // Ejecutar el caso de uso para actualizar el usuario
-            const updatedUser = await this.updateUserUseCase.execute(parseInt(id),email, password, verified, idRole); // Convertir el ID a número
+            const { id } = req.params;
+            const { email, password, verified, idRole } = req.body;
 
-            // Manejar el resultado de la actualización
-            if (updatedUser) {
-                response.status(200).json(updatedUser);
-            } else {
-                response.status(404).json({ message: 'El usuario no se encontró para actualizar.' });
+            // Crear una instancia de User con los campos relevantes para la actualización
+            const updatedUserData = new User(email, password, verified, idRole);
+
+            // Validar los datos utilizando class-validator con el grupo de validación "update"
+            const validationErrors: ValidationError[] = await validate(updatedUserData);
+
+            if (validationErrors.length > 0) {
+                // Hay errores de validación, responder con un error 422
+                return res.status(422).json({
+                    status: "error",
+                    message: "Datos de entrada no válidos",
+                    errors: validationErrors,
+                });
             }
-        } catch (error: any) {
-            // Manejar errores y enviar una respuesta de error al cliente
-            console.error('Error al actualizar el usuario:', error);
-            response.status(500).json({
-                message: 'Error al actualizar el usuario',
-                error: error.message || 'Internal Server Error',
+
+            const updatedUser = await this.updateUserUseCase.run(parseInt(id), email, password, verified, idRole);
+
+            if (updatedUser) {
+                return res.status(201).send({
+                    status: "success",
+                    message: "Usuario actualizado con éxito",
+                    data: {
+                        email: updatedUser.email,
+                        verified: updatedUser.verified,
+                        idRole: updatedUser.idRole,
+                    },
+                });
+            } else {
+                return res.status(500).send({
+                    status: "error",
+                    message: "No se encontró o no se puede actualizar el usuario",
+                });
+            }
+        } catch (error) {
+            console.error("Error al actualizar el usuario:", error);
+            return res.status(500).send({
+                status: "error",
+                message: "Error al actualizar el usuario: " + error,
             });
         }
     }

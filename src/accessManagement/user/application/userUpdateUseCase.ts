@@ -6,7 +6,7 @@ export class UserUpdateUseCase {
 
     constructor(private readonly userRepository: UserRepository) {}
 
-    async execute(id: number, email: String, password: String, verified: Date, idRole: Number): Promise<User | null> {
+    async run(id: number, email: String, password: String, verified: Date, idRole: Number): Promise<User | null> {
         try {
                 const update = await this.userRepository.updateUser(id, email, password, verified, idRole)
                 return update;

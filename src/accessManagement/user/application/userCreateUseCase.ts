@@ -1,26 +1,31 @@
-import { UserRepository } from '../domain/repositories/UserRepository';
-import { User } from '../domain/entities/user';
-import { UserValidate } from '../domain/validators/userValidate';
+import { User } from '../domain/entities/user'; // Asegúrate de importar la entidad User
+import { UserRepository } from '../domain/repositories/UserRepository'; // Asegúrate de importar el repositorio adecuado para User
+import { UserValidate } from '../domain/validators/userValidate'; // Asegúrate de importar el validador adecuado para User
 
 export class UserCreateUseCase {
 
-    constructor(private readonly userRepository: UserRepository) {}
+    constructor(readonly userRepository: UserRepository) { }
 
-    async execute(email: string, password: string, verified: Date, idRole: number): Promise<User | null> {
+    async run(
+        email: string,
+        password: string,
+        verified: Date,
+        idRole: number,
+    ): Promise<User | null | number | Error> {
         try {
-            // Validar los datos del usuario
-            const user = new User(0,email, password, verified, idRole);
-            const userValidator = new UserValidate(user);
-            await userValidator.validate();
+            if (!email || !password || !verified || !idRole) {
+                return null;
+            }
 
-            // Crear el usuario en la base de datos
-            const createdUser = await this.userRepository.createUser(user);
+            const registerUser = await this.userRepository.createUser(email, password, verified, idRole);
 
-            return createdUser;
+            if (registerUser === null) {
+                return null;
+            }
+
+            return registerUser;
         } catch (error) {
-            // Manejar errores de validación y de la base de datos
-            console.error('Error al crear el usuario:', error);
-            throw error;
+            return null;
         }
     }
 }
