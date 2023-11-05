@@ -1,6 +1,6 @@
-import { query } from "../../../database/mariaDb";
-import { User } from "../domain/user";
-import { UserRepository } from "../domain/userRepository";
+import { query } from "../../../../database/mariaDb";
+import { User } from "../../domain/entities/user";
+import { UserRepository } from "../../domain/repositories/userRepository";
 
 export class MariadbUserRepository implements UserRepository {
 
@@ -32,18 +32,18 @@ export class MariadbUserRepository implements UserRepository {
       const updateQuery = "UPDATE users SET password = ? WHERE id = ?";
       const updateResult = await query(updateQuery, [password, id]);
       if (updateResult.affectedRows > 0) {
-        console.log("Persona actualizada con éxito");
+        console.log("Usuario actualizada con éxito");
         const updatedPerson: User = {
           email: userResult[0].email, password, verified: userResult[0].verified, idRole: userResult[0].idRole,
         };
 
         return updatedPerson;
       } else {
-        console.error("No se pudo actualizar el estado de la persona");
+        console.error("No se pudo actualizar el password del usuario");
         return null;
       }
     } catch (error) {
-      console.error("Error al validar la persona:", error);
+      console.error("Error al validar el usurio:", error);
       return null;
     }
   }

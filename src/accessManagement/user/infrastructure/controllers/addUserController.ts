@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { AddUserUseCase } from '../../application/addUserUseCase';
-import { User } from '../../domain/user';
+import { User } from '../../domain/entities/user';
 
 export class AddUserController {
 

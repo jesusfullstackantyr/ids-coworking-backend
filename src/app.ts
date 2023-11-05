@@ -1,7 +1,7 @@
 import express from 'express';
 import { Signale } from 'signale';
 import "dotenv/config";
-import { userRouter } from './accessManagement/user/infrastructure/userRouter';
+import { userRouter } from './accessManagement/user/infrastructure/routes/userRouter';
 
 const app = express();
 const signale = new Signale();

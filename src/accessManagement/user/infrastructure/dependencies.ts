@@ -1,4 +1,4 @@
-import { MariadbUserRepository } from "./mariadbUserRepository";
+import { MariadbUserRepository } from "./repositories/mariadbUserRepository";
 const mariadbUserRepository = new MariadbUserRepository();
 
 import { AddUserController } from './controllers/addUserController';

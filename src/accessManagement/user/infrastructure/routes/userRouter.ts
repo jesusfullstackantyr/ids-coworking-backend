@@ -1,5 +1,5 @@
 import express from 'express';
-import { addUserController, updatePasswordController, } from './dependencies';
+import { addUserController, updatePasswordController, } from '../dependencies';
 
 
 export const userRouter = express.Router();

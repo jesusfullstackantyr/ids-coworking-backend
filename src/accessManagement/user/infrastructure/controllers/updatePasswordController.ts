@@ -1,20 +1,27 @@
 import { Request, Response } from "express";
 import { UpdatePasswordUseCase } from "../../application/updatePasswordUseCase";
+import { validate, ValidationError } from 'class-validator';
+import { User } from '../../domain/entities/user';
 
 export class UpdatePasswordController {
     constructor(readonly updatePasswordUseCase: UpdatePasswordUseCase) { }
 
     async run(req: Request, res: Response) {
         try {
-            let {
-                id
-            } = req.params
+            const { id } = req.params;
+            const {email,verified,password,idRole} = req.body
+            const updatedUserData = new User(email,verified,password,idRole);
+            const validationErrors: ValidationError[] = await validate(updatedUserData, { groups: ['update'] });
 
-            let {
-                password,
-            } = req.body
+            if (validationErrors.length > 0) {
+                return res.status(422).json({
+                    status: "error",
+                    message: "Datos de entrada no válidos",
+                    errors: validationErrors,
+                });
+            }
 
-            let updatedUser = await this.updatePasswordUseCase.run(parseInt(id), password);
+            const updatedUser = await this.updatePasswordUseCase.run(parseInt(id), password);
 
             if (updatedUser) {
                 return res.status(201).send({

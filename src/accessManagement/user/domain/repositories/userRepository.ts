@@ -1,8 +1,7 @@
-import { User } from './user';
+import { User } from '../entities/user';
 
 export interface UserRepository {
     addUser(
-        //id: number,
         email: string,
         password: string,
         verified: Date,
