@@ -10,9 +10,15 @@ export class UpdateOfficeController {
     async handle(req: Request, res: Response): Promise<void> {
         try {
             s3UploaderMiddleware(req, res, async () => {
-                console.log(req.body);
+                const { name, image_url, status, id_category } = req.body;
 
-                const { id, name, image_url, status, id_category } = req.body;
+                // Convierte 'id' a un número usando el operador + o parseInt
+                const id = parseInt(req.params.id, 10);
+                // Asegúrate de que el 'id' es un número válido
+                if (isNaN(id)) {
+                    return res.status(HTTPStatusCodes.BAD_REQUEST).send({ status: 'error', message: 'Invalid ID' });
+                }
+
                 const officeValidation = new OfficeValidation(id, name, image_url, status, Number(id_category));
 
                 await this.updateOfficeUseCase.execute(officeValidation);

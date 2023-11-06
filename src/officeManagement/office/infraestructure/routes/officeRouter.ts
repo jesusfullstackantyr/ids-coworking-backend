@@ -11,7 +11,9 @@ officeRouter.get("/:id", getOfficeController.get.bind(getOfficeController))
 
 // Ruta para crear una nueva oficina
 officeRouter.post('/create', (req, res) => {createOfficeController.handle(req, res);});
-officeRouter.put('/update',(req, res) => {updateOfficeController.handle(req, res);});
+officeRouter.put('/:id', (req, res) => {
+    updateOfficeController.handle(req, res);
+});
 
 
 officeRouter.put("/updateStatus", (req, res) => { updateStatusController.handle(req, res);});
