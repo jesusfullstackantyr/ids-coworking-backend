@@ -8,6 +8,8 @@ services:
     environment:
       - SERVER_PORT=3001
       - APPID=1111
+    env_file:
+      - .env
     restart: unless-stopped
     tty: true
     working_dir: /var/www
@@ -24,6 +26,8 @@ services:
     environment:
       - SERVER_PORT=3002
       - APPID=2222
+    env_file:
+      - .env
     restart: unless-stopped
     tty: true
     working_dir: /var/www
@@ -40,6 +44,8 @@ services:
     environment:
       - SERVER_PORT=3003
       - APPID=3333
+    env_file:
+      - .env
     restart: unless-stopped
     tty: true
     working_dir: /var/www
@@ -71,8 +77,9 @@ services:
     environment:
       MYSQL_DATABASE: coworking_db
       MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'  # needs to be enclosed with quotes
     volumes:
-            - "./.data/db:/var/lib/mysql"
+            - dbdata:/var/lib/mysql:delegated
     networks:
       - coworking-network
     command:

@@ -3,6 +3,7 @@ import { Signale } from 'signale';
 import dotenv from "dotenv";
 import { personRoutes } from './accessManagement/person/infrastructure/routes/personRouter';
 import { emailRouter } from './accessManagement/person/infrastructure/services/emailRouter';
+import { userRouter } from './accessManagement/user/infraestructure/routes/userRouter';
 
 dotenv.config();
 const appid = process.env.APPID;
@@ -15,6 +16,7 @@ app.get("/", (req,res) =>
 res.send(`appid: ${appid} home page: says hello!`))
 app.use('/api/v1/person', personRoutes);
 app.use('/api/v1/person/email', emailRouter);
+app.use('/api/v1/user', userRouter);
 
 app.listen(PORT, () => {
     signale.success(`Server run in port ${PORT}`);

@@ -8,6 +8,7 @@ const signale_1 = require("signale");
 const dotenv_1 = __importDefault(require("dotenv"));
 const personRouter_1 = require("./accessManagement/person/infrastructure/routes/personRouter");
 const emailRouter_1 = require("./accessManagement/person/infrastructure/services/emailRouter");
+const userRouter_1 = require("./accessManagement/user/infraestructure/routes/userRouter");
 dotenv_1.default.config();
 const appid = process.env.APPID;
 var PORT = process.env.SERVER_PORT;
@@ -17,6 +18,7 @@ app.use(express_1.default.json());
 app.get("/", (req, res) => res.send(`appid: ${appid} home page: says hello!`));
 app.use('/api/v1/person', personRouter_1.personRoutes);
 app.use('/api/v1/person/email', emailRouter_1.emailRouter);
+app.use('/api/v1/user', userRouter_1.userRouter);
 app.listen(PORT, () => {
     signale.success(`Server run in port ${PORT}`);
 });
