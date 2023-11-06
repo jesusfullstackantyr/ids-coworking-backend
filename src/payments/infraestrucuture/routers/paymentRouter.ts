@@ -1,8 +1,5 @@
 import * as express from 'express';
-import { cancelPaymentController, makePaymentController, paymentsContoller } from '../dependences';
-import { paymentsRouter } from '../../../paymentMethod/infraestructure/routes/paymentMethodRouter';
-import { paymentsCreateController, paymentsDeleteController, paymentsGetAllController, paymentsUpdateController } from '../../../paymentMethod/infraestructure/dependencies';
-
+import { cancelPaymentController, getPaymentByIdController, makePaymentController, paymentsContoller } from '../dependences';
 
 export const paymentRouter = express.Router();
 
@@ -19,14 +16,12 @@ paymentRouter.get(
     paymentsContoller.listAllPayments.bind(paymentsContoller)
 )
 
+paymentRouter.get(
+    //obtener un pago por id
+    "/:id",
+    getPaymentByIdController.getPaymentById.bind(getPaymentByIdController)
+)
+
 paymentRouter.post('/', 
     makePaymentController.run.bind(makePaymentController)
 )
-
-paymentsRouter.post("/",paymentsCreateController.createPayments.bind(paymentsCreateController));
-
-paymentsRouter.get("/",paymentsGetAllController.getAllPayments.bind(paymentsGetAllController));
-
-paymentsRouter.put("/", paymentsUpdateController.updatePayments.bind(paymentsUpdateController));
-
-paymentsRouter.delete("/:id", paymentsDeleteController.deletePayment.bind(paymentsDeleteController));

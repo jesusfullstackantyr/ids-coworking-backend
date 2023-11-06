@@ -23,5 +23,7 @@ export interface PaymentRepository {
         id_card: string,
         id_user: string
     ):Promise<JSON | void | Error>
+
+    getPaymentById(id: number): Promise<Payment | null>;
     
 }

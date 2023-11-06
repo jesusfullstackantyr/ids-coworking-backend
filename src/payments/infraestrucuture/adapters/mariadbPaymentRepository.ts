@@ -6,15 +6,12 @@ import { Payment } from "../../domain/entities/payments";
 import { PaymentOpenpay } from "../services/openpay";
 import moment from 'moment';
 
-
-
-
 export class MariadbCardRepository implements PaymentRepository {
   async listAllPayments(): Promise<Payment[]> {
     try {
       const sql = `
         SELECT id, amount, payment_date, status
-        FROM payments
+        FROM payment
       `;
       const params: any[] = [];  // No hay parámetros en esta consulta
       const [rows]: any = await query(sql, params);
@@ -24,6 +21,7 @@ export class MariadbCardRepository implements PaymentRepository {
           row.id,
           row.amount,
           row.payment_date,
+          row.status,
           row.token,
           row.status,
           row.metaData,
@@ -35,8 +33,8 @@ export class MariadbCardRepository implements PaymentRepository {
 
       return payments;
     } catch (error) {
-      console.error('Error al listar usuarios:', (error as Error).message);
-      throw new Error('Error al listar usuarios');
+      console.error('Error al listar pagos:', (error as Error).message);
+      throw new Error('Error al listar pagos');
     }
   }
 
@@ -90,20 +88,25 @@ async cancelPayment(paymentId: number): Promise<Payment | null> {
         throw new Error('Error updating payment fields');
     }
 }
-private async getPaymentById(paymentId: number): Promise<Payment | null> {
+async getPaymentById(paymentId: number): Promise<Payment | null> {
 
+    // const sql = `
+    // SELECT payment.status AS payment, card.status AS card,  payment_method.status AS payment_method,  contract.status AS contract
+    //     FROM payment LEFT JOIN card ON payment.id = card.id_folio
+    //         LEFT JOIN payment_method ON payment.id = payment_method.id
+    //             LEFT JOIN contract ON payment.id = contract.id
+    //                 WHERE payment.id = ?
+    // `;
     const sql = `
-    SELECT payments.status AS payment, card.status AS card,  payment_method.status AS payment_method,  contract.status AS contract
-        FROM payments LEFT JOIN card ON payments.id = card.id_folio
-            LEFT JOIN payment_method ON payments.id = payment_method.id
-                LEFT JOIN contract ON payments.id = contract.id
-                    WHERE payments.id = ?
-    `;
+        SELECT id, amount, payment_date, status
+        FROM payment WHERE id = ?
+      `;
 
     const params: any[] = [paymentId];
     const results: any = await query(sql, params);
 
     if (results && results.length > 0) {
+      console.log("Resultado: ", results[0]);
         return results[0];
     } else {
         return null;
@@ -163,7 +166,7 @@ private async getPaymentById(paymentId: number): Promise<Payment | null> {
 
       if (dataPay.error_message == null) {
         let sql = `
-        INSERT INTO payments (
+        INSERT INTO payment (
           amount, payment_date, status, token, metaData, 
           id_contract, id_payment_method, id_card, id_user
         ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -198,10 +201,6 @@ private async getPaymentById(paymentId: number): Promise<Payment | null> {
     }
 
 
-
   }
-
-
-
 
 }
