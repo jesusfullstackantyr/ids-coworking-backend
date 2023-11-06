@@ -16,7 +16,7 @@ yarn-error.log
 .env
 
 #Persisntencia de datos
-.data\db
+.data/db
 
 # Directorios de caché
 .cache/
