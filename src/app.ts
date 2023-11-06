@@ -36,7 +36,6 @@ app.use('/api/v1/person', personRoutes);
 app.use('/api/v1/person/email', emailRouter);
 app.use('/api/v1/user', userRouter);
 
-
 const SERVER_PORT = process.env.SERVER_PORT || 3000;
 
 app.listen(SERVER_PORT, () => {
