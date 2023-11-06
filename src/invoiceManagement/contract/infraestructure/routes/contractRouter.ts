@@ -1,5 +1,5 @@
 import express from "express";
-import { createContractController, updateContractController,getContractsController, updateContractExpirationController, getContractByIdController} from "./dependencies";
+import { createContractController, updateContractController,getContractsController, updateContractExpirationController, getContractByIdController} from "../dependencies";
 
 export const ContractRoutes = express.Router();
 
