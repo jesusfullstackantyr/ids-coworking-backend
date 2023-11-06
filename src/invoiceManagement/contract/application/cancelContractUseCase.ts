@@ -7,6 +7,7 @@ export class CancelContractUseCase {
     async Cancel(
         status: string,
         id:number
+        
     
     ): Promise<Contract | null> {
         try {
