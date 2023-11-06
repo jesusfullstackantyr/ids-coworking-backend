@@ -42,7 +42,7 @@ export class MariaDBRepository implements CategoryRepository {
     try {
       // Verifica si la categoría existe y no está marcada como eliminada
       const checkSql = "SELECT * FROM categories WHERE id = ? AND is_deleted = 0";
-      const [existingCategory]: any = await query(checkSql, [id]);
+      const existingCategory = await query(checkSql, [id]);
 
       if (!Array.isArray(existingCategory) || existingCategory.length === 0) {
         return null; // La categoría no existe o ya ha sido eliminada.
