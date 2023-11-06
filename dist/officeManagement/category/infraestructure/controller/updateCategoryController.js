@@ -9,29 +9,37 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DeleteCategoryController = void 0;
-class DeleteCategoryController {
-    constructor(deleteCategoryUseCase) {
-        this.deleteCategoryUseCase = deleteCategoryUseCase;
+exports.UpdateCategoryController = void 0;
+class UpdateCategoryController {
+    constructor(updateCategoryUseCase) {
+        this.updateCategoryUseCase = updateCategoryUseCase;
     }
-    delete(req, res) {
+    update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                let id = parseInt(req.params.id, 10);
-                const deleteCategory = yield this.deleteCategoryUseCase.delete(id);
-                if (deleteCategory) {
+                const { id } = req.params;
+                const { name, price, capacity, space, status } = req.body;
+                const updateCategory = yield this.updateCategoryUseCase.update(Number(id), name, price, capacity, space, status);
+                if (updateCategory) {
                     return res.status(200).send({
-                        status: "success",
+                        status: "succes",
                         data: {
-                            new_Book: deleteCategory,
-                            message: "Category deleted successfully"
-                        }
+                            id: updateCategory.id,
+                            name: updateCategory.name,
+                            price: updateCategory.price,
+                            capacity: updateCategory.capacity,
+                            space: updateCategory.space,
+                            status: updateCategory.status,
+                        },
+                        message: "La categoria ha sido actuliza",
                     });
                 }
                 else {
-                    return res.status(500).send({
+                    res.status(400).send({
                         status: "error",
-                        message: "An error occurred while adding the category."
+                        data: [],
+                        validations: [],
+                        message: "Error al actualizar la categoria",
                     });
                 }
             }
@@ -47,10 +55,10 @@ class DeleteCategoryController {
                 }
                 return res.status(500).send({
                     status: "error",
-                    message: "An error occurred while fetching the book."
+                    message: "An error occurred while adding the book."
                 });
             }
         });
     }
 }
-exports.DeleteCategoryController = DeleteCategoryController;
+exports.UpdateCategoryController = UpdateCategoryController;

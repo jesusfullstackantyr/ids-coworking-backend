@@ -9,22 +9,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DeleteCategoryController = void 0;
-class DeleteCategoryController {
-    constructor(deleteCategoryUseCase) {
-        this.deleteCategoryUseCase = deleteCategoryUseCase;
+exports.GetCategoryController = void 0;
+class GetCategoryController {
+    constructor(getCategoryUseCase) {
+        this.getCategoryUseCase = getCategoryUseCase;
     }
-    delete(req, res) {
+    get(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 let id = parseInt(req.params.id, 10);
-                const deleteCategory = yield this.deleteCategoryUseCase.delete(id);
-                if (deleteCategory) {
+                const category = yield this.getCategoryUseCase.get(id);
+                if (category) {
                     return res.status(200).send({
                         status: "success",
                         data: {
-                            new_Book: deleteCategory,
-                            message: "Category deleted successfully"
+                            new_Book: category,
+                            message: "Category"
                         }
                     });
                 }
@@ -53,4 +53,4 @@ class DeleteCategoryController {
         });
     }
 }
-exports.DeleteCategoryController = DeleteCategoryController;
+exports.GetCategoryController = GetCategoryController;

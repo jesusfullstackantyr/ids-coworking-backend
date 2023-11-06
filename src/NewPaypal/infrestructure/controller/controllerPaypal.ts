@@ -38,8 +38,9 @@ export class PayController{
         }
     }
     async createPaymentPaypal(req: Request, res: Response) {
+        const id = Number(req.query.id);
         try {
-            const pay = await this.createPaypalUseCase.run();
+            const pay = await this.createPaypalUseCase.run(id);
             if (pay!==null){
                 res.status(200).send({
                     status:"Success",

@@ -42,7 +42,7 @@ export class MariaDBRepository implements CategoryRepository {
     try {
       // Verifica si la categoría existe y no está marcada como eliminada
       const checkSql = "SELECT * FROM categories WHERE id = ? AND is_deleted = 0";
-      const [existingCategory]: any = await query(checkSql, [id]);
+      const existingCategory = await query(checkSql, [id]);
 
       if (!Array.isArray(existingCategory) || existingCategory.length === 0) {
         return null; // La categoría no existe o ya ha sido eliminada.
@@ -64,27 +64,24 @@ export class MariaDBRepository implements CategoryRepository {
   }
 
   async getCategory(id: number): Promise<Category | null> {
+    const sql = "SELECT * FROM categories WHERE id = ?";
     try {
-      const sql = "SELECT * FROM categories WHERE id = ?";
-      const params: any[] = [id]; // Usar id de la oficina en lugar de id_public
 
-      const [result]: any = await query(sql, params);
-
-      if (result && result.length > 0) {
-        // Mapea los resultados en objetos de oficina
-        const categoryList = result.map((data: any) => new Category(
-          data.id,
-          data.name,
-          data.price,
-          data.capacity,
-          data.space,
-          data.status
-        ));
-
-        return categoryList;
-      } else {
+      const result = await query(sql, [id]);
+      if (result.length === 0) {
         return null;
       }
+
+      const catego = result[0];
+
+      return new Category(
+        catego.id,
+        catego.name,
+        catego.price,
+        catego.capacity,
+        catego.space,
+        catego.status
+      );
     } catch (error) {
       console.error('Error al obtener el libro:', error);
       return null;
