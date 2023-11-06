@@ -1,11 +1,12 @@
 version: '3.4'
 services:
-  coworking:
-    container_name: coworking-api
+  coworking-1:
+    container_name: coworking-api-1
     build:
       context: ./
       dockerfile: dockerfile
     environment:
+<<<<<<< HEAD
       - SERVER_PORT=3001
       - APPID=1111
     env_file:
@@ -46,25 +47,89 @@ services:
       - APPID=3333
     env_file:
       - .env
+=======
+      - CONTAINER_ROLE=app
+      - INSTALL_SCOUT=true
+      - PM_MAX_CHILDREN=47
+      - PM_START_SERVERS=11
+      - PM_MIN_SPARE_SERVERS=11
+      - PM_MAX_SPARE_SERVERS=32
+      - PM_MAX_REQUEST=450
+      - DB_HOST=coworking-db  # Actualiza esta línea
+>>>>>>> a1c5e27892dda8e739a686b4b651854b11438dea
     restart: unless-stopped
     tty: true
     working_dir: /var/www
+    ports:
+      - "3001:3001"
     volumes:
       - ./:/var/www
     networks:
       - coworking-network
-  
+  coworking-2:
+    container_name: coworking-api-2
+    build:
+      context: ./
+      dockerfile: DockerFile
+    environment:
+      - CONTAINER_ROLE=app
+      - INSTALL_SCOUT=true
+      - PM_MAX_CHILDREN=47
+      - PM_START_SERVERS=11
+      - PM_MIN_SPARE_SERVERS=11
+      - PM_MAX_SPARE_SERVERS=32
+      - PM_MAX_REQUEST=450
+      - DB_HOST=coworking-db  # Actualiza esta línea
+    restart: unless-stopped
+    tty: true
+    working_dir: /var/www
+    ports:
+      - "3002:3002"
+    volumes:
+      - ./:/var/www
+    networks:
+      - coworking-network
+  coworking-3:
+    container_name: coworking-api-3
+    build:
+      context: ./
+      dockerfile: DockerFile
+    environment:
+      - CONTAINER_ROLE=app
+      - INSTALL_SCOUT=true
+      - PM_MAX_CHILDREN=47
+      - PM_START_SERVERS=11
+      - PM_MIN_SPARE_SERVERS=11
+      - PM_MAX_SPARE_SERVERS=32
+      - PM_MAX_REQUEST=450
+      - DB_HOST=coworking-db  # Actualiza esta línea
+    restart: unless-stopped
+    tty: true
+    working_dir: /var/www
+    ports:
+      - "3003:3003"
+    volumes:
+      - ./:/var/www
+    networks:
+      - coworking-network
   coworking-nginx:
     image: nginx:alpine
     container_name: coworking-nginx
     restart: unless-stopped
     tty: true
     ports:
+<<<<<<< HEAD
       - "8080:8080"
       - "443:443"
     volumes:
       - ./:/var/www
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+=======
+      - "8080:80"
+    volumes:
+      - ./:/var/www
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+>>>>>>> a1c5e27892dda8e739a686b4b651854b11438dea
     networks:
       - coworking-network
   coworking-db:
@@ -73,7 +138,11 @@ services:
     restart: always
     tty: true
     ports:
+<<<<<<< HEAD
       - "3307:3306"
+=======
+      - "33061:3306"
+>>>>>>> a1c5e27892dda8e739a686b4b651854b11438dea
     environment:
       MYSQL_DATABASE: coworking_db
       MYSQL_ROOT_PASSWORD: root
@@ -90,7 +159,6 @@ services:
 networks:
   coworking-network:
     driver: bridge
-
 volumes:
   dbdata:
     driver: local
