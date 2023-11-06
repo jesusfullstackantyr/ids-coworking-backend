@@ -9,6 +9,7 @@ export class User {
     @IsEmail()
     @IsString()
     @IsNotEmpty()
+    @IsOptional({ groups: ['update'] })
     public email: string;
 
     @IsString()
@@ -19,13 +20,14 @@ export class User {
 
     @IsString()
     @IsNotEmpty()
+    @IsOptional({ groups: ['update'] })
     public verified: Date;
 
 
     @IsNotEmpty()
     @IsNumber()
     @Min(0)
-    @IsOptional() // Opcional al actualizar
+    @IsOptional({ groups: ['update'] })
     public idRole: number;
     
 

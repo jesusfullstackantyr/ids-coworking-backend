@@ -9,6 +9,8 @@ import { GetUserByIdUseCase } from '../application/userGetUseCase'; // Importa e
 import { UserGetController } from './controllers/userGetController'; // Importa el controlador para obtener usuario por ID
 import { GetUserClientController} from "./controllers/getUserClientController";
 import { GetUserClientUseCase } from "../application/getUserClientUseCase"
+import { UpdatePasswordController } from "./controllers/updatePasswordController";
+import { UpdatePasswordUseCase } from "../application/updatePasswordUseCase";
 
 const mariDBUserAdapter = new UserMariaDBAdapterRepository();
 const createUserUseCase = new UserCreateUseCase(mariDBUserAdapter);
@@ -27,3 +29,6 @@ export const userGetController = new UserGetController(userGetUseCase);
 
 const getUserClientUseCase = new GetUserClientUseCase(mariDBUserAdapter); 
 export const getUserClientController = new GetUserClientController(getUserClientUseCase);
+
+const updatePasswordUseCase = new UpdatePasswordUseCase(mariDBUserAdapter);
+export const updatePasswordController = new UpdatePasswordController(updatePasswordUseCase);

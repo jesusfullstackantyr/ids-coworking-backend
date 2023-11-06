@@ -9,4 +9,5 @@ export interface UserRepository {
         id: number,
         idRole: number
     ): Promise<User | null | Error>
+    updateUserPassword(id: number, password: string): Promise<User | null | string>
 }

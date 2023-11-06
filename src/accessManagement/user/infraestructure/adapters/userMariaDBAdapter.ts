@@ -107,4 +107,31 @@ export class UserMariaDBAdapterRepository implements UserRepository {
           return null;
       }
   }
+  async updateUserPassword(id: number, password: string): Promise<User | null> {
+    try {
+      const userQuery = "SELECT * FROM users WHERE id = ?";
+      const userResult = await query(userQuery, [id]);
+      if (userResult.length === 0) {
+        console.error("No se encontró ninguna persona con el ID proporcionado");
+        return null;
+      }
+
+      const updateQuery = "UPDATE users SET password = ? WHERE id = ?";
+      const updateResult = await query(updateQuery, [password, id]);
+      if (updateResult.affectedRows > 0) {
+        console.log("Usuario actualizada con éxito");
+        const updatedPerson: User = {
+          email: userResult[0].email, password, verified: userResult[0].verified, idRole: userResult[0].idRole,
+        };
+
+        return updatedPerson;
+      } else {
+        console.error("No se pudo actualizar el password del usuario");
+        return null;
+      }
+    } catch (error) {
+      console.error("Error al validar el usurio:", error);
+      return null;
+    }
+  }
 }
