@@ -6,22 +6,24 @@ export class GetOfficeController{
     constructor(readonly getOfficeUseCase: GetOfficeUseCase){}
 
     async get(req: Request, res: Response){
-        try {
-            let id = parseInt(req.params.id, 10);
 
+        const id = parseInt(req.params.id);
+
+        try {
             const getOffice = await this.getOfficeUseCase.get(id);
 
             if (getOffice) {
                 return res.status(200).send({
                     status: "success",
                     data: {
-                        new_Book: getOffice
+                        Office: getOffice
                     }
                 });
             } else {
-                return res.status(500).send({
+                return res.status(404).send({
                     status: "error",
-                    message: "An error occurred while adding the publication."
+                    data:null,
+                    message:"No se encontraron officionas con el id proporcionado"
                 });
             }
             
@@ -37,7 +39,7 @@ export class GetOfficeController{
             } 
             return res.status(500).send({
                 status: "error",
-                message: "An error occurred while adding the book."
+                message: "An error occurred while adding the Office."
             });
         }
     }
