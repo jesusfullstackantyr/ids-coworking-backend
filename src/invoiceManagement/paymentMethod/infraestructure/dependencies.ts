@@ -16,7 +16,6 @@ import { PaymentMethodInactiveController } from "./controllers/paymentMethodInac
 import { PaymentMethodGetByIdController } from "./controllers/paymentMethodGetByIdController";
 
 
-
 const mariDBPaymentsAdapter = new PaymentMethodMariaDBAdapterRepository();
 const createPaymentsUseCase = new PaymentMethodCreateUseCase(mariDBPaymentsAdapter);
 export const paymentsCreateController = new PaymentMethodCreateController(createPaymentsUseCase);
