@@ -41,6 +41,7 @@ export class PaymentMethodMariaDBAdapterRepository implements PaymentRepository 
   
   async updatePayment(id: number, updatedPaymentData: Partial<PaymentMethod>): Promise<PaymentMethod | null> {
     try {
+      
       const { name, status, pb_key_prod, pd_key_prod, pb_key_test, pd_key_test} = updatedPaymentData;
       if (!name || !status ||  !pb_key_prod|| !pd_key_prod|| !pb_key_test|| !pd_key_test) {
         throw new Error('Faltan datos obligatorios para actualizar el pago.');
@@ -49,6 +50,7 @@ export class PaymentMethodMariaDBAdapterRepository implements PaymentRepository 
       const sql = "UPDATE paymentMethod SET name = ?, status = ?, pb_key_prod = ?, pd_key_prod = ?, pb_key_test = ?, pd_key_test = ? WHERE id = ?";
       const params: any[] = [name, status, pb_key_prod, pd_key_prod, pb_key_test, pd_key_test, id];
       const result: any = await query(sql, params);
+  
       if (result.affectedRows > 0) {
         return new PaymentMethod(id, name, status, pb_key_prod, pd_key_prod, pb_key_test, pd_key_test);
       } else {
