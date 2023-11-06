@@ -13,7 +13,15 @@ import { UpdatePersonUseCase } from "../application/updatePersonUseCase";
 const updatePersonUseCase = new UpdatePersonUseCase(mariadbPersonRepository);
 const updatePersonController = new UpdatePersonController(updatePersonUseCase);
 
+import { validatePersonController } from "./controllers/validatePersonController";
+import { validatePersonUseCase } from "../application/validatePersonUseCase";
+
+const ValidatePersonUseCase = new validatePersonUseCase(mariadbPersonRepository);
+const ValidatePersonController = new validatePersonController(ValidatePersonUseCase);
+
+
 export {
     updatePersonController,
     registerPersonController,
+    ValidatePersonController,
 };

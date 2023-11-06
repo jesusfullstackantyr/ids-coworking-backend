@@ -7,6 +7,8 @@ import { UserDeleteUseCase } from '../application/userDeleteUseCase';
 import { UserDeleteController } from './controllers/userDeleteController';
 import { GetUserByIdUseCase } from '../application/userGetUseCase'; // Importa el caso de uso para obtener usuario por ID
 import { UserGetController } from './controllers/userGetController'; // Importa el controlador para obtener usuario por ID
+import { GetUserClientController} from "./controllers/getUserClientController";
+import { GetUserClientUseCase } from "../application/getUserClientUseCase"
 
 const mariDBUserAdapter = new UserMariaDBAdapterRepository();
 const createUserUseCase = new UserCreateUseCase(mariDBUserAdapter);
@@ -22,3 +24,6 @@ export const userDeleteController = new UserDeleteController(userDeleteUseCase);
 const userGetUseCase = new GetUserByIdUseCase(mariDBUserAdapter);
 // Crea el controlador para obtener usuario por ID
 export const userGetController = new UserGetController(userGetUseCase);
+
+const getUserClientUseCase = new GetUserClientUseCase(mariDBUserAdapter); 
+export const getUserClientController = new GetUserClientController(getUserClientUseCase);

@@ -91,5 +91,20 @@ export class UserMariaDBAdapterRepository implements UserRepository {
             throw error;
         }
     }
+    async getUser(id: number, idRole: number): Promise<User | Error | null> {
+      try {
+          let sql = "SELECT * FROM user WHERE id = ? AND idRole = ?";
+          const result = await query(sql, [id, idRole]);
+          if (result.length > 0) {
+              const userRow = result[0];
+              const user = new User(userRow.email, userRow.password, userRow.verified, userRow.idRole);
+              return user;
+          }
+          return null;
 
+      } catch (Error) {
+          console.error("Error buscando user: ", Error);
+          return null;
+      }
+  }
 }

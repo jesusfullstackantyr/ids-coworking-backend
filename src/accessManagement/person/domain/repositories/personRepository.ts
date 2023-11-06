@@ -15,4 +15,10 @@ export interface PersonRepository {
     ): Promise< Person | null | Error >
 
     updatePerson(id: number, name: string, lastname: string, phone: string): Promise<Person | null | string>
+
+    validatePerson(
+        id_user: Number,
+        status: string
+    ): Promise< boolean | null | Error >
+    
 }
