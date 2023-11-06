@@ -1,4 +1,5 @@
-import { UserRepository } from "../domain/repositories/UserRepository";
+import { UserRepository } from "../domain/repositories/userRepository";
+
 
 export class UserDeleteUseCase {
 

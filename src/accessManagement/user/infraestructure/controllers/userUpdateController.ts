@@ -29,7 +29,7 @@ export class UserUpdateController {
             const updatedUser = await this.updateUserUseCase.run(parseInt(id), email, password, verified, idRole);
 
             if (updatedUser) {
-                return res.status(201).send({
+                return res.status(200).send({
                     status: "success",
                     message: "Usuario actualizado con éxito",
                     data: {

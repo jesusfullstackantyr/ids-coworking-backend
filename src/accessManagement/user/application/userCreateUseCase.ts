@@ -1,5 +1,7 @@
 import { User } from '../domain/entities/user'; // Asegúrate de importar la entidad User
-import { UserRepository } from '../domain/repositories/UserRepository'; // Asegúrate de importar el repositorio adecuado para User
+import { UserRepository } from '../domain/repositories/userRepository';
+
+// Asegúrate de importar el repositorio adecuado para User
 import { UserValidate } from '../domain/validators/userValidate'; // Asegúrate de importar el validador adecuado para User
 
 export class UserCreateUseCase {

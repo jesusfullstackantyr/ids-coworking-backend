@@ -1,5 +1,6 @@
-import { UserRepository } from '../domain/repositories/UserRepository';
+
 import { User } from '../domain/entities/user';
+import { UserRepository } from '../domain/repositories/userRepository';
 import { UserValidate } from '../domain/validators/userValidate';
 
 export class UserUpdateUseCase {

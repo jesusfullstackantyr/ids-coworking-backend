@@ -1,6 +1,6 @@
 import { query } from "../../../../database/mariaDb";
 import { User } from '../../domain/entities/user';
-import { UserRepository } from "../../domain/repositories/UserRepository";
+import { UserRepository } from "../../domain/repositories/userRepository";
 
 
 
