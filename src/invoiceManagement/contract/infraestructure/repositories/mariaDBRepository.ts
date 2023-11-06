@@ -20,12 +20,11 @@ export class MariaDBRepository implements ContractRepository {
             const result = await query(sql, params);
 
             if (result && result.affectedRows > 0) {
-                // Si al menos una fila fue afectada por la actualización, significa que se actualizó correctamente
-                // Aquí necesitarías cargar y devolver el contrato actualizado desde la base de datos
+                // Aquí necesitas cargar y devolver el contrato actualizado desde la base de datos
                 const updatedContract = this.getContractById(id) // Implementa una función para obtener el contrato por ID
                 return updatedContract;
             } else {
-                // Si no se afectó ninguna fila, el contrato con el ID especificado no fue encontrado en la base de datos
+                // Si no se modifico la fila, con el ID especificado no fue encontrado en la base de datos
                 return null;
             }
         } catch (error) {
@@ -40,8 +39,7 @@ export class MariaDBRepository implements ContractRepository {
             const result = await query(sql, params);
 
             if (result && result.affectedRows > 0) {
-                // Si al menos una fila fue afectada por la actualización, significa que se actualizó correctamente
-                // Aquí necesitarías cargar y devolver el contrato actualizado desde la base de datos
+                // Si al menos una fila fue afectada por la actualización
                 const updated = this.getContractById(id);
                 return updated;
             }

@@ -11,7 +11,7 @@ export class UpdateContractExpirationController {
             const expiration_date  = req.body.expiration_date
             const id = Number(req.params.id); 
             
-            console.log(id)// Suponiendo que el ID del contrato está en los parámetros de la ruta
+            console.log(id)// ID del contrato 
 
             const UpdateContractExpiration = await this.UpdateContractExpirationUseCase.updateContractExpiration(expiration_date,id);
 

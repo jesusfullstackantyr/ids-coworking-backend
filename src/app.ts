@@ -13,9 +13,9 @@ app.use('/contract',ContractRoutes);
 
 
 
-const SERVER_PORT = process.env.SERVER_PORT || 3000;
+const SERVER_PORT = process.env.SERVER_PORT || 3001;
 
 app.listen(SERVER_PORT, () => {
-    signale.success("Server online in port 3000");
+    signale.success("Server online in port 3001");
 });
 

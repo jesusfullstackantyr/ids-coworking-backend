@@ -2,6 +2,7 @@ import { Response, Request } from "express";
 import { CancelContractUseCase } from "../../application/cancelContractUseCase";
 import { Contract } from "../../domain/entities/contract";
 export class CancelContractController {
+    
     constructor(private readonly CancelContractUseCase: CancelContractUseCase) {}
 
     async CancelStatus(req: Request, res: Response) {
@@ -42,4 +43,4 @@ export class CancelContractController {
             });
         }
     }
-}
+}       

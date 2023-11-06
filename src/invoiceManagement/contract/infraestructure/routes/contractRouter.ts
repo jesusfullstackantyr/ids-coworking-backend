@@ -7,7 +7,7 @@ export const ContractRoutes = express.Router();
 
     
 ContractRoutes.get(
-    "/getContractById/id=:id", 
+    "/id=:id", 
     getContractByIdController.getContractById.bind(getContractByIdController));
 
 
@@ -18,6 +18,6 @@ ContractRoutes.put(
 
     
 ContractRoutes.put(
-    "/updateExpiration/id=:id", 
+    "/expiration/id=:id", 
     updateContractExpirationController.UpdateExpiration.bind(updateContractExpirationController)
     );
