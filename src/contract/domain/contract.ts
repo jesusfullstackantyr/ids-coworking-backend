@@ -8,7 +8,10 @@ export class Contract {
         readonly status: string,
         readonly iduser: number,
         readonly idoffice: number,
+<<<<<<< HEAD
         
+=======
+>>>>>>> origin/201227-Feature-IC-3-Cancelar-Contrato
     ){}
 
 }

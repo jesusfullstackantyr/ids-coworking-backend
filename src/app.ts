@@ -16,6 +16,7 @@ import { paymentsRouter } from './invoiceManagement/paymentMethod/infraestructur
 
 
 
+
 dotenv.config();
 
 const app = express();
@@ -30,6 +31,7 @@ app.use('/api/v1/Payment', paymentRouter);
 
 app.use('/api/v1/payments_method',paymentsRouter);
 
+app.use("/api/v1/payments", PaypalRoute);
 app.use('/api/v1/office', officeRouter);
 app.use('/api/v1/categories', categoryRoutes);
 app.use("/api/v1/cards", paymentsRouter)
@@ -40,5 +42,5 @@ app.use('/api/v1/user', userRouter);
 const SERVER_PORT = process.env.SERVER_PORT || 3000;
 
 app.listen(SERVER_PORT, () => {
-    signale.success(`API Gateway en el puerto ${SERVER_PORT}`);
+    signale.success(`Server online in port ${SERVER_PORT}`);
 });
