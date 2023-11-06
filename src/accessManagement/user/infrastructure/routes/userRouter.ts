@@ -4,5 +4,5 @@ import { addUserController, updatePasswordController, } from '../dependencies';
 
 export const userRouter = express.Router();
 
-userRouter.post('/register', addUserController.run.bind(addUserController));
-userRouter.put('/update/:id', updatePasswordController.run.bind(updatePasswordController));
+userRouter.post('/', addUserController.run.bind(addUserController));
+userRouter.put('/password/:id', updatePasswordController.run.bind(updatePasswordController));

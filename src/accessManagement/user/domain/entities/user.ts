@@ -1,5 +1,6 @@
 import { IsString, IsEmail, IsNumber, IsNotEmpty,IsOptional, Min,Matches,MinLength} from 'class-validator';
-const strongPasswordRegex = /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[!@#$%^&*()_+{}[\]|\\:;<>,.?/~]).{8,}$/;
+//const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]|\\:;<>,.?/~]).{8,}$/;
+
 export class User {
     
     @IsNotEmpty({ groups: ['update'] })
@@ -15,8 +16,8 @@ export class User {
 
     @IsString()
     @IsNotEmpty()
-    /*@Matches(strongPasswordRegex, { message: 'La contraseña debe ser más fuerte: debe tener al menos 8 caracteres, una letra minúscula, una letra mayúscula, un número y un carácter especial.' })
-    @MinLength(8, { message: 'La contraseña debe tener al menos 8 caracteres.' })*/
+    /*@Matches(strongPasswordRegex, { message: 'La contraseña debe ser más fuerte: debe tener al menos 8 caracteres, una letra minúscula, una letra mayúscula, un número y un carácter especial.',groups:['update'] })
+    @MinLength(8, { message: 'La contraseña debe tener al menos 8 caracteres.',groups:['update'] })*/
     public password: string;
 
     @IsNotEmpty({ groups: ['update'] })
