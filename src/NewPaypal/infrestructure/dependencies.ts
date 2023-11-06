@@ -1,5 +1,5 @@
 import { CreatePaypalCase } from "../application/createPaymentPaypal";
-import { PaypalRepositoryr } from "./router/paypalRepositorys";
+import { PaypalRepositoryr } from "./repositories/paypalRepositorys";
 import { PayController } from "./controller/controllerPaypal";
 import { GetPaypalCase } from "../application/getPayment";
 import { CreatePaymentCase } from "../application/createPayments";

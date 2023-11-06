@@ -41,7 +41,6 @@ export class PaypalRepositoryr implements PaypalRepository {
             console.log("Conexión exitosa a la BD");
             if (!isNaN(id)) {
                 const query = "SELECT amount FROM Contact WHERE id = ?";
-
                 const result = await conn.query(query, [id]);
                 console.log(query);
 
@@ -59,7 +58,7 @@ export class PaypalRepositoryr implements PaypalRepository {
                             brand_name: `Coworking`,
                             landing_page: 'NO_PREFERENCE',
                             user_action: 'PAY_NOW',
-                            return_url: `http://localhost:3000/Paypal/execute-payment`,
+                            return_url: `http://localhost:3000/Paypal/extracter_payment`,
                             cancel_url: `http://localhost:3000/cancel-payment`
                         }
                     };

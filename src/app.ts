@@ -7,7 +7,7 @@ const app = express();
 const signale = new Signale();
 
 app.use(express.json());
-app.use("/Paypal", PaypalRoute);
+app.use("/api/v1/payments", PaypalRoute);
 // Ejemplo app.use('/leads',leadRouter);
 
 
