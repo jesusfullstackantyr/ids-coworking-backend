@@ -11,4 +11,4 @@ paymentsRouter.put("/", paymentsUpdateController.updatePayments.bind(paymentsUpd
 
 paymentsRouter.delete("/:id", paymentsDeleteController.deletePayment.bind(paymentsDeleteController));
 
-paymentsRouter.get("/:id", paymentsGetByIdController.getPaymentBiyd.bind(paymentsGetByIdController));
+paymentsRouter.get("/prueba/:id",paymentsGetByIdController.getPaymentBiyd.bind(paymentsGetByIdController));
