@@ -5,7 +5,7 @@ import {
     updatePersonAddressController,
     getAllPersonController,
     
-} from "./dependencies";
+} from "../dependencies";
 
 export const personRoutes = express.Router();
 personRoutes.post('/register', registerPersonController.run.bind(registerPersonController));

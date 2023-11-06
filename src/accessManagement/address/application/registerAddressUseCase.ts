@@ -23,14 +23,6 @@ export class RegisterAddressUseCase {
             }
 
             const registerAddress = await this.AddressRepository.registerAddress(mainStreet, street_1, postalCode, street_2, colonia, municipio, country);
-            
-           /* validate(registerAddress).then(errors => {
-                if (errors.length > 0) {
-                  console.log('Errores de validación:', errors);
-                } else {
-                  console.log('El objeto es válido.');
-                }
-              });*/
               
             if (registerAddress === null) {
                 return null;

@@ -5,7 +5,7 @@ import {
     updateAddressController,
     getAllAddressController,
     
-} from "./dependencies";
+} from "../dependencies";
 
 export const addressRoutes = express.Router();
 addressRoutes.post('/register', registerAddressController.run.bind(registerAddressController));

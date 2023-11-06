@@ -1,5 +1,5 @@
-import { Person } from '../domain/person';
-import { PersonRepository } from '../domain/personRepository';
+import { Person } from '../domain/entities/person';
+import { PersonRepository } from '../domain/repositories/personRepository';
 
 export class RegisterPersonUseCase {
 

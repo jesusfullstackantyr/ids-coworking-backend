@@ -1,4 +1,4 @@
-import { MariadbAddressRepository } from "./mariadbAddressRepository";
+import { MariadbAddressRepository } from "./repositories/mariadbAddressRepository";
 const mariadbAddressRepository= new MariadbAddressRepository();
 
 import { ListAllAddressUseCase} from "../application/listAllAddressUseCase";

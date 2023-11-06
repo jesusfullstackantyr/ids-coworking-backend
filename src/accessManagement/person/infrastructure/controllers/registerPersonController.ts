@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { RegisterPersonUseCase } from '../../application/registerPersonUseCase';
-import { Person } from '../../domain/person';
+import { Person } from '../../domain/entities/person';
 
 export class RegisterPersonController {
 

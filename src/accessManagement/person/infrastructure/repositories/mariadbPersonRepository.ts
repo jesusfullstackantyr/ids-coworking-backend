@@ -1,6 +1,6 @@
-import { query } from "../../../database/mariaDb";
-import { Person } from "../domain/person";
-import { PersonRepository } from "../domain/personRepository";
+import { query } from "../../../../database/mariaDb";
+import { Person } from "../../domain/entities/person";
+import { PersonRepository } from "../../domain/repositories/personRepository";
 
 export class MariadbPersonRepository implements PersonRepository {
 

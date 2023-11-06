@@ -15,5 +15,8 @@ yarn-error.log
 # Archivos de entorno
 .env
 
+# Archivos de entorno
+.data/db
+
 # Directorios de caché
 .cache/

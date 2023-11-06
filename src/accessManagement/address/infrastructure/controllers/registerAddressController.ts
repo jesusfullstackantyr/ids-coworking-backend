@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { RegisterAddressUseCase } from '../../application/registerAddressUseCase';
 import { Address } from '../../domain/entities/address';
+import { validate, ValidationError } from 'class-validator';
 
 export class RegisterAddressController {
 
@@ -11,7 +12,7 @@ export class RegisterAddressController {
         console.log('controller')
 
         try {
-            let {
+            const {
                 mainStreet,
                 street_1,
                 postalCode,
@@ -23,6 +24,20 @@ export class RegisterAddressController {
 
             } = req.body
             console.log(req.body)
+
+            const address = new Address(mainStreet,street_1,postalCode,street_2,colonia,municipio,country);
+
+            // Validar los datos utilizando class-validator
+            const validationErrors: ValidationError[] = await validate(address);
+
+            if (validationErrors.length > 0) {
+                // Hay errores de validación, responder con un error 422
+                return res.status(422).json({
+                    status: "error",
+                    message: "Datos de entrada no válidos",
+                    errors: validationErrors,
+                });
+            }
 
             let registerAddress = await this.registerAddressUseCase.run(
                 mainStreet,

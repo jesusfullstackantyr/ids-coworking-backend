@@ -1,7 +1,7 @@
 import { Validator } from "class-validator";
-import { query } from "../../../database/mariaDb";
-import { Address } from "../domain/entities/address";
-import { AddressRepository } from "../domain/repositories/addressRepository";
+import { query } from "../../../../database/mariaDb";
+import { Address } from "../../domain/entities/address";
+import { AddressRepository } from "../../domain/repositories/addressRepository";
 
 export class MariadbAddressRepository implements AddressRepository {
     async listAllAddress(): Promise<Address[] | null> {
@@ -57,7 +57,7 @@ async updateAddress(id: number, mainStreet: string, street_1: string, postalCode
       const updateQuery = "UPDATE address SET mainStreet = ?, street_1 = ?, postalCode = ?, street_2 = ?, colonia = ?, municipio = ?, country = ? WHERE id = ?";
       const updateResult = await query(updateQuery, [mainStreet,street_1,postalCode,street_2,colonia,municipio,country, id]);
       if (updateResult.affectedRows > 0) {
-        console.log("Persona actualizada con éxito");
+        console.log("Direccion actualizada con éxito");
 
         const updatedAddress: Address = {
           mainStreet, street_1, postalCode, street_2, colonia, municipio, country,

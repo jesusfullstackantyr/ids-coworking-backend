@@ -1,4 +1,4 @@
-import { Person } from './person';
+import { Person } from '../entities/person';
 
 export interface PersonRepository {
     registerPerson(
