@@ -1,7 +1,6 @@
 import { Response, Request } from "express";
 import { CancelContractUseCase } from "../../application/cancelContractUseCase";
-import { Contract } from "../../domain/contract";
-
+import { Contract } from "../../domain/entities/contract";
 export class CancelContractController {
     constructor(private readonly CancelContractUseCase: CancelContractUseCase) {}
 
@@ -20,25 +19,18 @@ export class CancelContractController {
                 });
             }
 
-    
-
-            if (CancelContract instanceof Contract) {
+            if (CancelContract) {
                 return res.status(200).send({
                     status: "success",
                     data: {
-                        amount: CancelContract.amount,
-                        start_date: CancelContract.start_date,
-                        expiration_date: CancelContract.expiration_date,
-                        status: CancelContract.status,
-                        iduser: CancelContract.iduser,
-                        idoffice: CancelContract.idoffice,
+                        CancelContract
                     },
                     message: "Estado del contrato actualizado con éxito",
                 });
             } else {
                 return res.status(500).send({
                     status: "error",
-                    message: "Error al actualizar el estado del contrato",
+                    message: "Internal Server Error, Error al actualizar el estado del contrato",
                 });
             }
 
@@ -46,7 +38,7 @@ export class CancelContractController {
             console.error("Error al actualizar el estado del contrato:", error);
             return res.status(500).send({
                 status: "error",
-                message: "Ocurrió un error inesperado. Por favor, inténtalo de nuevo más tarde.",
+                message: "Internal Server Error. Por favor, inténtalo de nuevo más tarde.",
             });
         }
     }

@@ -1,5 +1,5 @@
-import { Contract } from "../domain/contract";
-import { ContractRepository } from "../domain/contract_repository";
+import { ContractRepository } from "../domain/interfaces/contract_repository";
+import { Contract } from "../domain/entities/contract";
 
 export class CancelContractUseCase {
     constructor(readonly ContractRepository: ContractRepository){}

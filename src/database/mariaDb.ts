@@ -5,22 +5,18 @@ import { Signale } from "signale";
 const signale = new Signale();
 dotenv.config();
 
-const config = {
-  host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER || 'root',
-  database: process.env.DB_DATABASE || 'cowork',
-  password: process.env.DB_PASSWORD || 'galletas',
-  waitForConnections: true,
-  connectionLimit: 10,
-  port: Number(process.env.DB_PORT) || 3306,
-};
+export const pool = mariadb.createPool({
 
-console.log('Configuración de la base de datos:', config);
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    database: process.env.DB_DATABASE,
+    password: process.env.DB_PASSWORD,
+    port: 3306, // Agrega el puerto correspondiente aquí
+})
 
 
-// Crear el pool de conexiones
-const pool = mariadb.createPool(config);  // Cambiado de `mysql.createPool` a `createPool`
 
+// Cambiado de `mysql.createPool` a `createPool`
 export async function query(sql: string, params: any[]) {
     try {
         const conn = await pool.getConnection();

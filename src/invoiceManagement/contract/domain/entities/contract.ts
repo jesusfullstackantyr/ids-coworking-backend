@@ -7,7 +7,7 @@ export class Contract {
         readonly expiration_date: Date,
         readonly status: string,
         readonly iduser: number,
-        readonly idoffice: number,
+        readonly idoffice: number, 
     ){}
 
 }
