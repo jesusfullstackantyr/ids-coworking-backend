@@ -7,9 +7,10 @@ export class PaymentMethodGetByIdController {
   async getPaymentBiyd(request: Request, response: Response) {
     
     try {
-      const { id } = request.body;
+      const { id } = request.params;
      
-      const payment = await this.paymentMethodGetByIdUseCase.execute(id);
+      const payment = await this.paymentMethodGetByIdUseCase.execute(Number(id));
+      // console.log(payment);
 
       if (payment) {
         return response.status(200).json(payment);

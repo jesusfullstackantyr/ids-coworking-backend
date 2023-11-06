@@ -89,14 +89,17 @@ export class PaymentMethodMariaDBAdapterRepository implements PaymentRepository 
   async getPaymentById(id: number): Promise<PaymentMethod | null> {
     try {
       // Definimos la consulta SQL para obtener el método de pago.
-      const sql = "SELECT * FROM payment_method WHERE id = ?";
+      const sql = "SELECT * FROM paymentmethod WHERE id = ?;";
+      // console.log(id)
       
       // Realizamos la consulta, pasando el id como parámetro.
       const result: any = await query(sql, [id]);
+      // console.log(result);
 
       // Verificamos si se recuperó algún resultado.
       if (result && result.length > 0) {
         const payment = result[0];
+        // console.log(payment);
         return new PaymentMethod(
           payment.id,
           payment.name,
