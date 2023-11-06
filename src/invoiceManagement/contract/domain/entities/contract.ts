@@ -8,6 +8,7 @@ export class Contract {
         readonly status: string,
         readonly iduser: number,
         readonly idoffice: number, 
+
     ){}
 
 }
