@@ -9,35 +9,37 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateCategoryController = void 0;
-class CreateCategoryController {
-    constructor(createCategoryUseCase) {
-        this.createCategoryUseCase = createCategoryUseCase;
+exports.UpdateCategoryController = void 0;
+class UpdateCategoryController {
+    constructor(updateCategoryUseCase) {
+        this.updateCategoryUseCase = updateCategoryUseCase;
     }
-    create(req, res) {
+    update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                let { name, price, capacity, space, status } = req.body;
-                const createCategory = yield this.createCategoryUseCase.create(name, price, capacity, space, status);
-                if (createCategory) {
-                    return res.status(201).send({
-                        status: "success",
+                const { id } = req.params;
+                const { name, price, capacity, space, status } = req.body;
+                const updateCategory = yield this.updateCategoryUseCase.update(Number(id), name, price, capacity, space, status);
+                if (updateCategory) {
+                    return res.status(200).send({
+                        status: "succes",
                         data: {
-                            name: createCategory.name,
-                            price: createCategory.price,
-                            capacity: createCategory.capacity,
-                            space: createCategory.space,
-                            status: createCategory.status
+                            id: updateCategory.id,
+                            name: updateCategory.name,
+                            price: updateCategory.price,
+                            capacity: updateCategory.capacity,
+                            space: updateCategory.space,
+                            status: updateCategory.status,
                         },
-                        message: "La categoria ha sido creada con éxito",
+                        message: "La categoria ha sido actuliza",
                     });
                 }
                 else {
-                    return res.status(400).send({
+                    res.status(400).send({
                         status: "error",
                         data: [],
                         validations: [],
-                        message: "Error al crear la categoria, intentelo mas tarde"
+                        message: "Error al actualizar la categoria",
                     });
                 }
             }
@@ -59,4 +61,4 @@ class CreateCategoryController {
         });
     }
 }
-exports.CreateCategoryController = CreateCategoryController;
+exports.UpdateCategoryController = UpdateCategoryController;

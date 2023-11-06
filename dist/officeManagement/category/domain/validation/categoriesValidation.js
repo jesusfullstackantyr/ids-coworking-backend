@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ValidatorId = exports.ValidationCreateCategory = void 0;
+exports.ValidatorId = exports.ValidationUpdateCategory = exports.ValidationCreateCategory = void 0;
 const class_validator_1 = require("class-validator");
 class ValidationCreateCategory {
     constructor(name, price, capacity, space, status) {
@@ -46,6 +46,47 @@ __decorate([
     (0, class_validator_1.IsIn)(["Activo", "Inactivo", "Mantenimiento"]),
     __metadata("design:type", String)
 ], ValidationCreateCategory.prototype, "status", void 0);
+class ValidationUpdateCategory {
+    constructor(id, name, price, capacity, space, status) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.capacity = capacity;
+        this.space = space;
+        this.status = status;
+    }
+}
+exports.ValidationUpdateCategory = ValidationUpdateCategory;
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsNumber)(),
+    __metadata("design:type", Number)
+], ValidationUpdateCategory.prototype, "id", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ValidationUpdateCategory.prototype, "name", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsNumber)(),
+    __metadata("design:type", Number)
+], ValidationUpdateCategory.prototype, "price", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsNumber)(),
+    __metadata("design:type", Number)
+], ValidationUpdateCategory.prototype, "capacity", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ValidationUpdateCategory.prototype, "space", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsIn)(["Activo", "Inactivo", "Mantenimiento"]),
+    __metadata("design:type", String)
+], ValidationUpdateCategory.prototype, "status", void 0);
 class ValidatorId {
     constructor(id) {
         this.id = id;

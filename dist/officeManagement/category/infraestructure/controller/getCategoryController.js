@@ -9,26 +9,31 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PaymentsContoller = void 0;
-class PaymentsContoller {
-    constructor(listAllPaymentUseCase) {
-        this.listAllPaymentUseCase = listAllPaymentUseCase;
+exports.GetCategoryController = void 0;
+class GetCategoryController {
+    constructor(getCategoryUseCase) {
+        this.getCategoryUseCase = getCategoryUseCase;
     }
-    listAllPayments(req, res) {
+    get(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const payments = yield this.listAllPaymentUseCase.getAllPayments();
-                if (payments && payments.length > 0) {
-                    return res.status(200).json({
-                        status: 'success',
-                        data: payments,
-                        message: 'Lista de pagos obtenida exitosamente',
+                let id = parseInt(req.params.id, 10);
+                const category = yield this.getCategoryUseCase.get(id);
+                if (category) {
+                    return res.status(200).send({
+                        status: "success",
+                        data: {
+                            new_Book: category,
+                            message: "Category"
+                        }
                     });
                 }
-                return res.status(404).json({
-                    status: 'error',
-                    message: 'No se encontraron pagos',
-                });
+                else {
+                    return res.status(500).send({
+                        status: "error",
+                        message: "An error occurred while adding the category."
+                    });
+                }
             }
             catch (error) {
                 if (error instanceof Error) {
@@ -42,10 +47,10 @@ class PaymentsContoller {
                 }
                 return res.status(500).send({
                     status: "error",
-                    message: "An error occurred."
+                    message: "An error occurred while fetching the book."
                 });
             }
         });
     }
 }
-exports.PaymentsContoller = PaymentsContoller;
+exports.GetCategoryController = GetCategoryController;
