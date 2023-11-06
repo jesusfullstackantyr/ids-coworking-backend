@@ -18,10 +18,10 @@ const app = express();
 const signale = new Signale();
 app.use(express.json());
 
-app.use('/contract', ContractRoutes);
+app.use('/api/v1/contract', ContractRoutes); //Sprint 2: Obtener contrato
 app.use("/Paypal", PaypalRoute);
 app.use('/payments', paymentRouter)
-app.use('/api/v1//Payment', paymentRouter);
+app.use('/api/v1//Payment', paymentRouter); //Sprint 1: Obtener pago
 app.use('/api/v1/paymentsMethod', paymentsRouter);
 app.use('/api/v1/office', officeRouter);
 app.use('/api/v1/category', categoryRoutes);

@@ -8,6 +8,7 @@ export class MariaDBRepository implements ContractRepository {
         const sql = "SELECT * FROM contract WHERE id = ?";
         try {
             const result = await query(sql, [id]);
+            console.log('Resultado: ', result.length);
             if (result.length === 0) {
                 return null;
             }

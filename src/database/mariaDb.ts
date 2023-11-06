@@ -11,7 +11,7 @@ export const pool = mariadb.createPool({
   user: process.env.DB_USER,
   database: process.env.DB_DATABASE,
   password: process.env.DB_PASSWORD,
-  port: 3307,
+  port: 3306,
   connectionLimit: 10,
 });
 
