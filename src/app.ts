@@ -11,7 +11,7 @@ import { personRoutes } from './person/infrastructure/personRouter';
 import { emailRouter } from './person/infrastructure/services/router/emailRouter';
 import { userRouter } from './user/infrastructure/userRouter'; 
 import { paymentRouter } from './invoiceManagement/payments/infraestructure/routers/paymentRouter';
-import { paymentsRouter } from './invoiceManagement/paymentMethod/infraestructure/routes/paymentMethodRouter';
+import { paymentsRouter } from './paymentMethod/infraestructure/routes/paymentMethodRouter';
 
 
 dotenv.config();
