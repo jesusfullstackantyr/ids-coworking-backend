@@ -1,19 +1,19 @@
 import { PaymentMethodMariaDBAdapterRepository } from "./adapters/paymentsMariaDBAdapter";
 import { PaymentMethodCreateUseCase } from "../application/useCases/paymentMethodCreateUseCase";
-import { PaymentMethodCreateController } from './controllers/paymentMethodCreateController';
-import { PaymentMethodGetAllController } from './controllers/paymentMethodGetAllController';
+import { PaymentMethodCreateController } from "./controllers/paymentMethodCreateController";
+import { PaymentMethodGetAllController } from "./controllers/paymentMethodGetAllController";
 import { PaymentMethodGetAllUseCase } from "../application/useCases/paymentMethodGetAllUseCase";
 import { PaymentMethodUpdateUseCase } from "../application/useCases/paymentMethodUpdateUseCase";
-import { PaymentMethodUpdateController } from './controllers/paymentMethodUpdateController';
+import { PaymentMethodUpdateController } from "./controllers/paymentMethodUpdateController";
 import { PaymentMethodDeleteUseCase } from "../application/useCases/paymentMethodDeleteUseCase";
-import { PaymentMethodDeleteController } from './controllers/paymentMethodDeleteController';
+import { PaymentMethodDeleteController } from "./controllers/paymentMethodDeleteController";
+import { PaymentMethodGetByIdUseCase } from "../application/useCases/paymentMethodGetByIdUseCase";
 
-// set Active
-import { PaymentMethodActiveController } from "./controllers/paymentMethodActiveController";
 import { PaymentMethodActiveUseCase } from "../application/useCases/paymentMethodActiveUseCase";
-// Set Inactive
-import { PaymentMethodInactiveController } from "./controllers/paymentMethodInactiveController";
+import { PaymentMethodActiveController } from "./controllers/paymentMethodActiveController";
 import { PaymentMethodInactiveUseCase } from "../application/useCases/paymentMethodInactiveUseCase";
+import { PaymentMethodInactiveController } from "./controllers/paymentMethodInactiveController";
+import { PaymentMethodGetByIdController } from "./controllers/paymentMethodGetByIdController";
 
 
 
@@ -30,11 +30,12 @@ export const paymentsUpdateController = new PaymentMethodUpdateController(paymen
 const paymentsDeleteUseCase = new PaymentMethodDeleteUseCase(mariDBPaymentsAdapter);
 export const paymentsDeleteController = new PaymentMethodDeleteController(paymentsDeleteUseCase);
 
+const paymentsGetByIdUseCase = new PaymentMethodGetByIdUseCase(mariDBPaymentsAdapter);
+export const paymentsGetByIdController = new PaymentMethodGetByIdController(paymentsGetByIdUseCase);
+
 const paymentActiveUseCase = new PaymentMethodActiveUseCase(mariDBPaymentsAdapter);
 export const paymentMethodActiveController = new PaymentMethodActiveController(paymentActiveUseCase);
 
 const paymentMethodInactiveUseCase = new PaymentMethodInactiveUseCase(mariDBPaymentsAdapter);
 export const paymentMethodInactiveController = new PaymentMethodInactiveController(paymentMethodInactiveUseCase);
-
-
 

@@ -3,6 +3,42 @@ import { PaymentMethod } from "../../domain/entities/paymentsMethod";
 import { PaymentRepository } from "../../domain/repositories/paymentMethodRepository";
 
 export class PaymentMethodMariaDBAdapterRepository implements PaymentRepository {
+  async setInactivePayment(id: number, status: string): Promise<number | string | void> {
+    try {
+      const sql = "UPDATE paymentMethod SET status = ? WHERE id = ?";
+      const params: any[] = ['inactive', id];
+      const result: any = await query(sql, params);
+
+      if (result.affectedRows > 0) {
+        // Devolver la ID del pago inactivado
+        return id;
+      } else {
+        return 'The payment could not be deactivated.';
+      }
+    } catch (error) {
+      console.error('Error while deactivating the payment:', error);
+      throw error;
+    }
+  }
+
+  async setActivePayment(id: number, status: string): Promise<number | string | void> {
+    try {
+      const sql = "UPDATE paymentMethod SET status = ? WHERE id = ?";
+      const params: any[] = ['active', id];
+      const result: any = await query(sql, params);
+
+      if (result.affectedRows > 0) {
+        // Devolver la ID del pago activado
+        return id;
+      } else {
+        return 'The payment could not be activated.';
+      }
+    } catch (error) {
+      console.error('Error while activating the payment:', error);
+      throw error;
+    }
+  }
+  
   async updatePayment(id: number, updatedPaymentData: Partial<PaymentMethod>): Promise<PaymentMethod | null> {
     try {
       
@@ -85,41 +121,34 @@ export class PaymentMethodMariaDBAdapterRepository implements PaymentRepository 
     }
   }
 
-  async setInactivePayment(id: number, status: string): Promise<number | string | void> {
+  async getPaymentById(id: number): Promise<PaymentMethod | null> {
     try {
-      const sql = "UPDATE paymentMethod SET status = ? WHERE id = ?";
-      const params: any[] = ['inactive', id];
-      const result: any = await query(sql, params);
+      // Definimos la consulta SQL para obtener el método de pago.
+      const sql = "SELECT * FROM paymentMethod WHERE id = ?";
+      
+      // Realizamos la consulta, pasando el id como parámetro.
+      const result: any = await query(sql, [id]);
 
-      if (result.affectedRows > 0) {
-        // Devolver la ID del pago inactivado
-        return id;
+      // Verificamos si se recuperó algún resultado.
+      if (result && result.length > 0) {
+        const payment = result[0];
+        return new PaymentMethod(
+          payment.id,
+          payment.name,
+          payment.status,
+          payment.pb_key_prod,
+          payment.pr_key_prod, // Asegúrate de que estos nombres coincidan con cómo se devuelven los resultados de tu consulta.
+          payment.pb_key_test,
+          payment.pr_key_test
+        );
       } else {
-        return 'The payment could not be deactivated.';
+        return null; // Puedes decidir devolver null o manejarlo de otra manera si no se encuentra ningún método de pago.
       }
     } catch (error) {
-      console.error('Error while deactivating the payment:', error);
-      throw error;
+      console.error('Error al obtener el método de pago:', error);
+      throw error; // Puedes decidir si quieres propagar el error o manejarlo de otra manera.
     }
   }
 
-  async setActivePayment(id: number, status: string): Promise<number | string | void> {
-    try {
-      const sql = "UPDATE paymentMethod SET status = ? WHERE id = ?";
-      const params: any[] = ['active', id];
-      const result: any = await query(sql, params);
-
-      if (result.affectedRows > 0) {
-        // Devolver la ID del pago activado
-        return id;
-      } else {
-        return 'The payment could not be activated.';
-      }
-    } catch (error) {
-      console.error('Error while activating the payment:', error);
-      throw error;
-    }
-  }
-
-
+  
 }
