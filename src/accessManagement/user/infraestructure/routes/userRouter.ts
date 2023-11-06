@@ -4,4 +4,4 @@ import { getUserClientController } from '../dependencies';
 
 export const userRouter = express.Router();
 
-userRouter.get('/getUser/Client/:id/:idRole', getUserClientController.run.bind(getUserClientController));
+userRouter.get('/getUser/client/:id/:idRole', getUserClientController.run.bind(getUserClientController));
