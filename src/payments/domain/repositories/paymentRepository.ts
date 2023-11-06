@@ -5,7 +5,7 @@ export interface PaymentRepository {
 
     cancelPayment(paymentId: number, newStatus: string): Promise<Payment | null>;
 
-    listAllPayments(): Promise<Payment[]>;
+    listAllPayments(): Promise<Payment[] | null>;
 
     ProcessPayment(
         name:String,

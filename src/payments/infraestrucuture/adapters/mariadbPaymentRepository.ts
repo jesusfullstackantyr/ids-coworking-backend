@@ -10,8 +10,7 @@ export class MariadbCardRepository implements PaymentRepository {
   async listAllPayments(): Promise<Payment[]> {
     try {
       const sql = `
-        SELECT id, amount, payment_date, status
-        FROM payment
+        SELECT id, amount, payment_date, status FROM payment
       `;
       const params: any[] = [];  // No hay parámetros en esta consulta
       const [rows]: any = await query(sql, params);
@@ -23,11 +22,11 @@ export class MariadbCardRepository implements PaymentRepository {
           row.payment_date,
           row.status,
           row.token,
-          row.status,
           row.metaData,
           row.id_contract,
           row.id_payment_method,
           row.id_card,
+          row.id_user
         );
       });
 
@@ -38,33 +37,33 @@ export class MariadbCardRepository implements PaymentRepository {
     }
   }
 
-async cancelPayment(paymentId: number): Promise<Payment | null> {
+  async cancelPayment(paymentId: number): Promise<Payment | null> {
     try {
-        if (typeof paymentId !== 'number' || isNaN(paymentId) || paymentId <= 0) {
-            throw new Error('The payment ID is not valid.');
-        }
+      if (typeof paymentId !== 'number' || isNaN(paymentId) || paymentId <= 0) {
+        throw new Error('The payment ID is not valid.');
+      }
 
-        // Sentencia SQL para actualizar el campo 'contract'
-        const contractSql = `
+      // Sentencia SQL para actualizar el campo 'contract'
+      const contractSql = `
             UPDATE Payments
             SET status = 'cancel'
             WHERE id = ?
         `;
 
-        // Sentencia SQL para actualizar el campo 'payment_method'
-        const paymentMethodSql = `
+      // Sentencia SQL para actualizar el campo 'payment_method'
+      const paymentMethodSql = `
             UPDATE contract
             SET status = 'cancel'
             WHERE id = ?
         `;
-        // Sentencia SQL para actualizar el campo 'Card'
-        const payment = `
+      // Sentencia SQL para actualizar el campo 'Card'
+      const payment = `
             UPDATE payment_method
             SET status = 'cancel'
             WHERE id = ?
         `;
 
-        const cardSql = `
+      const cardSql = `
           UPDATE Card
              SET status = 'cancel'
                  WHERE id_folio = ?
@@ -72,23 +71,23 @@ async cancelPayment(paymentId: number): Promise<Payment | null> {
 
 
 
-        // Ejecutar las consultas SQL
-        const params: any[] = [paymentId];
-        await query(contractSql, params);
-        await query(paymentMethodSql, params);
-        await query(payment, params);
-        await query(cardSql, params);
+      // Ejecutar las consultas SQL
+      const params: any[] = [paymentId];
+      await query(contractSql, params);
+      await query(paymentMethodSql, params);
+      await query(payment, params);
+      await query(cardSql, params);
 
-        // Obtener los datos del pago actualizado
-        const updatedPayment = await this.getPaymentById(paymentId);
+      // Obtener los datos del pago actualizado
+      const updatedPayment = await this.getPaymentById(paymentId);
 
-        return updatedPayment;
+      return updatedPayment;
     } catch (error) {
-        console.error('Error updating payment fields:', (error as Error).message);
-        throw new Error('Error updating payment fields');
+      console.error('Error updating payment fields:', (error as Error).message);
+      throw new Error('Error updating payment fields');
     }
-}
-async getPaymentById(paymentId: number): Promise<Payment | null> {
+  }
+  async getPaymentById(paymentId: number): Promise<Payment | null> {
 
     // const sql = `
     // SELECT payment.status AS payment, card.status AS card,  payment_method.status AS payment_method,  contract.status AS contract
@@ -97,21 +96,24 @@ async getPaymentById(paymentId: number): Promise<Payment | null> {
     //             LEFT JOIN contract ON payment.id = contract.id
     //                 WHERE payment.id = ?
     // `;
+    // const sql = `
+    //     SELECT id, amount, payment_date, status, id_user
+    //     FROM payment WHERE id = ?
+    //   `;
+
     const sql = `
-        SELECT id, amount, payment_date, status
-        FROM payment WHERE id = ?
-      `;
+    SELECT p.id, p.amount, p.payment_date, p.status, p.metaData, JSON_OBJECT('email', u.email) AS user_email FROM payment p INNER JOIN user u ON p.id_user = u.id WHERE p.id = ?      `;
 
     const params: any[] = [paymentId];
     const results: any = await query(sql, params);
 
     if (results && results.length > 0) {
       console.log("Resultado: ", results[0]);
-        return results[0];
+      return results[0];
     } else {
-        return null;
+      return null;
     }
-}
+  }
 
 
   async ProcessPayment(
