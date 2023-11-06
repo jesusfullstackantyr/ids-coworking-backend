@@ -6,12 +6,12 @@ import dotenv from 'dotenv';
 import { officeRouter } from './officeManagement/office/infraestructure/routes/officeRouter';
 import { categoryRoutes } from './officeManagement/category/infraestructure/routes/categoryRouter';
 import { ContractRoutes } from './contract/infrastructure/contractRouter';
-import { PaypalRoute } from './NewPaypal/infrestructure/paypalRouter';
 import { personRoutes } from './person/infrastructure/personRouter';
 import { emailRouter } from './person/infrastructure/services/router/emailRouter';
 import { userRouter } from './user/infrastructure/userRouter'; 
 import { paymentRouter } from './invoiceManagement/payments/infraestructure/routers/paymentRouter';
 import { paymentsRouter } from './invoiceManagement/paymentMethod/infraestructure/routes/paymentMethodRouter';
+import { PaypalRoute } from './NewPaypal/infrestructure/router/paypalRouter';
 
 
 
@@ -35,6 +35,7 @@ app.use("/api/v1/cards", paymentsRouter)
 app.use('/api/v1/person', personRoutes);
 app.use('/api/v1/person/email', emailRouter);
 app.use('/api/v1/user', userRouter);
+app.use('/api/v1/payments', PaypalRoute);
 
 const SERVER_PORT = process.env.SERVER_PORT || 3000;
 

@@ -38,7 +38,7 @@ export class PayController{
         }
     }
     async createPaymentPaypal(req: Request, res: Response) {
-        const id = Number(req.query.id);
+        const id = Number(req.params.id);
         try {
             const pay = await this.createPaypalUseCase.run(id);
             if (pay!==null){
