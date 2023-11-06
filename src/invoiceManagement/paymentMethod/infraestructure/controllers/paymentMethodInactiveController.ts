@@ -7,9 +7,7 @@ export class PaymentMethodInactiveController {
   async setInactivePayment(request: Request, response: Response) {
     try {
       const { id } = request.body;
-
       const result = await this.paymentInactiveUseCase.execute(id);
-
       if (result === id) {
         return response.status(200).json({ message: 'The payment has been successfully deactivated.' });
       } else {
