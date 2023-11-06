@@ -27,7 +27,11 @@ app.use("/Paypal", PaypalRoute);
 //app.use('/payments', paymentRouter)
 //app.use('/api/v1/Payment', paymentRouter);
 app.use('/api/v1/Payment', paymentRouter);
+<<<<<<< HEAD
 app.use('/api/v1/paymentsMethod', paymentsRouter);
+=======
+app.use('/api/v1/payments_method',paymentsRouter);
+>>>>>>> 2caa0d82c9ddea9a180f71afe5ac88e953eea7cf
 
 app.use('/api/v1/office', officeRouter);
 app.use('/api/v1/categories', categoryRoutes);

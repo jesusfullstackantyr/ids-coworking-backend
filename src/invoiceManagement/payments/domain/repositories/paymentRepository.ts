@@ -10,6 +10,7 @@ export interface PaymentRepository {
     ProcessPayment(
         name:String,
         email:String,
+        phone:string,
         card_number:String,
         cvv:String,
         expiration_month:String,
@@ -21,7 +22,8 @@ export interface PaymentRepository {
         id_contract: number,
         id_payment_method: string,
         id_card: string,
-        id_user: string
+        id_user: string,
+        dataPay: any
     ):Promise<JSON | void | Error>
     
 }

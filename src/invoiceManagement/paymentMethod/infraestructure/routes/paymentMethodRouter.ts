@@ -7,7 +7,7 @@ paymentsRouter.post("/",paymentsCreateController.createPayments.bind(paymentsCre
 
 paymentsRouter.get("/",paymentsGetAllController.getAllPayments.bind(paymentsGetAllController));
 
-paymentsRouter.put("/", paymentsUpdateController.updatePayments.bind(paymentsUpdateController));
+paymentsRouter.put("/:id", paymentsUpdateController.updatePayments.bind(paymentsUpdateController));
 
 paymentsRouter.delete("/:id", paymentsDeleteController.deletePayment.bind(paymentsDeleteController));
 
