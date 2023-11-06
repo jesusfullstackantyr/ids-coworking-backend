@@ -2,13 +2,12 @@
 import { v4 as uuidv4 } from 'uuid';
 import { PaymentRepository } from '../../domain/repositories/paymentRepository';
 
-
 export class MakePaymentUseCase {
     constructor(readonly paymentRepository: PaymentRepository) {}
-    
     async run(
         name:String,
         email:String,
+        phone:string,
         card_number:String,
         cvv:String,
         expiration_month:String,
@@ -17,7 +16,8 @@ export class MakePaymentUseCase {
         description: String,
         id_contract: number,
         id_card: string,
-        id_user: string
+        id_user: string,
+        dataPay: any,
     ): Promise<JSON | void | Error> {
         
         const fullUuid = uuidv4();
@@ -28,6 +28,7 @@ export class MakePaymentUseCase {
             const payment = await this.paymentRepository.ProcessPayment(
                 name,
                 email,
+                phone,
                 card_number,
                 cvv,
                 expiration_month,
@@ -39,7 +40,8 @@ export class MakePaymentUseCase {
                 id_contract,
                 id_payment_method,
                 id_card,
-                id_user
+                id_user,
+                dataPay
                 )
             return payment 
         } catch (error) {

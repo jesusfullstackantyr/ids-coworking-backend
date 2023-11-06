@@ -20,8 +20,7 @@ paymentRouter.get(
     paymentsContoller.listAllPayments.bind(paymentsContoller)
 )
 
-paymentRouter.post('/', 
-    makePaymentController.run.bind(makePaymentController)
+paymentRouter.post('/', makePaymentController.run.bind(makePaymentController)
 )
 
 paymentsRouter.post("/",paymentsCreateController.createPayments.bind(paymentsCreateController));
