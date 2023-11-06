@@ -1,7 +1,7 @@
 import express from 'express';
 import { Signale } from 'signale';
 import { personRoutes } from './accessManagement/person/infrastructure/personRouter';
-import { emailRouter } from './accessManagement/person/infrastructure/emailRouter';
+import { emailRouter } from './accessManagement/person/infrastructure/services/emailRouter';
 import dotenv from "dotenv";
 dotenv.config();
 const appid = process.env.APPID;
