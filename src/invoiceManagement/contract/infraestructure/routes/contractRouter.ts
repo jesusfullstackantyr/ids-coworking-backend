@@ -4,22 +4,22 @@ import { createContractController, updateContractController,getContractsControll
 export const ContractRoutes = express.Router();
 
 ContractRoutes.get(
-    "/getContracts", 
+    "/", 
     getContractsController.get.bind(getContractsController));
     
 ContractRoutes.get(
-    "/getContractById/:id", 
+    "id=:id", 
     getContractByIdController.getContractById.bind(getContractByIdController));
 
 ContractRoutes.post(
-    "/create", 
+    "/", 
     createContractController.create.bind(createContractController));
 
 ContractRoutes.put(
-    "/cancel/:id", 
+    "/cancel/id=:id", 
     updateContractController.CancelStatus.bind(updateContractController)
     );
 ContractRoutes.put(
-    "/updateExpiration/:id", 
+    "/expiration/id=:id", 
     updateContractExpirationController.UpdateExpiration.bind(updateContractExpirationController)
     );
