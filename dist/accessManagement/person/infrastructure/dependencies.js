@@ -1,10 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.registerPersonController = void 0;
-const mariadbPersonRepository_1 = require("./mariadbPersonRepository");
+exports.registerPersonController = exports.updatePersonController = void 0;
+const mariadbPersonRepository_1 = require("./repositories/mariadbPersonRepository");
 const mariadbPersonRepository = new mariadbPersonRepository_1.MariadbPersonRepository();
 const registerPersonController_1 = require("./controllers/registerPersonController");
 const registerPersonUseCase_1 = require("../application/registerPersonUseCase");
 const registerPersonUseCase = new registerPersonUseCase_1.RegisterPersonUseCase(mariadbPersonRepository);
 const registerPersonController = new registerPersonController_1.RegisterPersonController(registerPersonUseCase);
 exports.registerPersonController = registerPersonController;
+const updatePersonController_1 = require("./controllers/updatePersonController");
+const updatePersonUseCase_1 = require("../application/updatePersonUseCase");
+const updatePersonUseCase = new updatePersonUseCase_1.UpdatePersonUseCase(mariadbPersonRepository);
+const updatePersonController = new updatePersonController_1.UpdatePersonController(updatePersonUseCase);
+exports.updatePersonController = updatePersonController;

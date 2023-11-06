@@ -1,16 +1,16 @@
-import { Person } from '../domain/person';
-import { PersonRepository } from '../domain/personRepository';
+import { Person } from '../domain/entities/person';
+import { PersonRepository } from '../domain/repositories/personRepository';
+import { PersonValidate } from '../domain/validators/personValidate';
 
 export class RegisterPersonUseCase {
 
     constructor(readonly PersonRepository: PersonRepository) { }
 
     async run(
-
         name: string,
         lastname: string,
         email: string,
-        phone: number,
+        phone: string,
         occupation: string,
         id_address: number,
         id_user: number,
@@ -23,6 +23,10 @@ export class RegisterPersonUseCase {
                 return null;
             }
 
+            const person = new Person(name, lastname, email, phone, occupation, id_address, id_user, status);
+            const personValidator = new PersonValidate(person);
+            await personValidator.validate();
+
             const registerPerson = await this.PersonRepository.registerPerson(name, lastname, email, phone, occupation, id_address, id_user, status);
 
             if (registerPerson === null) {
@@ -34,5 +38,4 @@ export class RegisterPersonUseCase {
             return null;
         }
     }
-
 }

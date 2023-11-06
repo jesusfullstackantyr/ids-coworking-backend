@@ -10,6 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RegisterPersonUseCase = void 0;
+const person_1 = require("../domain/entities/person");
+const personValidate_1 = require("../domain/validators/personValidate");
 class RegisterPersonUseCase {
     constructor(PersonRepository) {
         this.PersonRepository = PersonRepository;
@@ -20,6 +22,9 @@ class RegisterPersonUseCase {
                 if (!name || !lastname || !email || !phone || !occupation || !id_address || !id_user) {
                     return null;
                 }
+                const person = new person_1.Person(name, lastname, email, phone, occupation, id_address, id_user, status);
+                const personValidator = new personValidate_1.PersonValidate(person);
+                yield personValidator.validate();
                 const registerPerson = yield this.PersonRepository.registerPerson(name, lastname, email, phone, occupation, id_address, id_user, status);
                 if (registerPerson === null) {
                     return null;

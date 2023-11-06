@@ -1,9 +1,18 @@
 import { Person } from '../entities/person';
 
 export interface PersonRepository {
-    validatePerson(
-        id_user: Number,
-        status: string
-    ): Promise< boolean | null | Error >
+    
+    registerPerson(
+        name: string,
+        lastname: string,
+        email: string,
+        phone: string,
+        occupation: string,
+        id_address: number,
+        id_user: number,
+        status: string,
 
+    ): Promise< Person | null | Error >
+
+    updatePerson(id: number, name: string, lastname: string, phone: string): Promise<Person | null | string>
 }

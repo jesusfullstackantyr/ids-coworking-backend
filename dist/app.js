@@ -5,9 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const signale_1 = require("signale");
-const personRouter_1 = require("./accessManagement/person/infrastructure/personRouter");
-const emailRouter_1 = require("./accessManagement/person/infrastructure/services/emailRouter");
 const dotenv_1 = __importDefault(require("dotenv"));
+const personRouter_1 = require("./accessManagement/person/infrastructure/routes/personRouter");
+const emailRouter_1 = require("./accessManagement/person/infrastructure/services/emailRouter");
 dotenv_1.default.config();
 const appid = process.env.APPID;
 var PORT = process.env.SERVER_PORT;
