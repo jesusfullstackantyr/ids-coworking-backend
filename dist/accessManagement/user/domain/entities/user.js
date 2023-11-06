@@ -21,7 +21,8 @@ exports.User = User;
 __decorate([
     (0, class_validator_1.IsEmail)(),
     (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)()
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)({ groups: ['update'] })
 ], User.prototype, "email", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
@@ -31,11 +32,12 @@ __decorate([
 ], User.prototype, "password", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)()
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)({ groups: ['update'] })
 ], User.prototype, "verified", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.Min)(0),
-    (0, class_validator_1.IsOptional)() // Opcional al actualizar
+    (0, class_validator_1.IsOptional)({ groups: ['update'] })
 ], User.prototype, "idRole", void 0);

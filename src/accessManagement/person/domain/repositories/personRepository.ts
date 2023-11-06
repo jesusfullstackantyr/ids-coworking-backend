@@ -20,5 +20,6 @@ export interface PersonRepository {
         id_user: Number,
         status: string
     ): Promise< boolean | null | Error >
-    
+    updatePersonAddress(id: number, id_address: number): Promise<Person | null | string>
+    listAllPersons(): Promise<Person[] | null>
 }

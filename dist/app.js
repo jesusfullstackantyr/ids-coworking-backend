@@ -9,6 +9,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const personRouter_1 = require("./accessManagement/person/infrastructure/routes/personRouter");
 const emailRouter_1 = require("./accessManagement/person/infrastructure/services/emailRouter");
 const userRouter_1 = require("./accessManagement/user/infraestructure/routes/userRouter");
+const addressRouter_1 = require("./accessManagement/address/infrastructure/routes/addressRouter");
 dotenv_1.default.config();
 const appid = process.env.APPID;
 var PORT = process.env.SERVER_PORT;
@@ -19,6 +20,7 @@ app.get("/", (req, res) => res.send(`appid: ${appid} home page: says hello!`));
 app.use('/api/v1/person', personRouter_1.personRoutes);
 app.use('/api/v1/person/email', emailRouter_1.emailRouter);
 app.use('/api/v1/user', userRouter_1.userRouter);
+app.use('/api/v1/address', addressRouter_1.addressRoutes);
 app.listen(PORT, () => {
     signale.success(`Server run in port ${PORT}`);
 });
