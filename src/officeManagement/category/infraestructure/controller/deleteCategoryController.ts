@@ -15,7 +15,7 @@ export class DeleteCategoryController{
                 return res.status(200).send({
                     status: "success",
                     data: {
-                        new_Book: deleteCategory,
+                        Category: deleteCategory,
                         message:"Category deleted successfully"
                     }
                 });
