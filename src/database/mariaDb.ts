@@ -1,4 +1,4 @@
-import dotenv from "dotenv";
+import * as dotenv from "dotenv";
 import mariadb from "mariadb";
 import { Signale } from "signale";
 
@@ -6,7 +6,7 @@ dotenv.config();
 
 const signale = new Signale();
 
-export const pool = mariadb.createPool({
+const pool = mariadb.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   database: process.env.DB_DATABASE,
@@ -28,5 +28,5 @@ export async function query(sql: string, params: any[]) {
     if (conn) {
       conn.release(); // Devuelve la conexión al pool al finalizar
     }
-  }0
+  }
 }
