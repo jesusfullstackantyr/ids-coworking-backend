@@ -1,8 +1,8 @@
-import { PaypalRepository } from "../domain/repositories/paypalRepository";
+import { PaypalRepository } from "../../domain/repositories/paypalRepository";
 import https from 'https';
-import { PaymentData } from "../domain/repositories/paypalRepository";
-import { pool } from "../../database/mariaDb";
-import { Payment } from "../domain/entities/payments";
+import { PaymentData } from "../../domain/repositories/paypalRepository";
+import { pool } from "../../../database/mariaDb";
+import { Payment } from "../../domain/entities/payments";
 import { format } from 'date-fns';
 
 export class PaypalRepositoryr implements PaypalRepository {

@@ -1,5 +1,5 @@
 import express from "express";
-import { PController } from "./dependencies";
+import { PController } from "../dependencies";
 export const PaypalRoute = express.Router();
 
 PaypalRoute.post("/create-payment",PController.createPaymentPaypal.bind(PController));

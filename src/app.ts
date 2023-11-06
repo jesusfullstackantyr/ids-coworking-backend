@@ -1,6 +1,6 @@
 import express from 'express';
 import { Signale } from 'signale';
-import { PaypalRoute } from './NewPaypal/infrestructure/paypalRouter';
+import { PaypalRoute } from './NewPaypal/infrestructure/router/paypalRouter';
 
 
 const app = express();
