@@ -9,10 +9,10 @@ const signale = new Signale();
 
 // Define las variables locales
 const DB_HOST = 'localhost'; // Cambia esto por tu host
-const DB_USER = 'root'; // Cambia esto por tu nombre de usuario
-const DB_DATABASE = 'office'; // Cambia esto por el nombre de tu base de datos
-const DB_PASSWORD = 'LopezTorres2001'; // Cambia esto por tu contraseña
-const DB_PORT = 3306; // Cambia esto al puerto que utilices, por defecto es 3306 para MariaDB
+const DB_USER = '211099'; // Cambia esto por tu nombre de usuario
+const DB_DATABASE = 'soa'; // Cambia esto por el nombre de tu base de datos
+const DB_PASSWORD = '211099'; // Cambia esto por tu contraseña
+const DB_PORT = 3307; // Cambia esto al puerto que utilices, por defecto es 3306 para MariaDB
 
 
 // Crea el pool utilizando las variables locales
