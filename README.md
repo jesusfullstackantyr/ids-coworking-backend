@@ -4,9 +4,9 @@ Este es el repositorio principal para el proyecto de SOA
 
 # docker build -t sendmail .
 crear imagen/compilar imagen
-# docker-compose up
+# docker compose up
 subir servicio
-# docker-compose down
+# docker compose down
 bajar servicio
 
 # proyecto tTypeScript + Node

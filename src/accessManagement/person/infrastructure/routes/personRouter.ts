@@ -9,5 +9,5 @@ import {
 
 export const personRoutes = express.Router();
 
-personRoutes.post('/register', registerPersonController.run.bind(registerPersonController));
-personRoutes.put('/update/:id', updatePersonController.run.bind(updatePersonController));
+personRoutes.post('/', registerPersonController.run.bind(registerPersonController));
+personRoutes.put('/:id', updatePersonController.run.bind(updatePersonController));
