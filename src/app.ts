@@ -6,20 +6,24 @@ import dotenv from 'dotenv';
 import { officeRouter } from './officeManagement/office/infraestructure/routes/officeRouter';
 import { categoryRoutes } from './officeManagement/category/infraestructure/routes/categoryRouter';
 import { ContractRoutes } from './contract/infrastructure/contractRouter';
-import { personRoutes } from './person/infrastructure/personRouter';
-import { emailRouter } from './person/infrastructure/services/router/emailRouter';
-import { userRouter } from './user/infrastructure/userRouter'; 
 import { paymentRouter } from './invoiceManagement/payments/infraestructure/routers/paymentRouter';
 import { paymentsRouter } from './invoiceManagement/paymentMethod/infraestructure/routes/paymentMethodRouter';
 import { PaypalRoute } from './NewPaypal/infrestructure/router/paypalRouter';
-
+import { personRoutes } from './accessManagement/person/infrastructure/routes/personRouter';
+import { emailRouter } from './accessManagement/person/infrastructure/services/emailRouter';
+import { userRouter } from './accessManagement/user/infraestructure/routes/userRouter';
+import { addressRoutes } from './accessManagement/address/infrastructure/routes/addressRouter';
 
 
 dotenv.config();
-
+const appid = process.env.APPID;
+var PORT = process.env.SERVER_PORT;
 const app = express();
 const signale = new Signale();
+
 app.use(express.json());
+app.get("/", (req,res) => 
+res.send(`appid: ${appid} home page: says hello!`))
 
 app.use('/contract',ContractRoutes);
 app.use("/Paypal", PaypalRoute);
@@ -36,10 +40,11 @@ app.use('/api/v1/person', personRoutes);
 app.use('/api/v1/person/email', emailRouter);
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/payments', PaypalRoute);
+app.use('/api/v1/address', addressRoutes)
 
-const SERVER_PORT = process.env.SERVER_PORT || 3000;
+//const SERVER_PORT = process.env.SERVER_PORT || 3000;
 
-app.listen(SERVER_PORT, () => {
-    signale.success("Server online in port 3001");
+app.listen(PORT, () => {
+    signale.success(`Server run in port ${PORT}`);
 });
 
