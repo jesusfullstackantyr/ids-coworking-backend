@@ -7,12 +7,14 @@ import { officeRouter } from './officeManagement/office/infraestructure/routes/o
 import { categoryRoutes } from './officeManagement/category/infraestructure/routes/categoryRouter';
 //import { ContractRoutes } from './contract/infrastructure/contractRouter';
 import { PaypalRoute } from './NewPaypal/infrestructure/paypalRouter';
-import { personRoutes } from './person/infrastructure/personRouter';
-import { emailRouter } from './person/infrastructure/services/router/emailRouter';
-import { userRouter } from './user/infrastructure/userRouter'; 
+
 import { paymentRouter } from './invoiceManagement/payments/infraestructure/routers/paymentRouter';
 import { paymentsRouter } from './invoiceManagement/paymentMethod/infraestructure/routes/paymentMethodRouter';
 import { ContractRoutes } from './invoiceManagement/contract/infraestructure/routes/contractRouter';
+import { personRoutes } from './accessManagement/person/infrastructure/routes/personRouter';
+import { emailRouter } from './accessManagement/person/infrastructure/services/emailRouter';
+import { userRouter } from './accessManagement/user/infraestructure/routes/userRouter';
+import { addressRoutes } from './accessManagement/address/infrastructure/routes/addressRouter';
 
 
 
@@ -25,7 +27,7 @@ app.use(express.json());
 app.use("/Paypal", PaypalRoute);
 
 //app.use('/payments', paymentRouter)
-//app.use('/api/v1/Payment', paymentRouter);
+app.use('/api/v1/payments', PaypalRoute);
 app.use('/api/v1/Payment', paymentRouter);
 app.use('/api/v1/payments_method',paymentsRouter);
 
@@ -36,6 +38,8 @@ app.use('/api/v1/person', personRoutes);
 app.use('/api/v1/person/email', emailRouter);
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/contracts', ContractRoutes);
+app.use('/api/v1/address', addressRoutes)
+
 
 
 const SERVER_PORT = process.env.SERVER_PORT || 3000;

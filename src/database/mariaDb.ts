@@ -14,8 +14,6 @@ export const pool = mariadb.createPool({
     port: 3306, // Agrega el puerto correspondiente aquí
 })
 
-
-
 // Cambiado de `mysql.createPool` a `createPool`
 export async function query(sql: string, params: any[]) {
     try {

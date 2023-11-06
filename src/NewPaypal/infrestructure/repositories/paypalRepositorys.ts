@@ -1,8 +1,8 @@
-import { PaypalRepository } from "../domain/repositories/paypalRepository";
+import { PaypalRepository } from "../../domain/repositories/paypalRepository";
 import https from 'https';
-import { PaymentData } from "../domain/repositories/paypalRepository";
-import { pool } from "../../database/mariaDb";
-import { Payment } from "../domain/entities/payments";
+import { PaymentData } from "../../domain/repositories/paypalRepository";
+import { pool } from "../../../database/mariaDb";
+import { Payment } from "../../domain/entities/payments";
 import { format } from 'date-fns';
 
 export class PaypalRepositoryr implements PaypalRepository {
@@ -40,8 +40,7 @@ export class PaypalRepositoryr implements PaypalRepository {
             conn = await pool.getConnection();
             console.log("Conexión exitosa a la BD");
             if (!isNaN(id)) {
-                const query = "SELECT amount FROM Contact WHERE id = ?";
-
+                const query = "SELECT amount FROM Contract WHERE id = ?";
                 const result = await conn.query(query, [id]);
                 console.log(query);
 
@@ -59,7 +58,7 @@ export class PaypalRepositoryr implements PaypalRepository {
                             brand_name: `Coworking`,
                             landing_page: 'NO_PREFERENCE',
                             user_action: 'PAY_NOW',
-                            return_url: `http://localhost:3000/Paypal/execute-payment`,
+                            return_url: `http://localhost:3000/Paypal/extracter_payment`,
                             cancel_url: `http://localhost:3000/cancel-payment`
                         }
                     };
