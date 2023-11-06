@@ -1,7 +1,7 @@
 import { Payment } from "../entities/payments";
 
 export interface PaypalRepository{
-    createPaypal(): Promise<any|null>
+    createPaypal(id:number): Promise<any|null>
     getPaypal(token:string):Promise<any|null>
     createPayment(payment:PaymentData): Promise<Payment|null>
 }
