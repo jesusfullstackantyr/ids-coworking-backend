@@ -1,35 +1,42 @@
+// import { MariaDBRepository } from "./mariaDBRepository";
 import { MariaDBRepository } from "./repositories/mariaDBRepository";
 
-import { CreateContractUseCase } from "../application/create_contract_usecase";
+
+// cancelar contrato
 import { CancelContractUseCase } from "../application/cancelContractUseCase";
-import { GetContractsUseCase } from "../application/getContractsUseCase";
+import { CreateContractUseCase } from "../application/create_contract_usecase";
+
 import { UpdateContractExpirationUseCase } from "../application/updateContractExpirationUseCase";
 import { GetContractByIdUseCase } from "../application/getContractByIdUseCase";
+import { GetContractsUseCase } from "../application/getContractsUseCase";
 
 
-import { CreateContractController } from "./controllers/createContractController";
+
 import { CancelContractController} from "./controllers/cancelContractController";
-import { GetContractsController} from "./controllers/getContractsController";
+import { CreateContractController } from "./controllers/CreateContractController";
 import { UpdateContractExpirationController } from "./controllers/updateContractExpirationController";
 import { GetContractByIdController } from "./controllers/getContractByIdController";
+import { GetContractsController } from "./controllers/getContractsController";
 
 
 
 export const mariaDBRepository = new MariaDBRepository();
 
 //Casos de uso
-export const createContractUseCase = new CreateContractUseCase(mariaDBRepository);
 export const updateContractUseCase = new CancelContractUseCase(mariaDBRepository);
-export const getContractsUseCase = new GetContractsUseCase(mariaDBRepository);
 export const updateContractExpirationUseCase = new UpdateContractExpirationUseCase(mariaDBRepository);
 export const getContractByIdUseCase = new GetContractByIdUseCase(mariaDBRepository);
+export const getContractsUseCase = new GetContractsUseCase(mariaDBRepository);
+export const createContractUseCase = new CreateContractUseCase(mariaDBRepository);
+
+
 
 
 
 //Controladores
-export const createContractController = new CreateContractController(createContractUseCase);
 export const updateContractController = new CancelContractController(updateContractUseCase);
-export const getContractsController = new GetContractsController(getContractsUseCase);
 export const updateContractExpirationController = new UpdateContractExpirationController(updateContractExpirationUseCase);
 export const getContractByIdController = new GetContractByIdController(getContractByIdUseCase);
+export const getContractsController = new GetContractsController(getContractsUseCase);
+export const createContractController = new CreateContractController(createContractUseCase);
 

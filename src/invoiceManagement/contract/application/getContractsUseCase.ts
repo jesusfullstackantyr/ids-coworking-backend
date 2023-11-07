@@ -1,5 +1,5 @@
-import { Contract } from "../domain/contract";
-import { ContractRepository } from "../domain/contract_repository";
+import { Contract } from "../domain/entities/contract";
+import { ContractRepository } from "../domain/interfaces/contract_repository";
 
 export class GetContractsUseCase{
     constructor( readonly ContractRepository: ContractRepository){}

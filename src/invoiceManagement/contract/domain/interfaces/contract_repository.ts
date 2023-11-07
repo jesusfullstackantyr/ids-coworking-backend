@@ -14,5 +14,4 @@ export interface ContractRepository {
     getContracts(): Promise<Contract[] | null>
     getContractById(id:number): Promise<Contract | null>
 
-
 }
