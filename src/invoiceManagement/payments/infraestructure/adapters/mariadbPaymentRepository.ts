@@ -177,7 +177,7 @@ export class MariadbCardRepository implements PaymentRepository {
           ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)
         `;
   
-  
+
           const formattedDate = moment(dataPay.creation_date).format('YYYY-MM-DD HH:mm:ss');
   
           const params = [
