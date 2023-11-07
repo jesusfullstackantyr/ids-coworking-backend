@@ -8,10 +8,9 @@ import {
 
 export const categoryRoutes = express.Router();
 
-categoryRoutes.post("/create", createCategoryController.create.bind(createCategoryController));
+categoryRoutes.post("/", createCategoryController.create.bind(createCategoryController));
 categoryRoutes.delete("/:id", deleteCategoryController.delete.bind(deleteCategoryController));
 
 categoryRoutes.get("/:id", getCategoryController.get.bind(getCategoryController))
-
-categoryRoutes.put("/update/:id", updateCategoryController.update.bind(updateCategoryController));
+categoryRoutes.put("/:id", updateCategoryController.update.bind(updateCategoryController));
 

@@ -38,7 +38,6 @@ export class OfficeValidation {
         this.id_category = id_category;
     }
 }
-
 export class ValidatorupdateStatus {
 
     @IsInt()
@@ -47,6 +46,7 @@ export class ValidatorupdateStatus {
     
     @IsNotEmpty()
     @IsString()
+    @IsIn(['activo', 'inactivo', 'mantenimiento'])
     public status: string;
 
     constructor(

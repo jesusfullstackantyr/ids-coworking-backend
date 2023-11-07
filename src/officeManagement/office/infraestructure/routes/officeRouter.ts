@@ -16,6 +16,6 @@ officeRouter.put('/:id', (req, res) => {
 });
 
 
-officeRouter.put("/updateStatus", (req, res) => { updateStatusController.handle(req, res);});
+officeRouter.put("/:id", (req, res) => { updateStatusController.handle(req, res);});
 
 export { officeRouter };
