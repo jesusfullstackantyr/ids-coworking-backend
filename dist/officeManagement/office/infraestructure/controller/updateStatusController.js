@@ -10,34 +10,44 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateStatusController = void 0;
-const officesValidation_1 = require("../../domain/validation/officesValidation");
-const HTTPStatusCodes_1 = require("../../domain/validation/HTTPStatusCodes");
 class UpdateStatusController {
     constructor(updateStatus) {
         this.updateStatus = updateStatus;
     }
     handle(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const validator = new officesValidation_1.ValidatorupdateStatus(req.body.id, req.body.status);
-            if (!['activo', 'inactivo', 'mantenimiento'].includes(validator.status)) {
-                return res.status(HTTPStatusCodes_1.HTTPStatusCodes.BAD_REQUEST).json({
-                    error: 'El estatus tiene que estar en activo, inactivo, mantenimiento.'
-                });
-            }
             try {
-                const office = yield this.updateStatus.run(validator.id, validator.status);
-                if (office) {
-                    return res.status(HTTPStatusCodes_1.HTTPStatusCodes.OK).json(office);
+                const { id } = req.params;
+                const { status } = req.body;
+                const updateStatus = yield this.updateStatus.run(Number(id), status);
+                if (updateStatus) {
+                    return res.status(201).send({
+                        status: "success",
+                        data: {
+                            update_Status: updateStatus
+                        }
+                    });
                 }
                 else {
-                    return res.status(HTTPStatusCodes_1.HTTPStatusCodes.NOT_FOUND).json({
-                        error: 'Oficina no encontrada.'
-                    });
+                    throw new Error("Ocurrió un error al actualizar, oficina no encontrada ");
                 }
             }
             catch (error) {
-                return res.status(HTTPStatusCodes_1.HTTPStatusCodes.INTERNAL_SERVER_ERROR).json({
-                    error: 'Error interno del servidor.'
+                let errorMessage = "Ocurrió un error desconocido.";
+                let errors;
+                if (error instanceof Error) {
+                    if (error.message.startsWith('[')) {
+                        errorMessage = "La validación falló";
+                        errors = JSON.parse(error.message);
+                    }
+                    else {
+                        errorMessage = error.message;
+                    }
+                }
+                return res.status(500).send({
+                    status: "error",
+                    message: errorMessage,
+                    errors: errors
                 });
             }
         });

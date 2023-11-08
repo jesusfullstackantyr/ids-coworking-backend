@@ -73,5 +73,6 @@ __decorate([
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsIn)(['activo', 'inactivo', 'mantenimiento']),
     __metadata("design:type", String)
 ], ValidatorupdateStatus.prototype, "status", void 0);

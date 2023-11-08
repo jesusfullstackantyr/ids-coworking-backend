@@ -24,8 +24,13 @@ class UpdateOfficeController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 (0, s3UploaderMiddleware_1.default)(req, res, () => __awaiter(this, void 0, void 0, function* () {
-                    console.log(req.body);
-                    const { id, name, image_url, status, id_category } = req.body;
+                    const { name, image_url, status, id_category } = req.body;
+                    // Convierte 'id' a un número usando el operador + o parseInt
+                    const id = parseInt(req.params.id, 10);
+                    // Asegúrate de que el 'id' es un número válido
+                    if (isNaN(id)) {
+                        return res.status(HTTPStatusCodes_1.HTTPStatusCodes.BAD_REQUEST).send({ status: 'error', message: 'Invalid ID' });
+                    }
                     const officeValidation = new officesValidation_1.OfficeValidation(id, name, image_url, status, Number(id_category));
                     yield this.updateOfficeUseCase.execute(officeValidation);
                     res.status(HTTPStatusCodes_1.HTTPStatusCodes.OK).send({ status: 'success', message: 'Office updated successfully' });

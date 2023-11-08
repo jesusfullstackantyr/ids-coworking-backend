@@ -1,5 +1,5 @@
-import { Card } from "../entities/cards";
+/*import { Card } from "../entities/cards";
 
 export interface CardRepository {
     
-}
+}*/

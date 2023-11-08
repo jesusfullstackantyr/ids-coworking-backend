@@ -23,7 +23,7 @@ class DeleteCategoryController {
                     return res.status(200).send({
                         status: "success",
                         data: {
-                            new_Book: deleteCategory,
+                            Category: deleteCategory,
                             message: "Category deleted successfully"
                         }
                     });
@@ -31,7 +31,7 @@ class DeleteCategoryController {
                 else {
                     return res.status(500).send({
                         status: "error",
-                        message: "An error occurred while adding the category."
+                        message: "An error occurred while adding the publication."
                     });
                 }
             }

@@ -17,27 +17,30 @@ class GetCategoryController {
     get(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                let id = parseInt(req.params.id, 10);
+                let id = parseInt(req.params.id);
+                console.log("Category ID:", id); // Agrega esta línea para registrar el ID que estás intentando obtener.
                 const category = yield this.getCategoryUseCase.get(id);
                 if (category) {
                     return res.status(200).send({
                         status: "success",
                         data: {
-                            new_Book: category,
+                            Cagory: category,
                             message: "Category"
                         }
                     });
                 }
                 else {
-                    return res.status(500).send({
+                    console.error("Category not found"); // Agrega esta línea para registrar que la categoría no se encontró.
+                    return res.status(404).send({
                         status: "error",
-                        message: "An error occurred while adding the category."
+                        message: "Category not found."
                     });
                 }
             }
             catch (error) {
+                console.error("Error:", error); // Agrega esta línea para registrar detalles sobre el error.
                 if (error instanceof Error) {
-                    if (error.message.startsWith('[')) {
+                    if (error.message.startsWith("[")) {
                         return res.status(400).send({
                             status: "error",
                             message: "Validation failed",
@@ -47,7 +50,7 @@ class GetCategoryController {
                 }
                 return res.status(500).send({
                     status: "error",
-                    message: "An error occurred while fetching the book."
+                    message: "An error occurred while fetching the category."
                 });
             }
         });

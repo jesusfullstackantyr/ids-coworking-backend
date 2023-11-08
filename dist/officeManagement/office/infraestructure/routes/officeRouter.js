@@ -14,5 +14,7 @@ exports.officeRouter = officeRouter;
 officeRouter.get("/:id", dependencies_1.getOfficeController.get.bind(dependencies_1.getOfficeController));
 // Ruta para crear una nueva oficina
 officeRouter.post('/create', (req, res) => { dependencies_2.createOfficeController.handle(req, res); });
-officeRouter.put('/update', (req, res) => { dependencies_1.updateOfficeController.handle(req, res); });
-officeRouter.put("/updateStatus", (req, res) => { dependencies_1.updateStatusController.handle(req, res); });
+officeRouter.put('/:id', (req, res) => {
+    dependencies_1.updateOfficeController.handle(req, res);
+});
+officeRouter.put("/:id", (req, res) => { dependencies_1.updateStatusController.handle(req, res); });

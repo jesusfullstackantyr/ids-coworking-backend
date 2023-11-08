@@ -39,7 +39,7 @@ class MariaDBRepository {
             try {
                 // Verifica si la categoría existe y no está marcada como eliminada
                 const checkSql = "SELECT * FROM categories WHERE id = ? AND is_deleted = 0";
-                const [existingCategory] = yield (0, mariaDb_1.query)(checkSql, [id]);
+                const existingCategory = yield (0, mariaDb_1.query)(checkSql, [id]);
                 if (!Array.isArray(existingCategory) || existingCategory.length === 0) {
                     return null; // La categoría no existe o ya ha sido eliminada.
                 }
@@ -59,18 +59,14 @@ class MariaDBRepository {
     }
     getCategory(id) {
         return __awaiter(this, void 0, void 0, function* () {
+            const sql = "SELECT * FROM categories WHERE id = ?";
             try {
-                const sql = "SELECT * FROM categories WHERE id = ?";
-                const params = [id]; // Usar id de la oficina en lugar de id_public
-                const [result] = yield (0, mariaDb_1.query)(sql, params);
-                if (result && result.length > 0) {
-                    // Mapea los resultados en objetos de oficina
-                    const categoryList = result.map((data) => new category_1.Category(data.id, data.name, data.price, data.capacity, data.space, data.status));
-                    return categoryList;
-                }
-                else {
+                const result = yield (0, mariaDb_1.query)(sql, [id]);
+                if (result.length === 0) {
                     return null;
                 }
+                const catego = result[0];
+                return new category_1.Category(catego.id, catego.name, catego.price, catego.capacity, catego.space, catego.status);
             }
             catch (error) {
                 console.error('Error al obtener el libro:', error);

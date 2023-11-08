@@ -10,12 +10,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateStatus = void 0;
+const officesValidation_1 = require("../domain/validation/officesValidation");
+const class_validator_1 = require("class-validator");
 class UpdateStatus {
     constructor(officeRepository) {
         this.officeRepository = officeRepository;
     }
     run(id, status) {
         return __awaiter(this, void 0, void 0, function* () {
+            const validatorupdateStatus = new officesValidation_1.ValidatorupdateStatus(id, status);
+            const errors = yield (0, class_validator_1.validate)(validatorupdateStatus);
+            if (errors.length > 0) {
+                console.error('Validation failed. errors: ', errors);
+                throw new Error(JSON.stringify(errors));
+            }
             try {
                 const get = yield this.officeRepository.updateStatus(id, status);
                 return get;

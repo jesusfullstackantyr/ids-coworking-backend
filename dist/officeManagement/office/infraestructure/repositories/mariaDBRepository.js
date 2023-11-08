@@ -15,10 +15,9 @@ const mariaDb_1 = require("../../../../database/mariaDb");
 class MariaDBRepository {
     getOffice(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const sql = "SELECT * FROM offices WHERE id = ?";
-                const params = [id]; // Usar id de la oficina en lugar de id_public
-                const [result] = yield (0, mariaDb_1.query)(sql, params);
+            const sql = "SELECT * FROM offices WHERE id = ?";
+            try { // Usar id de la oficina en lugar de id_public
+                const result = yield (0, mariaDb_1.query)(sql, [id]);
                 if (result && result.length > 0) {
                     // Mapea los resultados en objetos de oficina
                     const officeList = result.map((data) => new office_1.Office(data.id, data.name, data.image_url, data.status, data.id_category));

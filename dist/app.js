@@ -4,25 +4,37 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-require("reflect-metadata");
 const signale_1 = require("signale");
+const dotenv_1 = __importDefault(require("dotenv"));
 const officeRouter_1 = require("./officeManagement/office/infraestructure/routes/officeRouter");
 const categoryRouter_1 = require("./officeManagement/category/infraestructure/routes/categoryRouter");
-const mariaDb_1 = require("./database/mariaDb");
-const dotenv_1 = __importDefault(require("dotenv"));
+//import { ContractRoutes } from './contract/infrastructure/contractRouter';
+const paypalRouter_1 = require("./NewPaypal/infrestructure/paypalRouter");
+const paymentRouter_1 = require("./invoiceManagement/payments/infraestructure/routers/paymentRouter");
+const paymentMethodRouter_1 = require("./invoiceManagement/paymentMethod/infraestructure/routes/paymentMethodRouter");
+const contractRouter_1 = require("./invoiceManagement/contract/infraestructure/routes/contractRouter");
+const personRouter_1 = require("./accessManagement/person/infrastructure/routes/personRouter");
+const emailRouter_1 = require("./accessManagement/person/infrastructure/services/emailRouter");
+const userRouter_1 = require("./accessManagement/user/infraestructure/routes/userRouter");
+const addressRouter_1 = require("./accessManagement/address/infrastructure/routes/addressRouter");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const signale = new signale_1.Signale();
 app.use(express_1.default.json());
+app.use("/Paypal", paypalRouter_1.PaypalRoute);
+//app.use('/payments', paymentRouter)
+app.use('/api/v1/payments', paypalRouter_1.PaypalRoute);
+app.use('/api/v1/Payment', paymentRouter_1.paymentRouter);
+app.use('/api/v1/payments_method', paymentMethodRouter_1.paymentsRouter);
 app.use('/api/v1/office', officeRouter_1.officeRouter);
 app.use('/api/v1/category', categoryRouter_1.categoryRoutes);
-const PORT = process.env.PORT;
-(0, mariaDb_1.initPool)().then(() => {
-    app.listen(PORT, () => {
-        signale.success(`Server online in port ${PORT}`);
-    });
-});
-// Ruta principal para mostrar el puerto actual
-app.get('/', (req, res) => {
-    res.send(`Esta solicitud se está manejando en el puerto ${PORT}`);
+app.use("/api/v1/cards", paymentMethodRouter_1.paymentsRouter);
+app.use('/api/v1/person', personRouter_1.personRoutes);
+app.use('/api/v1/person/email', emailRouter_1.emailRouter);
+app.use('/api/v1/user', userRouter_1.userRouter);
+app.use('/api/v1/contracts', contractRouter_1.ContractRoutes);
+app.use('/api/v1/address', addressRouter_1.addressRoutes);
+const SERVER_PORT = process.env.SERVER_PORT || 3000;
+app.listen(SERVER_PORT, () => {
+    signale.success("Server online in port 3001");
 });
