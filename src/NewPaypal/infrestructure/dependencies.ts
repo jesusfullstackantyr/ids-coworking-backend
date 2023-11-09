@@ -1,8 +1,9 @@
 import { CreatePaypalCase } from "../application/createPaymentPaypal";
-import { PaypalRepositoryr } from "./paypalRepositorys";
+
 import { PayController } from "./controller/controllerPaypal";
 import { GetPaypalCase } from "../application/getPayment";
 import { CreatePaymentCase } from "../application/createPayments";
+import { PaypalRepositoryr } from "./repositories/paypalRepositorys";
 
 const createPaypalRepository = new PaypalRepositoryr();
 
